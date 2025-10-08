@@ -1,0 +1,38 @@
+{
+  "name": "ai-code-review-assistant",
+  "version": "1.0.0",
+  "description": "Professional AI Code Review Assistant with React frontend and Python backend",
+  "main": "react_app.py",
+  "scripts": {
+    "start": "python react_app.py",
+    "dev": "python react_app.py",
+    "build-frontend": "cd frontend && npm run build",
+    "install-frontend": "cd frontend && npm install --legacy-peer-deps",
+    "setup": "npm run install-frontend && npm run build-frontend",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "code-review",
+    "ai",
+    "gemini",
+    "react",
+    "python",
+    "flask",
+    "git-diff",
+    "static-analysis"
+  ],
+  "author": "AI Code Review Assistant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parthraninga/code-review-assistant"
+  },
+  "bugs": {
+    "url": "https://github.com/parthraninga/code-review-assistant/issues"
+  },
+  "homepage": "https://github.com/parthraninga/code-review-assistant#readme",
+  "engines": {
+    "node": ">=16.0.0",
+    "python": ">=3.8.0"
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "review_criteria": {
+    "areCodeChangesOptimized": {
+      "label": "Are Code Changes Optimized",
+      "description": "Evaluates if the code changes are optimized for performance and efficiency",
+      "weight": 1.0,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "areCodeChangesRelative": {
+      "label": "Are Code Changes Relative",
+      "description": "Checks if code changes are relevant to the intended functionality",
+      "weight": 1.0,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "isCodeFormatted": {
+      "label": "Is Code Formatted",
+      "description": "Verifies proper code formatting and style consistency",
+      "weight": 0.8,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "isCodeWellWritten": {
+      "label": "Is Code Well Written",
+      "description": "Assesses overall code quality and readability",
+      "weight": 1.2,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "areCommentsWritten": {
+      "label": "Are Comments Written",
+      "description": "Checks for adequate and meaningful comments",
+      "weight": 0.9,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "cyclomaticComplexityScore": {
+      "label": "Cyclomatic Complexity Score",
+      "description": "Measures code complexity using cyclomatic complexity",
+      "weight": 1.1,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      },
+      "complexity_limits": {
+        "low": 5,
+        "medium": 10,
+        "high": 20,
+        "very_high": 30
+      }
+    },
+    "missingElements": {
+      "label": "Missing Elements",
+      "description": "Identifies missing components like error handling, validation",
+      "weight": 1.0,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "loopholes": {
+      "label": "Loopholes",
+      "description": "Identifies potential logic gaps or edge cases",
+      "weight": 1.2,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "isCommitMessageWellWritten": {
+      "label": "Is Commit Message Well Written",
+      "description": "Evaluates commit message quality and informativeness",
+      "weight": 0.7,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "isNamingConventionFollowed": {
+      "label": "Is Naming Convention Followed",
+      "description": "Checks adherence to naming conventions",
+      "weight": 0.8,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "areThereAnySpellingMistakes": {
+      "label": "Are There Any Spelling Mistakes",
+      "description": "Identifies spelling errors in code and comments",
+      "weight": 0.6,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "securityConcernsAny": {
+      "label": "Security Concerns Any",
+      "description": "Identifies potential security vulnerabilities",
+      "weight": 1.5,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "isCodeDuplicated": {
+      "label": "Is Code Duplicated",
+      "description": "Detects code duplication and suggests refactoring",
+      "weight": 1.0,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "areConstantsDefinedCentrally": {
+      "label": "Are Constants Defined Centrally",
+      "description": "Checks if constants are properly centralized",
+      "weight": 0.8,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "isCodeModular": {
+      "label": "Is Code Modular",
+      "description": "Evaluates code modularity and separation of concerns",
+      "weight": 1.1,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    },
+    "isLoggingDoneProperly": {
+      "label": "Is Logging Done Properly",
+      "description": "Checks for proper logging implementation",
+      "weight": 0.9,
+      "enabled": true,
+      "thresholds": {
+        "excellent": 9,
+        "good": 7,
+        "acceptable": 5,
+        "poor": 3
+      }
+    }
+  },
+  "scoring_settings": {
+    "overall_score_calculation": "weighted_average",
+    "minimum_passing_score": 7.0,
+    "auto_approve_threshold": 8.5,
+    "auto_reject_threshold": 4.0
+  },
+  "notification_settings": {
+    "send_email_notifications": false,
+    "send_slack_notifications": false,
+    "notification_threshold": 5.0
+  },
+  "analysis_settings": {
+    "max_file_size_kb": 1000,
+    "max_files_per_review": 50,
+    "timeout_seconds": 300,
+    "enable_rule_based_analysis": true,
+    "enable_ai_analysis": true
+  }
+}
