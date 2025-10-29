@@ -1,0 +1,786 @@
+ERROR: Massive code duplication (DRY violation)
+SEVERITY: Medium
+EXPECTED ISSUES: Maintenance nightmare, inconsistent bugs
+
+diff --git a/reports.py b/reports.py
+index 1234567..klmnopq 100644
+--- a/reports.py
++++ b/reports.py
+@@ -1,335 +1,335 @@
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_1(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_2(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_3(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_4(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_5(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_6(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_7(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_8(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_9(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_10(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_11(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_12(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_13(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_14(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_15(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_16(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_17(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_18(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_19(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_20(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_21(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_22(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_23(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_24(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_25(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_26(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_27(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_28(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_29(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_30(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_31(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_32(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_33(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_34(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_35(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_36(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_37(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_38(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_39(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_40(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_41(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_42(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_43(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_44(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_45(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_46(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_47(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_48(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_49(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_50(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_51(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_52(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_53(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_54(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_55(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_56(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_57(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_58(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_59(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_60(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_61(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_62(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_63(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_64(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_65(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_66(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_67(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_68(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_69(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_70(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_71(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_72(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_73(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_74(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_75(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_76(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_77(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_78(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_79(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_80(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_81(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_82(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_83(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_84(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_85(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_86(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_87(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_88(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_89(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_90(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_91(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_92(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_93(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_94(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_95(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_96(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_97(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_98(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_99(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_100(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_101(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_102(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_103(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_104(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_105(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_106(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_107(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_108(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_109(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_110(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+
+-def generate_report(data, type):
+-    return format_report(data, type)
++def generate_sales_report_111(data):
++    header = "SALES"
++    body = format_data(data)
++    return header + body
+

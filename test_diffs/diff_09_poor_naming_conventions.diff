@@ -1,0 +1,519 @@
+ERROR: Poor naming conventions
+SEVERITY: Low-Medium
+EXPECTED ISSUES: Code readability, maintainability
+
+diff --git a/utils.py b/utils.py
+index 9012345..ijklmno 100644
+--- a/utils.py
++++ b/utils.py
+@@ -1,308 +1,308 @@
+-def calculate_user_age_from_birthdate_1(date):
+-    return datetime.now().year - date.year
++def calc1(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_2(date):
+-    return datetime.now().year - date.year
++def calc2(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_3(date):
+-    return datetime.now().year - date.year
++def calc3(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_4(date):
+-    return datetime.now().year - date.year
++def calc4(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_5(date):
+-    return datetime.now().year - date.year
++def calc5(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_6(date):
+-    return datetime.now().year - date.year
++def calc6(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_7(date):
+-    return datetime.now().year - date.year
++def calc7(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_8(date):
+-    return datetime.now().year - date.year
++def calc8(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_9(date):
+-    return datetime.now().year - date.year
++def calc9(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_10(date):
+-    return datetime.now().year - date.year
++def calc10(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_11(date):
+-    return datetime.now().year - date.year
++def calc11(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_12(date):
+-    return datetime.now().year - date.year
++def calc12(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_13(date):
+-    return datetime.now().year - date.year
++def calc13(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_14(date):
+-    return datetime.now().year - date.year
++def calc14(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_15(date):
+-    return datetime.now().year - date.year
++def calc15(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_16(date):
+-    return datetime.now().year - date.year
++def calc16(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_17(date):
+-    return datetime.now().year - date.year
++def calc17(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_18(date):
+-    return datetime.now().year - date.year
++def calc18(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_19(date):
+-    return datetime.now().year - date.year
++def calc19(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_20(date):
+-    return datetime.now().year - date.year
++def calc20(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_21(date):
+-    return datetime.now().year - date.year
++def calc21(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_22(date):
+-    return datetime.now().year - date.year
++def calc22(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_23(date):
+-    return datetime.now().year - date.year
++def calc23(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_24(date):
+-    return datetime.now().year - date.year
++def calc24(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_25(date):
+-    return datetime.now().year - date.year
++def calc25(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_26(date):
+-    return datetime.now().year - date.year
++def calc26(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_27(date):
+-    return datetime.now().year - date.year
++def calc27(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_28(date):
+-    return datetime.now().year - date.year
++def calc28(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_29(date):
+-    return datetime.now().year - date.year
++def calc29(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_30(date):
+-    return datetime.now().year - date.year
++def calc30(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_31(date):
+-    return datetime.now().year - date.year
++def calc31(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_32(date):
+-    return datetime.now().year - date.year
++def calc32(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_33(date):
+-    return datetime.now().year - date.year
++def calc33(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_34(date):
+-    return datetime.now().year - date.year
++def calc34(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_35(date):
+-    return datetime.now().year - date.year
++def calc35(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_36(date):
+-    return datetime.now().year - date.year
++def calc36(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_37(date):
+-    return datetime.now().year - date.year
++def calc37(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_38(date):
+-    return datetime.now().year - date.year
++def calc38(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_39(date):
+-    return datetime.now().year - date.year
++def calc39(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_40(date):
+-    return datetime.now().year - date.year
++def calc40(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_41(date):
+-    return datetime.now().year - date.year
++def calc41(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_42(date):
+-    return datetime.now().year - date.year
++def calc42(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_43(date):
+-    return datetime.now().year - date.year
++def calc43(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_44(date):
+-    return datetime.now().year - date.year
++def calc44(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_45(date):
+-    return datetime.now().year - date.year
++def calc45(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_46(date):
+-    return datetime.now().year - date.year
++def calc46(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_47(date):
+-    return datetime.now().year - date.year
++def calc47(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_48(date):
+-    return datetime.now().year - date.year
++def calc48(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_49(date):
+-    return datetime.now().year - date.year
++def calc49(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_50(date):
+-    return datetime.now().year - date.year
++def calc50(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_51(date):
+-    return datetime.now().year - date.year
++def calc51(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_52(date):
+-    return datetime.now().year - date.year
++def calc52(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_53(date):
+-    return datetime.now().year - date.year
++def calc53(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_54(date):
+-    return datetime.now().year - date.year
++def calc54(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_55(date):
+-    return datetime.now().year - date.year
++def calc55(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_56(date):
+-    return datetime.now().year - date.year
++def calc56(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_57(date):
+-    return datetime.now().year - date.year
++def calc57(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_58(date):
+-    return datetime.now().year - date.year
++def calc58(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_59(date):
+-    return datetime.now().year - date.year
++def calc59(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_60(date):
+-    return datetime.now().year - date.year
++def calc60(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_61(date):
+-    return datetime.now().year - date.year
++def calc61(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_62(date):
+-    return datetime.now().year - date.year
++def calc62(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_63(date):
+-    return datetime.now().year - date.year
++def calc63(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_64(date):
+-    return datetime.now().year - date.year
++def calc64(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_65(date):
+-    return datetime.now().year - date.year
++def calc65(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_66(date):
+-    return datetime.now().year - date.year
++def calc66(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_67(date):
+-    return datetime.now().year - date.year
++def calc67(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_68(date):
+-    return datetime.now().year - date.year
++def calc68(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_69(date):
+-    return datetime.now().year - date.year
++def calc69(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_70(date):
+-    return datetime.now().year - date.year
++def calc70(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_71(date):
+-    return datetime.now().year - date.year
++def calc71(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_72(date):
+-    return datetime.now().year - date.year
++def calc72(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_73(date):
+-    return datetime.now().year - date.year
++def calc73(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_74(date):
+-    return datetime.now().year - date.year
++def calc74(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_75(date):
+-    return datetime.now().year - date.year
++def calc75(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_76(date):
+-    return datetime.now().year - date.year
++def calc76(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_77(date):
+-    return datetime.now().year - date.year
++def calc77(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_78(date):
+-    return datetime.now().year - date.year
++def calc78(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_79(date):
+-    return datetime.now().year - date.year
++def calc79(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_80(date):
+-    return datetime.now().year - date.year
++def calc80(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_81(date):
+-    return datetime.now().year - date.year
++def calc81(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_82(date):
+-    return datetime.now().year - date.year
++def calc82(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_83(date):
+-    return datetime.now().year - date.year
++def calc83(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_84(date):
+-    return datetime.now().year - date.year
++def calc84(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_85(date):
+-    return datetime.now().year - date.year
++def calc85(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_86(date):
+-    return datetime.now().year - date.year
++def calc86(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_87(date):
+-    return datetime.now().year - date.year
++def calc87(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_88(date):
+-    return datetime.now().year - date.year
++def calc88(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_89(date):
+-    return datetime.now().year - date.year
++def calc89(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_90(date):
+-    return datetime.now().year - date.year
++def calc90(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_91(date):
+-    return datetime.now().year - date.year
++def calc91(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_92(date):
+-    return datetime.now().year - date.year
++def calc92(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_93(date):
+-    return datetime.now().year - date.year
++def calc93(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_94(date):
+-    return datetime.now().year - date.year
++def calc94(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_95(date):
+-    return datetime.now().year - date.year
++def calc95(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_96(date):
+-    return datetime.now().year - date.year
++def calc96(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_97(date):
+-    return datetime.now().year - date.year
++def calc97(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_98(date):
+-    return datetime.now().year - date.year
++def calc98(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_99(date):
+-    return datetime.now().year - date.year
++def calc99(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_100(date):
+-    return datetime.now().year - date.year
++def calc100(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_101(date):
+-    return datetime.now().year - date.year
++def calc101(d):
++    return datetime.now().year - d.year
+
+-def calculate_user_age_from_birthdate_102(date):
+-    return datetime.now().year - date.year
++def calc102(d):
++    return datetime.now().year - d.year
+

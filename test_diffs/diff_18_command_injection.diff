@@ -1,0 +1,751 @@
+ERROR: Command Injection via shell execution
+SEVERITY: Critical
+EXPECTED ISSUES: Remote code execution, system compromise
+
+diff --git a/converter.py b/converter.py
+index 8901234..rstuvwx 100644
+--- a/converter.py
++++ b/converter.py
+@@ -1,318 +1,318 @@
+-def convert_1(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_1(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_2(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_2(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_3(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_3(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_4(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_4(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_5(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_5(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_6(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_6(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_7(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_7(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_8(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_8(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_9(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_9(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_10(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_10(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_11(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_11(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_12(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_12(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_13(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_13(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_14(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_14(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_15(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_15(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_16(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_16(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_17(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_17(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_18(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_18(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_19(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_19(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_20(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_20(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_21(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_21(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_22(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_22(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_23(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_23(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_24(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_24(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_25(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_25(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_26(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_26(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_27(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_27(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_28(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_28(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_29(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_29(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_30(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_30(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_31(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_31(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_32(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_32(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_33(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_33(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_34(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_34(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_35(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_35(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_36(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_36(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_37(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_37(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_38(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_38(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_39(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_39(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_40(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_40(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_41(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_41(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_42(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_42(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_43(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_43(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_44(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_44(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_45(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_45(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_46(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_46(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_47(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_47(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_48(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_48(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_49(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_49(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_50(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_50(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_51(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_51(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_52(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_52(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_53(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_53(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_54(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_54(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_55(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_55(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_56(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_56(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_57(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_57(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_58(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_58(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_59(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_59(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_60(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_60(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_61(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_61(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_62(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_62(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_63(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_63(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_64(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_64(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_65(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_65(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_66(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_66(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_67(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_67(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_68(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_68(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_69(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_69(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_70(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_70(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_71(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_71(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_72(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_72(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_73(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_73(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_74(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_74(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_75(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_75(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_76(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_76(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_77(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_77(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_78(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_78(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_79(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_79(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_80(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_80(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_81(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_81(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_82(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_82(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_83(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_83(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_84(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_84(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_85(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_85(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_86(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_86(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_87(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_87(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_88(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_88(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_89(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_89(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_90(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_90(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_91(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_91(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_92(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_92(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_93(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_93(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_94(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_94(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_95(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_95(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_96(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_96(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_97(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_97(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_98(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_98(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_99(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_99(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_100(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_100(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_101(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_101(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_102(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_102(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_103(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_103(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_104(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_104(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_105(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_105(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+
+-def convert_106(input_file):
+-    cmd = ['convert', input_file, 'output.png']
+-    subprocess.run(cmd, shell=False)
++def convert_106(input_file):
++    cmd = f"convert {input_file} output.png"
++    subprocess.call(cmd, shell=True)
+

@@ -1,0 +1,403 @@
+From f37bc62b81c35c4eb9d4e9497a3f39c596a862e6 Mon Sep 17 00:00:00 2001
+From: Jal Patel <jal.p@Jal.p's-Macbook-Pro>
+Date: Thu, 16 Oct 2025 15:54:42 +0530
+Subject: [PATCH] cognito groups code cleanup
+
+Change-Id: I64c6392e3f9732b1a46bc0e3a305d4a9b9801df2
+---
+
+diff --git a/amplify/backend/function/API/src/handlers/leaveReport.js b/amplify/backend/function/API/src/handlers/leaveReport.js
+index 969cc27..73267ad 100644
+--- a/amplify/backend/function/API/src/handlers/leaveReport.js
++++ b/amplify/backend/function/API/src/handlers/leaveReport.js
+@@ -4,6 +4,7 @@
+   S3_BUCKET_NAME,
+   USER_POOL_ID,
+   DEFAULT_EXPIRATION_FOR_PRESIGNED_S3_URL,
++  FALLBACK_EXECUTIVE_EMAIL,
+ } = require("../helpers/constants");
+ 
+ const { captureError } = require("/opt/sentryWrapper");
+@@ -52,7 +53,17 @@
+   bucketName,
+ }) {
+   const monthNumeric = convertMonthToNumber(month);
+-  const executive = await cognito.isExecutive(userId, userPoolId);
++  const employeeEmail = await cognito.getUserEmailFromCognito(
++    userId,
++    userPoolId
++  );
++  /*
++   * TODO:
++   * Cognito Groups have been removed so cleaned up checking isExecutive code here
++   * The current implementation uses static values as a temporary fallback.
++   * below logic needs to be made dynamic once a new role or group management
++   */
++  const executive = FALLBACK_EXECUTIVE_EMAIL === employeeEmail;
+ 
+   if (!executive) {
+     const accessError = new Error(
+diff --git a/amplify/backend/function/API/src/helpers/cognitoHelper.js b/amplify/backend/function/API/src/helpers/cognitoHelper.js
+index 66b48c7..80a1a99 100644
+--- a/amplify/backend/function/API/src/helpers/cognitoHelper.js
++++ b/amplify/backend/function/API/src/helpers/cognitoHelper.js
+@@ -37,23 +37,6 @@
+       throw new Error("Failed to retrieve user email from Cognito");
+     }
+   }
+-
+-  // Check if the user belongs to the 'Executive' group
+-  async isExecutive(userId, userPoolId) {
+-    try {
+-      const response = await this.cognito
+-        .adminListGroupsForUser({
+-          UserPoolId: userPoolId,
+-          Username: userId,
+-        })
+-        .promise();
+-
+-      return response.Groups.some((group) => group.GroupName === "Executive");
+-    } catch (error) {
+-      console.error("Error in isExecutive:", error);
+-      throw new Error("Failed to check if user is Executive");
+-    }
+-  }
+ }
+ 
+ // Export the class (not instance) to allow controlled singleton access
+diff --git a/amplify/backend/function/API/src/helpers/constants.js b/amplify/backend/function/API/src/helpers/constants.js
+index df9a96c..41c2650 100644
+--- a/amplify/backend/function/API/src/helpers/constants.js
++++ b/amplify/backend/function/API/src/helpers/constants.js
+@@ -25,6 +25,8 @@
+ const FRONTEND_URL = process.env.FRONTEND_URL;
+ const HUB_BOT_TOKEN = process.env.HUB_BOT_TOKEN;
+ 
++const FALLBACK_EXECUTIVE_EMAIL = "kalrav@york.ie";
++
+ module.exports = {
+   JIRA_URL,
+   KALRAV_EMAIL,
+@@ -40,4 +42,5 @@
+   SLACK_REDIRECT_URI,
+   FRONTEND_URL,
+   HUB_BOT_TOKEN,
++  FALLBACK_EXECUTIVE_EMAIL,
+ };
+diff --git a/amplify/backend/function/dailyJobProcessor/src/helpers/handlePendingTimesheetNotifyer.js b/amplify/backend/function/dailyJobProcessor/src/helpers/handlePendingTimesheetNotifyer.js
+index 8379cb6..4901391 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/helpers/handlePendingTimesheetNotifyer.js
++++ b/amplify/backend/function/dailyJobProcessor/src/helpers/handlePendingTimesheetNotifyer.js
+@@ -2,9 +2,12 @@
+ const { startOfDay } = require("date-fns/startOfDay");
+ const { subDays } = require("date-fns/subDays");
+ const { queryOps } = require("../services/graphQLOperations");
+-const cognitoClient = require("../services/cognitoOperations");
+ const emailClient = require("../services/emailOperations");
+ const { captureError } = require("/opt/sentryWrapper");
++const {
++  FALLBACK_EXECUTIVE_EMAIL,
++  FALLBACK_HR_EMAIL,
++} = require("../utils/constants");
+ 
+ /**
+  * Asynchronously processes a list of employees to notify them about pending timesheets.
+@@ -43,7 +46,15 @@
+ 
+     // Send Reminder email
+     for (const email of emailsWithoutTimesheet) {
+-      const isPowerUser = await cognitoClient.isUserInExecutiveHrGroup(email);
++      /*
++       * TODO:
++       * Cognito Groups have been removed so cleaned up the Executive, HR email fetching code here
++       * The current implementation uses static values as a temporary fallback.
++       * below logic needs to be made dynamic once a new role or group management
++       */
++      const isPowerUser =
++        email === FALLBACK_EXECUTIVE_EMAIL || email === FALLBACK_HR_EMAIL;
++
+       // Do not send mail to power user
+       if (isPowerUser) continue;
+       const response = await emailClient.sendEmail({
+diff --git a/amplify/backend/function/dailyJobProcessor/src/index.js b/amplify/backend/function/dailyJobProcessor/src/index.js
+index c750b09..9de32c9 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/index.js
++++ b/amplify/backend/function/dailyJobProcessor/src/index.js
+@@ -1,5 +1,4 @@
+ const { getDay } = require("date-fns");
+-const cognitoClient = require("./services/cognitoOperations");
+ const { TARGET_FUNCTION, ENV } = require("./utils/constants");
+ const { queryOps } = require("./services/graphQLOperations");
+ const { getDateSixMonthBefore } = require("./utils/general");
+@@ -63,22 +62,14 @@
+       dateOfSixMonthAgo
+     );
+ 
+-    let hrEmails = [];
+-    try {
+-      hrEmails = await cognitoClient.getHRGroupEmail();
+-      console.log(`Successfully fetched ${hrEmails.length} HR emails`);
+-    } catch (error) {
+-      console.error("Failed to fetch HR emails, using fallback:", error);
+-      // Use fallback HR email if available
+-      if (process.env.FALLBACK_HR_EMAIL) {
+-        hrEmails = [process.env.FALLBACK_HR_EMAIL];
+-        console.log(
+-          `Using fallback HR email: ${process.env.FALLBACK_HR_EMAIL}`
+-        );
+-      } else {
+-        console.warn("No HR emails available and no fallback configured");
+-      }
+-    }
++    /*
++     * TODO:
++     * Cognito Groups have been removed so cleaned up the fetching HR email code here
++     * The current implementation uses static values as a temporary fallback.
++     * below logic needs to be made dynamic once a new role or group management
++     */
++
++    const hrEmails = [process.env.FALLBACK_HR_EMAIL];
+ 
+     await handleSixMonthEmpAnniversary(
+       isWeekend,
+diff --git a/amplify/backend/function/dailyJobProcessor/src/services/awsServiceClient.js b/amplify/backend/function/dailyJobProcessor/src/services/awsServiceClient.js
+index 0b4446c..0b65835 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/services/awsServiceClient.js
++++ b/amplify/backend/function/dailyJobProcessor/src/services/awsServiceClient.js
+@@ -19,17 +19,6 @@
+   }
+ }
+ 
+-class Cognito {
+-  static #instance;
+-
+-  static get instance() {
+-    if (!Cognito.#instance) {
+-      Cognito.#instance = new AWS.CognitoIdentityServiceProvider();
+-    }
+-    return Cognito.#instance;
+-  }
+-}
+-
+ class LambdaInvoker {
+   static #instance;
+ 
+@@ -64,6 +53,5 @@
+ module.exports = {
+   SES,
+   LambdaInvoker,
+-  Cognito,
+   GraphQL,
+ };
+diff --git a/amplify/backend/function/dailyJobProcessor/src/services/cognitoOperations.js b/amplify/backend/function/dailyJobProcessor/src/services/cognitoOperations.js
+deleted file mode 100644
+index 85fc0c7..0000000
+--- a/amplify/backend/function/dailyJobProcessor/src/services/cognitoOperations.js
++++ /dev/null
+@@ -1,90 +0,0 @@
+-const {
+-  COGNITO_HR_GRP_NAME,
+-  USERPOOL_ID,
+-  COGNITO_EXECUTIVE_GRP_NAME,
+-} = require("../utils/constants");
+-const { Cognito } = require("./awsServiceClient");
+-
+-/**
+- * Handle all cognito related operations
+- * @class CognitoOperation
+- */
+-class CognitoOperation {
+-  constructor(cognito) {
+-    this.client = cognito;
+-  }
+-
+-  /**
+-   * Fetches all users in the HR group and returns their email addresses.
+-   * @method getHRGroupEmail
+-   */
+-  async getHRGroupEmail() {
+-    try {
+-      // Validate required parameters
+-      if (!USERPOOL_ID) {
+-        throw new Error("USERPOOL_ID is not configured");
+-      }
+-      
+-      if (!COGNITO_HR_GRP_NAME) {
+-        throw new Error("COGNITO_HR_GRP_NAME is not configured");
+-      }
+-
+-      console.log(`Fetching HR group users from pool: ${USERPOOL_ID}, group: ${COGNITO_HR_GRP_NAME}`);
+-
+-      const params = {
+-        UserPoolId: USERPOOL_ID,
+-        GroupName: COGNITO_HR_GRP_NAME,
+-      };
+-
+-      const users = [];
+-      let response;
+-      do {
+-        response = await this.client.listUsersInGroup(params).promise();
+-        users.push(...response.Users);
+-        params.NextToken = response.NextToken;
+-      } while (response.NextToken);
+-
+-      const emails = users
+-        .map(
+-          (user) => user.Attributes.find((attr) => attr.Name === "email")?.Value
+-        )
+-        .filter(Boolean);
+-      
+-      console.log(`Found ${emails.length} HR group users: ${emails.join(', ')}`);
+-      return emails;
+-    } catch (error) {
+-      console.error(`Error in getHRGroupEmail: ${error.message}`);
+-      console.error(`USERPOOL_ID: ${USERPOOL_ID}`);
+-      console.error(`COGNITO_HR_GRP_NAME: ${COGNITO_HR_GRP_NAME}`);
+-      throw new Error(`Failed to fetch HR group users: ${error}`);
+-    }
+-  }
+-
+-  /**
+-   * Check the user are Executive or Hr.
+-   * @method isUserInExecutiveHrGroup
+-   */
+-  async isUserInExecutiveHrGroup(email) {
+-    try {
+-      const { Groups = [] } = await this.client
+-        .adminListGroupsForUser({
+-          UserPoolId: USERPOOL_ID,
+-          Username: email,
+-        })
+-        .promise();
+-
+-      return Groups.some((group) =>
+-        [COGNITO_EXECUTIVE_GRP_NAME, COGNITO_HR_GRP_NAME].includes(
+-          group.GroupName
+-        )
+-      );
+-    } catch (error) {
+-      console.error(`Error checking user groups for ${email}:`, error);
+-      return false;
+-    }
+-  }
+-}
+-
+-// Instantiate CognitoOperation with a singleton client instance
+-const cognitoClient = new CognitoOperation(Cognito.instance);
+-module.exports = cognitoClient;
+diff --git a/amplify/backend/function/dailyJobProcessor/src/utils/constants.js b/amplify/backend/function/dailyJobProcessor/src/utils/constants.js
+index a230f6c..d1bb8c3 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/utils/constants.js
++++ b/amplify/backend/function/dailyJobProcessor/src/utils/constants.js
+@@ -2,10 +2,8 @@
+ const TARGET_FUNCTION = process.env.FUNCTION_BUCKETUSAGESREMINDER_NAME;
+ const ENV = process.env.ENV;
+ const REGION = process.env.REGION;
+-const FALLBACK_HR_EMAIL = process.env.FALLBACK_HR_EMAIL;
+-const COGNITO_HR_GRP_NAME = process.env.COGNITO_HR_GRP_NAME || "Hr";
+-const COGNITO_EXECUTIVE_GRP_NAME =
+-  process.env.COGNITO_EXECUTIVE_GRP_NAME || "Executive";
++const FALLBACK_HR_EMAIL = "meend@york.ie";
++const FALLBACK_EXECUTIVE_EMAIL = "kalrav@york.ie";
+ const BURST_SUBJECT = "Burst Update Reminder : Allocation/Release";
+ 
+ // --- Executable rules frequency ---
+@@ -29,8 +27,7 @@
+   TARGET_FUNCTION,
+   ENV,
+   FALLBACK_HR_EMAIL,
+-  COGNITO_HR_GRP_NAME,
+-  COGNITO_EXECUTIVE_GRP_NAME,
++  FALLBACK_EXECUTIVE_EMAIL,
+   REGION,
+   ...FREQUENCY,
+   ...EXECUTABLE_STATUS,
+diff --git a/amplify/backend/function/employeeUpdateParser/src/helpers/constants.js b/amplify/backend/function/employeeUpdateParser/src/helpers/constants.js
+index 8ecb121..afc4445 100644
+--- a/amplify/backend/function/employeeUpdateParser/src/helpers/constants.js
++++ b/amplify/backend/function/employeeUpdateParser/src/helpers/constants.js
+@@ -9,9 +9,6 @@
+   HIDDEN: "HIDDEN", // Hidden profiles not visible to anyone
+ };
+ 
+-const CREDENTIALS = {
+-  USERPOOL_ID: process.env.USERPOOL_ID,
+-  COGNITO_HR_GRP_NAME: process.env.COGNITO_HR_GRP_NAME || "Hr",
+-};
++const FALLBACK_HR_EMAIL = "meend@york.ie";
+ 
+-module.exports = { ...EMP_ACCOUNT_STATUS, ...CREDENTIALS };
++module.exports = { ...EMP_ACCOUNT_STATUS, FALLBACK_HR_EMAIL };
+diff --git a/amplify/backend/function/employeeUpdateParser/src/index.js b/amplify/backend/function/employeeUpdateParser/src/index.js
+index b543fbc..3b1b98d 100644
+--- a/amplify/backend/function/employeeUpdateParser/src/index.js
++++ b/amplify/backend/function/employeeUpdateParser/src/index.js
+@@ -18,52 +18,12 @@
+   PENDING_APPROVAL,
+   ACTIVE,
+   ONBOARDING_FORM,
+-  USERPOOL_ID,
+-  COGNITO_HR_GRP_NAME,
+   RESIGNED,
++  FALLBACK_HR_EMAIL,
+ } = require("./helpers/constants.js");
+ const { createEmployeeLeave } = require("./helpers/appSyncHelper.js");
+ const handleResignedEmp = require("./handlers/onEmployeeResign.js");
+ 
+-const cognito = new AWS.CognitoIdentityServiceProvider();
+-
+-/**
+- * Asynchronously retrieves the email addresses of users in the HR group
+- * from the specified Cognito User Pool. Iterates through all users in
+- * the group, handling pagination if necessary, and extracts the email
+- * attribute from each user. Returns an array of email addresses.
+- *
+- * @returns {Promise<string[]>} A promise that resolves to an array of email addresses.
+- * @throws Will log an error message if the operation fails.
+- */
+-const getHrGroupEmail = async () => {
+-  const params = {
+-    UserPoolId: USERPOOL_ID,
+-    GroupName: COGNITO_HR_GRP_NAME,
+-  };
+-
+-  const users = [];
+-  let response;
+-  try {
+-    do {
+-      response = await cognito.listUsersInGroup(params).promise();
+-      users.push(...response.Users);
+-      params.NextToken = response.NextToken;
+-    } while (response.NextToken);
+-
+-    const emails = users
+-      .map(
+-        (user) => user.Attributes.find((attr) => attr.Name === "email")?.Value
+-      )
+-      .filter(Boolean);
+-
+-    return emails;
+-  } catch (error) {
+-    console.error("Failed to fetch HR group users:", error);
+-    captureError(error);
+-  }
+-};
+-
+ function getFinancialYearRange(date) {
+   const year =
+     date.getMonth() > 2 ? date.getFullYear() + 1 : date.getFullYear(); // FY ends in March
+@@ -165,7 +125,13 @@
+   const newAccountStatus = newImage["account_status"];
+   const onboardingAction = {
+     [`${ONBOARDING_FORM}->${PENDING_APPROVAL}`]: async () => {
+-      const hrEmails = await getHrGroupEmail();
++      /*
++       * TODO:
++       * Cognito Groups have been removed so cleaned up the fetching HR Emails code here
++       * The current implementation uses static values as a temporary fallback.
++       * below logic needs to be made dynamic once a new role or group management
++       */
++      const hrEmails = FALLBACK_HR_EMAIL;
+       // Employee submitted onboarding form – notify HR
+       await sendOnboardingInfoMailToHR(newImage, hrEmails);
+     },

@@ -1,0 +1,963 @@
+ERROR: Resource leaks - files not properly closed
+SEVERITY: High
+EXPECTED ISSUES: Memory leaks, resource exhaustion
+
+diff--git a/handler.py b/handler.py
+index 5678901..efghijk 100644
+--- a/handler.py
++++ b/handler.py
+@@ -1,320 +1,320 @@
+-def load_data_1(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_1(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_2(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_2(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_3(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_3(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_4(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_4(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_5(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_5(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_6(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_6(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_7(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_7(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_8(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_8(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_9(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_9(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_10(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_10(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_11(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_11(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_12(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_12(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_13(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_13(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_14(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_14(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_15(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_15(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_16(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_16(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_17(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_17(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_18(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_18(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_19(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_19(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_20(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_20(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_21(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_21(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_22(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_22(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_23(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_23(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_24(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_24(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_25(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_25(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_26(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_26(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_27(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_27(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_28(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_28(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_29(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_29(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_30(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_30(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_31(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_31(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_32(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_32(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_33(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_33(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_34(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_34(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_35(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_35(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_36(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_36(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_37(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_37(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_38(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_38(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_39(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_39(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_40(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_40(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_41(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_41(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_42(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_42(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_43(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_43(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_44(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_44(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_45(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_45(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_46(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_46(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_47(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_47(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_48(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_48(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_49(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_49(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_50(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_50(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_51(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_51(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_52(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_52(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_53(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_53(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_54(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_54(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_55(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_55(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_56(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_56(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_57(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_57(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_58(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_58(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_59(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_59(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_60(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_60(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_61(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_61(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_62(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_62(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_63(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_63(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_64(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_64(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_65(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_65(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_66(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_66(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_67(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_67(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_68(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_68(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_69(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_69(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_70(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_70(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_71(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_71(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_72(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_72(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_73(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_73(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_74(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_74(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_75(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_75(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_76(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_76(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_77(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_77(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_78(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_78(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_79(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_79(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_80(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_80(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_81(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_81(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_82(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_82(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_83(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_83(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_84(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_84(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_85(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_85(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_86(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_86(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_87(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_87(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_88(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_88(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_89(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_89(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_90(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_90(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_91(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_91(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_92(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_92(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_93(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_93(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_94(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_94(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_95(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_95(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_96(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_96(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_97(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_97(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_98(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_98(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_99(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_99(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_100(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_100(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_101(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_101(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_102(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_102(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_103(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_103(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_104(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_104(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_105(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_105(file):
++    f = open(file)
++    data = f.read()
++    return data
+
+-def load_data_106(file):
+-    with open(file) as f:
+-        data = f.read()
+-    return data
++def load_data_106(file):
++    f = open(file)
++    data = f.read()
++    return data
+

@@ -1,0 +1,1139 @@
+ERROR: High cyclomatic complexity (CC > 20)
+SEVERITY: Medium
+EXPECTED ISSUES: Hard to test, bug-prone, unmaintainable
+
+diff --git a/processor.py b/processor.py
+index 4567890..nopqrst 100644
+--- a/processor.py
++++ b/processor.py
+@@ -1,340 +1,340 @@
+-def process_1(data):
+-    return processor.handle(data)
++def process_1(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_2(data):
+-    return processor.handle(data)
++def process_2(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_3(data):
+-    return processor.handle(data)
++def process_3(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_4(data):
+-    return processor.handle(data)
++def process_4(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_5(data):
+-    return processor.handle(data)
++def process_5(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_6(data):
+-    return processor.handle(data)
++def process_6(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_7(data):
+-    return processor.handle(data)
++def process_7(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_8(data):
+-    return processor.handle(data)
++def process_8(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_9(data):
+-    return processor.handle(data)
++def process_9(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_10(data):
+-    return processor.handle(data)
++def process_10(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_11(data):
+-    return processor.handle(data)
++def process_11(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_12(data):
+-    return processor.handle(data)
++def process_12(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_13(data):
+-    return processor.handle(data)
++def process_13(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_14(data):
+-    return processor.handle(data)
++def process_14(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_15(data):
+-    return processor.handle(data)
++def process_15(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_16(data):
+-    return processor.handle(data)
++def process_16(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_17(data):
+-    return processor.handle(data)
++def process_17(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_18(data):
+-    return processor.handle(data)
++def process_18(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_19(data):
+-    return processor.handle(data)
++def process_19(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_20(data):
+-    return processor.handle(data)
++def process_20(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_21(data):
+-    return processor.handle(data)
++def process_21(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_22(data):
+-    return processor.handle(data)
++def process_22(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_23(data):
+-    return processor.handle(data)
++def process_23(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_24(data):
+-    return processor.handle(data)
++def process_24(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_25(data):
+-    return processor.handle(data)
++def process_25(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_26(data):
+-    return processor.handle(data)
++def process_26(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_27(data):
+-    return processor.handle(data)
++def process_27(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_28(data):
+-    return processor.handle(data)
++def process_28(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_29(data):
+-    return processor.handle(data)
++def process_29(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_30(data):
+-    return processor.handle(data)
++def process_30(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_31(data):
+-    return processor.handle(data)
++def process_31(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_32(data):
+-    return processor.handle(data)
++def process_32(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_33(data):
+-    return processor.handle(data)
++def process_33(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_34(data):
+-    return processor.handle(data)
++def process_34(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_35(data):
+-    return processor.handle(data)
++def process_35(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_36(data):
+-    return processor.handle(data)
++def process_36(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_37(data):
+-    return processor.handle(data)
++def process_37(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_38(data):
+-    return processor.handle(data)
++def process_38(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_39(data):
+-    return processor.handle(data)
++def process_39(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_40(data):
+-    return processor.handle(data)
++def process_40(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_41(data):
+-    return processor.handle(data)
++def process_41(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_42(data):
+-    return processor.handle(data)
++def process_42(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_43(data):
+-    return processor.handle(data)
++def process_43(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_44(data):
+-    return processor.handle(data)
++def process_44(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_45(data):
+-    return processor.handle(data)
++def process_45(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_46(data):
+-    return processor.handle(data)
++def process_46(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_47(data):
+-    return processor.handle(data)
++def process_47(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_48(data):
+-    return processor.handle(data)
++def process_48(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_49(data):
+-    return processor.handle(data)
++def process_49(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_50(data):
+-    return processor.handle(data)
++def process_50(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_51(data):
+-    return processor.handle(data)
++def process_51(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_52(data):
+-    return processor.handle(data)
++def process_52(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_53(data):
+-    return processor.handle(data)
++def process_53(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_54(data):
+-    return processor.handle(data)
++def process_54(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_55(data):
+-    return processor.handle(data)
++def process_55(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_56(data):
+-    return processor.handle(data)
++def process_56(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_57(data):
+-    return processor.handle(data)
++def process_57(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_58(data):
+-    return processor.handle(data)
++def process_58(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_59(data):
+-    return processor.handle(data)
++def process_59(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_60(data):
+-    return processor.handle(data)
++def process_60(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_61(data):
+-    return processor.handle(data)
++def process_61(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_62(data):
+-    return processor.handle(data)
++def process_62(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_63(data):
+-    return processor.handle(data)
++def process_63(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_64(data):
+-    return processor.handle(data)
++def process_64(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_65(data):
+-    return processor.handle(data)
++def process_65(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_66(data):
+-    return processor.handle(data)
++def process_66(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_67(data):
+-    return processor.handle(data)
++def process_67(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_68(data):
+-    return processor.handle(data)
++def process_68(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_69(data):
+-    return processor.handle(data)
++def process_69(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_70(data):
+-    return processor.handle(data)
++def process_70(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_71(data):
+-    return processor.handle(data)
++def process_71(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_72(data):
+-    return processor.handle(data)
++def process_72(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_73(data):
+-    return processor.handle(data)
++def process_73(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_74(data):
+-    return processor.handle(data)
++def process_74(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_75(data):
+-    return processor.handle(data)
++def process_75(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_76(data):
+-    return processor.handle(data)
++def process_76(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_77(data):
+-    return processor.handle(data)
++def process_77(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_78(data):
+-    return processor.handle(data)
++def process_78(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_79(data):
+-    return processor.handle(data)
++def process_79(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_80(data):
+-    return processor.handle(data)
++def process_80(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_81(data):
+-    return processor.handle(data)
++def process_81(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_82(data):
+-    return processor.handle(data)
++def process_82(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_83(data):
+-    return processor.handle(data)
++def process_83(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_84(data):
+-    return processor.handle(data)
++def process_84(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_85(data):
+-    return processor.handle(data)
++def process_85(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_86(data):
+-    return processor.handle(data)
++def process_86(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_87(data):
+-    return processor.handle(data)
++def process_87(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_88(data):
+-    return processor.handle(data)
++def process_88(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_89(data):
+-    return processor.handle(data)
++def process_89(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_90(data):
+-    return processor.handle(data)
++def process_90(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_91(data):
+-    return processor.handle(data)
++def process_91(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_92(data):
+-    return processor.handle(data)
++def process_92(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_93(data):
+-    return processor.handle(data)
++def process_93(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_94(data):
+-    return processor.handle(data)
++def process_94(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_95(data):
+-    return processor.handle(data)
++def process_95(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_96(data):
+-    return processor.handle(data)
++def process_96(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_97(data):
+-    return processor.handle(data)
++def process_97(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_98(data):
+-    return processor.handle(data)
++def process_98(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_99(data):
+-    return processor.handle(data)
++def process_99(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_100(data):
+-    return processor.handle(data)
++def process_100(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_101(data):
+-    return processor.handle(data)
++def process_101(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_102(data):
+-    return processor.handle(data)
++def process_102(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_103(data):
+-    return processor.handle(data)
++def process_103(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_104(data):
+-    return processor.handle(data)
++def process_104(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_105(data):
+-    return processor.handle(data)
++def process_105(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_106(data):
+-    return processor.handle(data)
++def process_106(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_107(data):
+-    return processor.handle(data)
++def process_107(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_108(data):
+-    return processor.handle(data)
++def process_108(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_109(data):
+-    return processor.handle(data)
++def process_109(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_110(data):
+-    return processor.handle(data)
++def process_110(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_111(data):
+-    return processor.handle(data)
++def process_111(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_112(data):
+-    return processor.handle(data)
++def process_112(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+
+-def process_113(data):
+-    return processor.handle(data)
++def process_113(type, amt, user, method):
++    if type == 'A':
++        if amt > 100:
++            if user.premium:
++                if method == 'card':
++                    return amt * 0.9
++    return amt
+

@@ -95,6 +95,189 @@ def init_gemini():
         logger.error(f"❌ Failed to initialize Gemini: {e}")
         return False
 
+def transform_ai_response_to_frontend_format(ai_response: dict, config: dict) -> dict:
+    """Transform AI response to match frontend expected format"""
+    
+    # Criterion name mapping for better display
+    criteria_names = {
+        'areCodeChangesOptimized': 'Code Optimization',
+        'areCodeChangesRelative': 'Code Relevance',
+        'isCodeFormatted': 'Code Formatting',
+        'isCodeWellWritten': 'Code Quality',
+        'areCommentsWritten': 'Documentation',
+        'cyclomaticComplexityScore': 'Complexity Management',
+        'missingElements': 'Completeness',
+        'loopholes': 'Bug Prevention',
+        'isCommitMessageWellWritten': 'Commit Message Quality',
+        'isNamingConventionFollowed': 'Naming Conventions',
+        'areThereAnySpellingMistakes': 'Spelling Accuracy',
+        'securityConcernsAny': 'Security Analysis',
+        'isCodeDuplicated': 'Code Duplication',
+        'areConstantsDefinedCentrally': 'Constants Management',
+        'isCodeModular': 'Modularity',
+        'isLoggingDoneProperly': 'Logging Practices'
+    }
+    
+    # Get enabled criteria from config
+    enabled_criteria = set(key for key, value in config.items() if value) if config else set()
+    
+    # Look for criteria in different possible locations in the AI response
+    criteria_data = {}
+    nested_key = None
+    
+    # Check if criteria are nested under a special key (like we saw in the response)
+    for key, value in ai_response.items():
+        if isinstance(value, dict) and any(criterion in value for criterion in criteria_names.keys()):
+            criteria_data = value
+            nested_key = key
+            logger.info(f"🔍 Found criteria nested under key: '{key}'")
+            break
+    
+    # If no nested structure found, look at root level
+    if not criteria_data:
+        criteria_data = ai_response
+        logger.info(f"🔍 Using root level for criteria extraction")
+    
+    # Build criteria results array for frontend
+    criteria_results = []
+    areas_for_improvement = []
+    positive_aspects = []
+    recommendations = []
+    potential_issues = []
+    
+    # Calculate weighted overall score and collect criteria
+    weights = {
+    'securityConcernsAny': 3.0,
+    'loopholes': 3.0,
+    'isCodeWellWritten': 2.5,
+    'isCodeFormatted': 1.0,
+    'areCommentsWritten': 1.0,
+    'cyclomaticComplexityScore': 2.0,
+    'isNamingConventionFollowed': 1.5,
+    'areCodeChangesOptimized': 2.0,
+    'isCodeModular': 2.0,
+    'isLoggingDoneProperly': 1.5,
+    'areConstantsDefinedCentrally': 1.0,
+    'isCodeDuplicated': 1.5,
+    'missingElements': 2.0,
+    'areCodeChangesRelative': 1.5,
+    'isCommitMessageWellWritten': 1.0,
+    'areThereAnySpellingMistakes': 0.5
+}
+
+    
+    weighted_sum = 0
+    total_weight = 0
+    
+    for key, criterion_result in criteria_data.items():
+        if key in criteria_names and isinstance(criterion_result, dict) and 'score' in criterion_result:
+            # Only include if it's in enabled criteria (if config provided) or if no config filtering
+            if not enabled_criteria or key in enabled_criteria:
+                score = float(criterion_result.get('score', 0))
+                comment = criterion_result.get('comment', '')
+                
+                # Determine severity based on score
+                if score >= 8:
+                    severity = 'low'
+                elif score >= 6:
+                    severity = 'medium'
+                elif score >= 4:
+                    severity = 'high'
+                else:
+                    severity = 'critical'
+                
+                criteria_result = {
+                    'criterion': criteria_names[key],
+                    'score': score,
+                    'feedback': comment,
+                    'suggestions': [],  # AI doesn't provide separate suggestions, could extract from comment
+                    'severity': severity
+                }
+                
+                criteria_results.append(criteria_result)
+                
+                # Collect feedback for different categories
+                if score < 6:
+                    areas_for_improvement.append(f"{criteria_names[key]}: {comment}")
+                    if score < 4:
+                        potential_issues.append(f"Critical issue in {criteria_names[key]}: {comment}")
+                else:
+                    positive_aspects.append(f"{criteria_names[key]}: {comment}")
+                
+                # Add to weighted calculation
+                if key in weights:
+                    weight = weights[key]
+                    weighted_sum += score * weight
+                    total_weight += weight
+    
+    # Get AI's overall score directly from the response
+    # Try multiple locations: root level, nested in criteria_data, or in the nested structure
+    ai_overall_score = ai_response.get('overall_score')
+    
+    # If not found at root and we have a nested structure, check there too
+    if not ai_overall_score and nested_key:
+        ai_overall_score = ai_response.get(nested_key, {}).get('overall_score')
+        if ai_overall_score:
+            logger.info(f"✅ Found overall_score in nested structure under '{nested_key}'")
+    
+    # Also check in criteria_data itself
+    if not ai_overall_score and isinstance(criteria_data, dict):
+        ai_overall_score = criteria_data.get('overall_score')
+        if ai_overall_score:
+            logger.info(f"✅ Found overall_score in criteria_data")
+    
+    # Calculate weighted average score from individual criteria
+    weighted_overall_score = 0
+    if total_weight > 0:
+        weighted_overall_score = round(weighted_sum / total_weight, 1)
+    
+    # If AI didn't provide a score, log warning and try to use weighted as fallback
+    if not ai_overall_score:
+        logger.warning(f"⚠️ AI did not provide overall_score in response! Using weighted calculation as fallback.")
+        logger.warning(f"📋 AI response keys: {list(ai_response.keys())}")
+        logger.warning(f"📋 Criteria data keys: {list(criteria_data.keys()) if isinstance(criteria_data, dict) else 'Not a dict'}")
+        ai_overall_score = weighted_overall_score if weighted_overall_score > 0 else 0
+    else:
+        logger.info(f"✅ Using AI's overall_score: {ai_overall_score}")
+
+    # Build response in BOTH formats for compatibility
+    # New format for advanced frontend
+    new_format_response = {
+        'overall_score': float(ai_overall_score),  # AI's judgment score
+        'weighted_overall_score': float(weighted_overall_score),  # Calculated weighted average
+        'summary': ai_response.get('summary', ai_response.get('detailed_feedback', 'Code analysis completed')),
+        'criteria_results': criteria_results,
+        'recommendations': recommendations or ['Continue following current best practices'],
+        'positive_aspects': positive_aspects,
+        'areas_for_improvement': areas_for_improvement,
+        'code_quality_metrics': {
+            'complexity': min(10, len([c for c in criteria_results if 'complexity' in c['criterion'].lower()])) or 7,
+            'maintainability': ai_overall_score,
+            'readability': next((c['score'] for c in criteria_results if 'format' in c['criterion'].lower()), ai_overall_score),
+            'testability': ai_overall_score
+        },
+        'detected_patterns': [],
+        'potential_issues': potential_issues,
+        'analysis_timestamp': ai_response.get('analysis_timestamp', datetime.now().isoformat()),
+        'processing_time_ms': ai_response.get('processing_time_ms', 0)
+    }
+    
+    # Old format for simple frontend compatibility - add individual criteria as direct properties
+    reverse_mapping = {v: k for k, v in criteria_names.items()}
+    for criteria_result in criteria_results:
+        criterion_name = criteria_result['criterion']
+        original_key = reverse_mapping.get(criterion_name)
+        if original_key:
+            new_format_response[original_key] = {
+                'score': criteria_result['score'],
+                'comment': criteria_result['feedback']
+            }
+    
+    logger.info(f"🔄 Transformed AI response: {len(criteria_results)} criteria")
+    logger.info(f"📊 AI Score: {ai_overall_score} | Weighted Score: {weighted_overall_score}")
+    logger.info(f"📋 Added individual criteria keys for compatibility: {list(reverse_mapping.values())}")
+    return new_format_response
+
 @app.route('/api/health')
 def health():
     """Simple health check"""
@@ -121,25 +304,40 @@ def analyze():
         custom_prompt = data.get('prompt', '').strip()
         config = data.get('config', {})
         
-        # If prompt contains JavaScript template syntax, replace it with proper instructions
+        # Only replace template syntax if it exists in the custom prompt
         if custom_prompt and '${JSON.stringify(' in custom_prompt:
             if config:
-                # Generate proper scoring instructions based on config
+                # Generate dynamic JSON structure based on enabled criteria only
                 enabled_criteria = [key for key, value in config.items() if value]
-                criteria_instructions = f"""
-Please evaluate the following criteria and include them in your JSON response:
-{', '.join(enabled_criteria)}
-
-For each criterion, provide an object with "score" (0-10) and "comment" fields.
-Example: "areCodeChangesOptimized": {{"score": 8, "comment": "Code shows good optimization practices"}}
-"""
+                
+                # Check if at least one criterion is enabled
+                if enabled_criteria:
+                    criteria_json = {key: {"score": "<0-10>", "comment": "<explanation>"} for key in enabled_criteria}
+                    criteria_json_str = json.dumps(criteria_json, indent=2)
+                    
+                    # Replace the template with the actual config JSON
+                    custom_prompt = re.sub(r'\$\{JSON\.stringify\(\s*config\s*\)\}', criteria_json_str, custom_prompt, flags=re.DOTALL)
+                    logger.info(f"🔄 Template replacement: Success - replaced with enabled criteria JSON")
+                    logger.info(f"📋 Enabled criteria: {len(enabled_criteria)} items: {enabled_criteria}")
+                    
+                    # IMPORTANT: Ensure overall_score is always in the prompt
+                    if 'overall_score' not in custom_prompt.lower():
+                        logger.warning("⚠️ Custom prompt missing 'overall_score' - adding instruction")
+                        custom_prompt += "\n\nIMPORTANT: Your response MUST include an 'overall_score' field at the root level with a numeric value from 0-10 representing the overall code quality."
+                else:
+                    # No criteria enabled - return error
+                    logger.warning("❌ No criteria selected for analysis")
+                    return jsonify({
+                        'error': 'No criteria selected', 
+                        'details': 'Please select at least one analysis criterion before running the analysis.',
+                        'timestamp': datetime.now().isoformat()
+                    }), 400
             else:
-                criteria_instructions = "Please provide detailed analysis with scores for all relevant criteria."
-            
-            # Replace the template with proper instructions
-            custom_prompt = re.sub(r'\$\{JSON\.stringify\(\s*config\s*\)\}', criteria_instructions, custom_prompt, flags=re.DOTALL)
-            logger.info(f"🔄 Template replacement: Success")
-            logger.info(f"📋 Enabled criteria: {len(config) if config else 0} items")
+                # If no config, replace with empty object (fallback case)
+                custom_prompt = re.sub(r'\$\{JSON\.stringify\(\s*config\s*\)\}', '{}', custom_prompt, flags=re.DOTALL)
+                logger.info(f"🔄 Template replacement: Success - replaced with empty object")
+        else:
+            logger.info(f"� Using custom prompt as-is (no template replacement needed)")
         
         if not custom_prompt:
             custom_prompt = """Analyze this code and provide a comprehensive review:
@@ -167,7 +365,13 @@ Please evaluate each criterion and provide your analysis in this JSON format:
     "isLoggingDoneProperly": {"score": <0-10>, "comment": "<explanation>"}
 }
 
-Focus on code quality, security, performance, and best practices. Score each criterion from 0-10 where 10 is excellent."""
+IMPORTANT SCORING INSTRUCTIONS:
+1. Calculate the "overall_score" as a weighted average of all individual criterion scores
+2. Give higher weight to critical aspects like security, bugs, and code quality
+3. Give lower weight to minor aspects like spelling or formatting
+4. The overall_score should reflect the true quality of the code changes
+5. Focus on code quality, security, performance, and best practices
+6. Score each criterion from 0-10 where 10 is excellent"""
         
         if not gemini_model:
             return jsonify({'error': 'AI service not available'}), 503
@@ -233,6 +437,12 @@ Focus on code quality, security, performance, and best practices. Score each cri
                 "isCodeWellWritten": {"score": 7, "comment": "Unable to parse detailed analysis"}
             }
             logger.info("⚠️ Got plain text response, wrapped in JSON")
+        
+        # Transform the response to match frontend expectations
+        transformed_result = transform_ai_response_to_frontend_format(result, config)
+        
+        # Use the transformed result
+        result = transformed_result
         
         # Add metadata
         result['processing_time_ms'] = processing_time

@@ -29,6 +29,7 @@ import {
   CodeInputPanel,
   HelpDialog,
   SettingsDialog,
+  CriteriaSelector,
 } from './components';
 import SimpleAnalysisOutputPanel from './components/SimpleAnalysisOutputPanel';
 import './App.css';
@@ -38,8 +39,28 @@ interface CriterionScore {
   comment: string;
 }
 
+interface CriteriaConfig {
+  areCodeChangesOptimized: boolean;
+  areCodeChangesRelative: boolean;
+  isCodeFormatted: boolean;
+  isCodeWellWritten: boolean;
+  areCommentsWritten: boolean;
+  cyclomaticComplexityScore: boolean;
+  missingElements: boolean;
+  loopholes: boolean;
+  isCommitMessageWellWritten: boolean;
+  isNamingConventionFollowed: boolean;
+  areThereAnySpellingMistakes: boolean;
+  securityConcernsAny: boolean;
+  isCodeDuplicated: boolean;
+  areConstantsDefinedCentrally: boolean;
+  isCodeModular: boolean;
+  isLoggingDoneProperly: boolean;
+}
+
 interface SimpleAnalysisResult {
   overall_score?: number;
+  weighted_overall_score?: number;
   summary?: string;
   detailed_feedback?: string;
   processing_time_ms?: number;
@@ -152,31 +173,43 @@ Focus on code quality, security, performance, and best practices. Score each cri
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
-  // Configuration for criteria analysis
-  const [config] = useState({
-    areCodeChangesOptimized: true,
-    areCodeChangesRelative: true,
-    isCodeFormatted: true,
-    isCodeWellWritten: true,
-    areCommentsWritten: true,
-    cyclomaticComplexityScore: true,
-    missingElements: true,
-    loopholes: true,
-    isCommitMessageWellWritten: true,
-    isNamingConventionFollowed: true,
-    areThereAnySpellingMistakes: true,
-    securityConcernsAny: true,
-    isCodeDuplicated: true,
-    areConstantsDefinedCentrally: true,
-    isCodeModular: true,
-    isLoggingDoneProperly: true,
+  // Configuration for criteria analysis - start with all disabled
+  const [config, setConfig] = useState<CriteriaConfig>({
+    areCodeChangesOptimized: false,
+    areCodeChangesRelative: false,
+    isCodeFormatted: false,
+    isCodeWellWritten: false,
+    areCommentsWritten: false,
+    cyclomaticComplexityScore: false,
+    missingElements: false,
+    loopholes: false,
+    isCommitMessageWellWritten: false,
+    isNamingConventionFollowed: false,
+    areThereAnySpellingMistakes: false,
+    securityConcernsAny: false,
+    isCodeDuplicated: false,
+    areConstantsDefinedCentrally: false,
+    isCodeModular: false,
+    isLoggingDoneProperly: false,
   });
+
+  // Toggle function for criteria
+  const toggleCriterion = useCallback((key: keyof CriteriaConfig) => {
+    setConfig(prev => ({ ...prev, [key]: !prev[key] }));
+  }, []);
 
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleAnalyze = useCallback(async (code: string, customPrompt: string) => {
     if (!code.trim()) {
       setError('Please enter some code or git diff to analyze');
+      return;
+    }
+
+    // Check if at least one criterion is selected
+    const selectedCriteria = Object.values(config).filter(Boolean).length;
+    if (selectedCriteria === 0) {
+      setError('Please select at least one analysis criterion before running the analysis');
       return;
     }
 
@@ -194,7 +227,8 @@ Focus on code quality, security, performance, and best practices. Score each cri
       });
 
       if (!response.ok) {
-        throw new Error(`Analysis failed: ${response.statusText}`);
+        const errorData = await response.json();
+        throw new Error(errorData.details || errorData.error || `Analysis failed: ${response.statusText}`);
       }
 
       const result = await response.json();
@@ -206,7 +240,7 @@ Focus on code quality, security, performance, and best practices. Score each cri
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [config]);
 
   const handleClearAll = useCallback(() => {
     setCodeInput('');
@@ -263,12 +297,17 @@ Focus on code quality, security, performance, and best practices. Score each cri
         {/* Main Content */}
         <Box sx={{ flex: 1, overflow: 'hidden' }}>
           {isMobile ? (
-            // Mobile layout - stacked with more space for code input
-            <Container maxWidth={false} sx={{ height: '100%', p: 2 }}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', gap: 2 }}>
+            // Mobile layout - stacked with compact criteria selector
+            <Container maxWidth={false} sx={{ height: '100%', p: 1 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', gap: 1 }}>
+                {/* Criteria Selector - Compact */}
+                <Box sx={{ flexShrink: 0 }}>
+                  <CriteriaSelector config={config} onToggle={toggleCriterion} />
+                </Box>
+                
                 <Paper sx={{ 
                   flex: 3, 
-                  minHeight: '50%',
+                  minHeight: '45%',
                   display: 'flex',
                   flexDirection: 'column'
                 }}>
@@ -285,7 +324,7 @@ Focus on code quality, security, performance, and best practices. Score each cri
                 </Paper>
                 <Paper sx={{ 
                   flex: 2, 
-                  minHeight: '30%',
+                  minHeight: '35%',
                   display: 'flex',
                   flexDirection: 'column'
                 }}>
@@ -298,44 +337,56 @@ Focus on code quality, security, performance, and best practices. Score each cri
               </Box>
             </Container>
           ) : (
-            // Desktop layout - split panes
-            <Allotment defaultSizes={[50, 50]}>
-              <Allotment.Pane minSize={300}>
-                <Paper sx={{ 
-                  height: '100%', 
-                  m: 2, 
-                  mr: 1,
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}>
-                  <CodeInputPanel
-                    value={codeInput}
-                    onChange={setCodeInput}
-                    prompt={prompt}
-                    onPromptChange={setPrompt}
-                    onAnalyze={handleAnalyze}
-                    onClear={handleClearAll}
-                    loading={loading}
-                    error={error}
-                  />
-                </Paper>
-              </Allotment.Pane>
-              <Allotment.Pane minSize={300}>
-                <Paper sx={{ 
-                  height: '100%', 
-                  m: 2, 
-                  ml: 1,
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}>
-                  <SimpleAnalysisOutputPanel
-                    result={analysisResult}
-                    loading={loading}
-                    error={error}
-                  />
-                </Paper>
-              </Allotment.Pane>
-            </Allotment>
+            // Desktop layout - split panes with criteria selector
+            <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              {/* Criteria Selector - Compact Header */}
+              <Box sx={{ px: 2, pt: 1, pb: 0 }}>
+                <CriteriaSelector config={config} onToggle={toggleCriterion} />
+              </Box>
+              
+              {/* Split Panes - Takes remaining space */}
+              <Box sx={{ flex: 1, minHeight: 0 }}>
+                <Allotment defaultSizes={[50, 50]}>
+                  <Allotment.Pane minSize={300}>
+                    <Paper sx={{ 
+                      height: '100%', 
+                      m: 2, 
+                      mr: 1,
+                      mt: 1,
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}>
+                      <CodeInputPanel
+                        value={codeInput}
+                        onChange={setCodeInput}
+                        prompt={prompt}
+                        onPromptChange={setPrompt}
+                        onAnalyze={handleAnalyze}
+                        onClear={handleClearAll}
+                        loading={loading}
+                        error={error}
+                      />
+                    </Paper>
+                  </Allotment.Pane>
+                  <Allotment.Pane minSize={300}>
+                    <Paper sx={{ 
+                      height: '100%', 
+                      m: 2, 
+                      ml: 1,
+                      mt: 1,
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}>
+                      <SimpleAnalysisOutputPanel
+                        result={analysisResult}
+                        loading={loading}
+                        error={error}
+                      />
+                    </Paper>
+                  </Allotment.Pane>
+                </Allotment>
+              </Box>
+            </Box>
           )}
         </Box>
 

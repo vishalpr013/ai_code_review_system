@@ -1,0 +1,569 @@
+From 01cd0793977d53e674364a8db15e6a22ef320b19 Mon Sep 17 00:00:00 2001
+From: Jal Patel <jal.p@Jal.p's-Macbook-Pro>
+Date: Fri, 10 Oct 2025 17:44:53 +0530
+Subject: [PATCH] YH-853: RBAC email subscription
+
+Change-Id: I39050021f6a52d55d4d47e81bdfbf3a3d5dbcac5
+---
+
+diff --git a/amplify/backend/function/API/src/handlers/generateReleaseNotes.js b/amplify/backend/function/API/src/handlers/generateReleaseNotes.js
+index c5dab9f..2ef741d 100644
+--- a/amplify/backend/function/API/src/handlers/generateReleaseNotes.js
++++ b/amplify/backend/function/API/src/handlers/generateReleaseNotes.js
+@@ -103,7 +103,7 @@
+     }
+     const body = buildEmailBody(releaseNotes);
+     const subject = `📢 Release Notes – ${projectName} – v${newVersion} (${releasedDate})`;
+-    const destinations = ["jaydip@york.ie"].map((email) => ({
++    const destinations = recipients.map((email) => ({
+       Destination: { ToAddresses: [email] },
+       ReplacementTemplateData: JSON.stringify({
+         subject,
+diff --git a/amplify/backend/function/dailyJobProcessor/src/helpers/handleAutoBurstRelease.js b/amplify/backend/function/dailyJobProcessor/src/helpers/handleAutoBurstRelease.js
+index a706630..78d7c25 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/helpers/handleAutoBurstRelease.js
++++ b/amplify/backend/function/dailyJobProcessor/src/helpers/handleAutoBurstRelease.js
+@@ -3,7 +3,7 @@
+ const { captureError } = require("/opt/sentryWrapper");
+ 
+ // Main handler: Finds bursts ending today and processes their release
+-async function handleAutoBurstRelease(hrEmails) {
++async function handleAutoBurstRelease() {
+   const today = new Date().toISOString().split("T")[0];
+ 
+   try {
+@@ -33,8 +33,7 @@
+         const burstNotifications = buildNotifications(
+           burst,
+           allocation,
+-          isExpired,
+-          hrEmails
++          isExpired
+         );
+         allNotifications.push(...burstNotifications);
+ 
+@@ -112,12 +111,7 @@
+   }
+ }
+ 
+-function buildNotifications(
+-  burst,
+-  allocation,
+-  isExpired = false,
+-  hrEmails = []
+-) {
++function buildNotifications(burst, allocation, isExpired = false) {
+   const { first_name, last_name, email: empEmail } = allocation.employee || {};
+   const projectName = burst.project?.projectName || "";
+   const releaseReason = isExpired
+@@ -137,11 +131,6 @@
+       Type: BURST_SUBJECT.toUpperCase(),
+       Message: baseMessage,
+     },
+-    ...hrEmails.map((hrEmail) => ({
+-      ToAccount: hrEmail,
+-      Type: BURST_SUBJECT.toUpperCase(),
+-      Message: `${baseMessage} Employee returned to bench.`,
+-    })),
+     {
+       ToAccount: burst.project?.project_lead?.reporting_to?.email,
+       Type: BURST_SUBJECT.toUpperCase(),
+diff --git a/amplify/backend/function/dailyJobProcessor/src/helpers/handleSixMonthEmpAnniversary.js b/amplify/backend/function/dailyJobProcessor/src/helpers/handleSixMonthEmpAnniversary.js
+index f6c6996..9d44ed4 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/helpers/handleSixMonthEmpAnniversary.js
++++ b/amplify/backend/function/dailyJobProcessor/src/helpers/handleSixMonthEmpAnniversary.js
+@@ -1,6 +1,8 @@
+ const emailClient = require("../services/emailOperations");
+ const { groupByManager, addEmailParams } = require("../utils/general");
+ const { captureError } = require("/opt/sentryWrapper");
++const { queryOps } = require("../services/graphQLOperations");
++const { PROBATION_COMPLETION_NOTIFICATION_KEY } = require("../utils/constants");
+ 
+ const sendAnniversaryNotifications = async (employees, hrEmails) => {
+   try {
+@@ -64,19 +66,22 @@
+  */
+ const handleSixMonthEmpAnniversary = async (...args) => {
+   try {
+-    const [isWeekend, employees, hrEmails, dateOfSixMonthAgo] = args;
+-    if (hrEmails.length === 0) {
+-      console.log(
+-        "NO Hr Emails found to send the notifications of completion of six month anniversary."
+-      );
++    const [isWeekend, employees, dateOfSixMonthAgo] = args;
++
++    let subscribedEmails = await queryOps.fetchEmailsByNotificationSubscription(
++      PROBATION_COMPLETION_NOTIFICATION_KEY
++    );
++    if (subscribedEmails.length === 0) {
++      console.log("No emails found for 6-month anniversary notifications");
+       return;
+     }
++
+     // Filter the employees whose date are squad_manager
+     const employeesToNotify = isWeekend
+       ? employees
+       : employees.filter((emp) => emp?.york_start_date === dateOfSixMonthAgo);
+     if (employeesToNotify.length > 0) {
+-      await sendAnniversaryNotifications(employeesToNotify, hrEmails);
++      await sendAnniversaryNotifications(employeesToNotify, subscribedEmails);
+     } else {
+       console.log("No employees with upcoming 6-month anniversaries found.");
+     }
+diff --git a/amplify/backend/function/dailyJobProcessor/src/index.js b/amplify/backend/function/dailyJobProcessor/src/index.js
+index c750b09..1a93cc8 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/index.js
++++ b/amplify/backend/function/dailyJobProcessor/src/index.js
+@@ -63,27 +63,9 @@
+       dateOfSixMonthAgo
+     );
+ 
+-    let hrEmails = [];
+-    try {
+-      hrEmails = await cognitoClient.getHRGroupEmail();
+-      console.log(`Successfully fetched ${hrEmails.length} HR emails`);
+-    } catch (error) {
+-      console.error("Failed to fetch HR emails, using fallback:", error);
+-      // Use fallback HR email if available
+-      if (process.env.FALLBACK_HR_EMAIL) {
+-        hrEmails = [process.env.FALLBACK_HR_EMAIL];
+-        console.log(
+-          `Using fallback HR email: ${process.env.FALLBACK_HR_EMAIL}`
+-        );
+-      } else {
+-        console.warn("No HR emails available and no fallback configured");
+-      }
+-    }
+-
+     await handleSixMonthEmpAnniversary(
+       isWeekend,
+       employees,
+-      hrEmails,
+       dateOfSixMonthAgo
+     );
+ 
+@@ -92,7 +74,7 @@
+       await Promise.all([
+         handlePendingTimesheetNotifyer(employees),
+         processUnreadNotifications(),
+-        handleAutoBurstRelease(hrEmails),
++        handleAutoBurstRelease(),
+         processBurstNotifications(),
+       ]);
+     }
+diff --git a/amplify/backend/function/dailyJobProcessor/src/services/graphQLOperations.js b/amplify/backend/function/dailyJobProcessor/src/services/graphQLOperations.js
+index f6f7b01..658fa2f 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/services/graphQLOperations.js
++++ b/amplify/backend/function/dailyJobProcessor/src/services/graphQLOperations.js
+@@ -357,6 +357,119 @@
+       throw new Error("Failed to fetch history records via AppSync.");
+     }
+   }
++
++  async fetchEmailsByNotificationSubscription(subscriptionKey) {
++    try {
++      const allGroups = await this.fetchAllData(
++        queries.listGroupsWithNotificationSubscription,
++        { subscriptionKey }
++      );
++
++      const emailSet = new Set();
++
++      // Filter groups that have the subscription key
++      const matchingGroups = allGroups.filter((group) => {
++        const subscriptions = group.notificationSubscriptions
++          ? JSON.parse(group.notificationSubscriptions)
++          : [];
++        return (
++          Array.isArray(subscriptions) &&
++          subscriptions.includes(subscriptionKey)
++        );
++      });
++
++      if (matchingGroups.length === 0) {
++        return [];
++      }
++
++      // Batch fetch assignments for all matching groups
++      const groupIds = matchingGroups.map((group) => group.id);
++      const assignmentResults = [];
++
++      for (let i = 0; i < groupIds.length; i += BATCH_SIZE) {
++        const batch = groupIds.slice(i, i + BATCH_SIZE);
++        const results = await this.batchGetGroupAssignments([batch]);
++        assignmentResults.push(...results);
++      }
++
++      // Collect all unique emails
++      assignmentResults.forEach((result) => {
++        result.assignments.forEach((assignment) => {
++          if (assignment.userEmail) {
++            emailSet.add(assignment.userEmail);
++          }
++        });
++      });
++
++      return Array.from(emailSet);
++    } catch (error) {
++      console.error(
++        `Error fetching emails for notification subscription ${subscriptionKey}:`,
++        error
++      );
++      return [];
++    }
++  }
++
++  async batchGetGroupAssignments(chunkArray) {
++    const results = [];
++
++    for (const batch of chunkArray) {
++      try {
++        const variables = {};
++        const queryFields = batch.map((groupId, index) => {
++          const alias = `listGroupAssignments${index + 1}`;
++          const variableName = `filter${index + 1}`;
++          variables[variableName] = {
++            groupId: { eq: groupId },
++          };
++
++          return `
++        ${alias}: listGroupAssignments(
++          filter: $${variableName}
++          limit: 999
++        ) {
++          items {
++            id
++            userEmail
++            groupId
++          }
++        }`;
++        });
++
++        const variableDefinitions = batch
++          .map(
++            (_, index) => `$filter${index + 1}: ModelGroupAssignmentFilterInput`
++          )
++          .join(", ");
++
++        const query = `
++      query BatchGetGroupAssignments(${variableDefinitions}) {
++        ${queryFields.join("\n")}
++      }`;
++
++        const response = await this.executeQuery(query, variables);
++
++        if (response.data) {
++          Object.keys(response.data).forEach((key, index) => {
++            if (response.data[key]?.items) {
++              results.push({
++                groupId: batch[index],
++                assignments: response.data[key].items,
++              });
++            }
++          });
++        }
++      } catch (error) {
++        console.info(
++          "Batch get group assignments data",
++          JSON.stringify(batch, null, 2)
++        );
++        console.error("Error in batchGetGroupAssignments: ", error);
++      }
++    }
++    return results;
++  }
+ }
+ 
+ // --- All Mutation Operations ---
+diff --git a/amplify/backend/function/dailyJobProcessor/src/utils/constants.js b/amplify/backend/function/dailyJobProcessor/src/utils/constants.js
+index a230f6c..6c5b58b 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/utils/constants.js
++++ b/amplify/backend/function/dailyJobProcessor/src/utils/constants.js
+@@ -7,6 +7,8 @@
+ const COGNITO_EXECUTIVE_GRP_NAME =
+   process.env.COGNITO_EXECUTIVE_GRP_NAME || "Executive";
+ const BURST_SUBJECT = "Burst Update Reminder : Allocation/Release";
++const PROBATION_COMPLETION_NOTIFICATION_KEY =
++  process.env.PROBATION_COMPLETION_NOTIFICATION_KEY;
+ 
+ // --- Executable rules frequency ---
+ const FREQUENCY = {
+@@ -36,4 +38,5 @@
+   ...EXECUTABLE_STATUS,
+   BATCH_SIZE,
+   BURST_SUBJECT,
++  PROBATION_COMPLETION_NOTIFICATION_KEY,
+ };
+diff --git a/amplify/backend/function/dailyJobProcessor/src/utils/gql.js b/amplify/backend/function/dailyJobProcessor/src/utils/gql.js
+index 26ea461..d26745c 100644
+--- a/amplify/backend/function/dailyJobProcessor/src/utils/gql.js
++++ b/amplify/backend/function/dailyJobProcessor/src/utils/gql.js
+@@ -245,6 +245,43 @@
+   }
+ `;
+ 
++const listGroupsWithNotificationSubscription = `
++  query ListGroupsWithNotificationSubscription($subscriptionKey: String!, $limit: Int, $nextToken: String) {
++    listGroups(
++      filter: { notificationSubscriptions: { contains: $subscriptionKey } }
++      limit: $limit
++      nextToken: $nextToken
++    ) {
++      items {
++        id
++        name
++        notificationSubscriptions
++        assignments {
++          items {
++            userEmail
++          }
++        }
++      }
++      nextToken
++    }
++  }
++`;
++
++const getGroupAssignmentsByGroupId = `
++  query GetGroupAssignmentsByGroupId($groupId: ID!, $limit: Int, $nextToken: String) {
++    listGroupAssignments(
++      filter: { groupId: { eq: $groupId } }
++      limit: $limit
++      nextToken: $nextToken
++    ) {
++      items {
++        userEmail
++      }
++      nextToken
++    }
++  }
++`;
++
+ module.exports = {
+   fetchUnreadNotifications,
+   updateEmailSentNotification,
+@@ -260,4 +297,6 @@
+   getProject,
+   deleteProjectBurst,
+   listHistoryMasters,
++  listGroupsWithNotificationSubscription,
++  getGroupAssignmentsByGroupId,
+ };
+diff --git a/src/Pages/GroupManagement/GroupManagementPermissions.json b/src/Pages/GroupManagement/GroupManagementPermissions.json
+index 796e632..c0ba119 100644
+--- a/src/Pages/GroupManagement/GroupManagementPermissions.json
++++ b/src/Pages/GroupManagement/GroupManagementPermissions.json
+@@ -110,6 +110,7 @@
+     "key": "mbo",
+     "name": "MBO",
+     "permissions": [
++      { "key": "canFillReporteesMBO", "name": "Fill Reportees MBO" },
+       {
+         "key": "mboPowerUser",
+         "name": "MBO Power User - Can manage Everyone's MBO"
+diff --git a/src/Pages/GroupManagement/NotificationSubscriptionManagement.json b/src/Pages/GroupManagement/NotificationSubscriptionManagement.json
+new file mode 100644
+index 0000000..75b23d9
+--- /dev/null
++++ b/src/Pages/GroupManagement/NotificationSubscriptionManagement.json
+@@ -0,0 +1,12 @@
++[
++  {
++    "key": "emailNotifications",
++    "name": "Email Notifications Subscriptions",
++    "subscriptions": [
++      {
++        "key": "receiveProbationCompletionEmail",
++        "name": "Approaching probation completion"
++      }
++    ]
++  }
++]
+diff --git a/src/Pages/GroupManagement/Queries/GroupManagementQueries.js b/src/Pages/GroupManagement/Queries/GroupManagementQueries.js
+index 1997ec5..3cd87a6 100644
+--- a/src/Pages/GroupManagement/Queries/GroupManagementQueries.js
++++ b/src/Pages/GroupManagement/Queries/GroupManagementQueries.js
+@@ -69,6 +69,7 @@
+         name
+         description
+         permissions
++        notificationSubscriptions
+         assignments {
+           items {
+             groupAssignmentsId
+diff --git a/src/Pages/GroupManagement/components/GroupModal.js b/src/Pages/GroupManagement/components/GroupModal.js
+index 0de8857..736dbec 100644
+--- a/src/Pages/GroupManagement/components/GroupModal.js
++++ b/src/Pages/GroupManagement/components/GroupModal.js
+@@ -18,6 +18,7 @@
+ } from "Pages/GroupManagement/Actions/GroupManagementActions";
+ import { generateUUID } from "utils/commonMethods";
+ import groupManagementPermissions from "../GroupManagementPermissions.json";
++import notificationSubscriptions from "../NotificationSubscriptionManagement.json";
+ 
+ const { TextArea } = Input;
+ const { Text } = Typography;
+@@ -55,21 +56,30 @@
+       if (editingGroup) {
+         const originalMemberEmails =
+           editingGroup.members?.map((m) => m.email) || [];
+-        const permissions = editingGroup?.permissions
+-          ? JSON.parse(editingGroup.permissions)
+-          : [];
++
++        // Combining both permissions and notification subscriptions
++        const permissions = [
++          ...(editingGroup?.permissions
++            ? JSON.parse(editingGroup.permissions)
++            : []),
++          ...(editingGroup?.notificationSubscriptions
++            ? JSON.parse(editingGroup.notificationSubscriptions)
++            : []),
++        ];
+ 
+         console.log(permissions, "permissions");
+-        //Map saved permissions into checkbox group
+-        const mappedPermissions = groupManagementPermissions.reduce(
+-          (acc, category) => {
+-            acc[category.key] = category.permissions
+-              .filter((perm) => permissions.includes(perm.key))
+-              .map((perm) => perm.key);
+-            return acc;
+-          },
+-          {}
+-        );
++
++        // Map saved permissions into checkbox group (handle both types)
++        const mappedPermissions = [
++          ...groupManagementPermissions,
++          ...notificationSubscriptions,
++        ].reduce((acc, category) => {
++          const permList = category.permissions || category.subscriptions || [];
++          acc[category.key] = permList
++            .filter((perm) => permissions.includes(perm.key))
++            .map((perm) => perm.key);
++          return acc;
++        }, {});
+ 
+         console.log(mappedPermissions, "mappedPermissions");
+         setSelectedPermissions(mappedPermissions);
+@@ -89,7 +99,19 @@
+ 
+   // Build final permissions JSON to save
+   const buildPermissionsJSON = useCallback(() => {
+-    return Object.values(selectedPermissions).flat();
++    const allKeys = Object.values(selectedPermissions).flat();
++
++    // Get all notification keys dynamically
++    const notificationKeys = notificationSubscriptions.flatMap((cat) =>
++      (cat.subscriptions || []).map((p) => p.key)
++    );
++
++    return {
++      permissionsJSON: allKeys.filter((k) => !notificationKeys.includes(k)),
++      notificationSubscriptions: allKeys.filter((k) =>
++        notificationKeys.includes(k)
++      ),
++    };
+   }, [selectedPermissions]);
+ 
+   /**
+@@ -102,9 +124,10 @@
+       const values = await form.validateFields();
+ 
+       // --- Permissions Handling ---
+-      const permissionsJSON = buildPermissionsJSON();
++      const { permissionsJSON, notificationSubscriptions: notificationSubs } =
++        buildPermissionsJSON();
+       console.log(permissionsJSON, "permissionsJSON");
+-      if (!permissionsJSON || !permissionsJSON.length) {
++      if (!permissionsJSON.length && !notificationSubs.length) {
+         setPermissionsError("Please select at least one action.");
+         return;
+       }
+@@ -165,6 +188,7 @@
+           description: values.description,
+           leaderEmail: values.leader,
+           permissions: JSON.stringify(permissionsJSON),
++          notificationSubscriptions: JSON.stringify(notificationSubs),
+         };
+         console.log(groupUpdateInput, "groupUpdateInput");
+ 
+@@ -235,6 +259,7 @@
+           description: values.description,
+           leaderEmail: values.leader,
+           permissions: JSON.stringify(permissionsJSON),
++          notificationSubscriptions: JSON.stringify(notificationSubs),
+         });
+ 
+         const currentMembers = values.members || [];
+@@ -268,6 +293,7 @@
+             leader: allEmployees.find((emp) => emp.email === values.leader),
+             assignments: updatedAssignments,
+             permissions: JSON.stringify(permissionsJSON),
++            notificationSubscriptions: JSON.stringify(notificationSubs),
+           },
+           ...prev,
+         ]);
+@@ -455,6 +481,61 @@
+           </Card>
+         </Form.Item>
+ 
++        {/* Notification Subscriptions Field */}
++        {notificationSubscriptions.length > 0 && (
++          <Form.Item label={<Text strong>Notification Subscriptions</Text>}>
++            <Card
++              size="small"
++              className="rounded-lg shadow-sm"
++              bodyStyle={{
++                maxHeight: 300,
++                overflowY: "auto",
++                paddingRight: 12,
++              }}
++            >
++              <div className="space-y-6">
++                {notificationSubscriptions.map((category, index) => (
++                  <div key={category.key}>
++                    {/* Category Name */}
++                    <Text className="block mb-3 font-semibold">
++                      {category.name}
++                    </Text>
++
++                    {/* Checkbox Group for each category */}
++                    <Checkbox.Group
++                      value={selectedPermissions[category.key] || []}
++                      onChange={(checked) => {
++                        setSelectedPermissions((prev) => {
++                          const updated = { ...prev, [category.key]: checked };
++                          if (
++                            Object.values(updated).some((arr) => arr.length > 0)
++                          ) {
++                            setPermissionsError("");
++                          }
++                          return updated;
++                        });
++                      }}
++                    >
++                      <div className="grid grid-cols-1 gap-y-3">
++                        {category.subscriptions.map((sub) => (
++                          <div key={sub.key} className="flex items-center">
++                            <Checkbox value={sub.key}>{sub.name}</Checkbox>
++                          </div>
++                        ))}
++                      </div>
++                    </Checkbox.Group>
++
++                    {/* Divider between categories (skip last one) */}
++                    {index < notificationSubscriptions.length - 1 && (
++                      <div className="border-b border-gray-200 my-4" />
++                    )}
++                  </div>
++                ))}
++              </div>
++            </Card>
++          </Form.Item>
++        )}
++
+         {/* Permissions Error Display */}
+         {permissionsError && (
+           <Alert

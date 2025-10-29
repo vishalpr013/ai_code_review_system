@@ -1,0 +1,15 @@
+ERROR: Missing semicolon in JavaScript code
+SEVERITY: Low
+EXPECTED ISSUES: Syntax error, code won't execute
+
+diff --git a/app.js b/app.js
+index 1234567..abcdefg 100644
+--- a/app.js
++++ b/app.js
+@@ -1,5 +1,5 @@
+ function calculateSum(a, b) {
+-    return a + b;
++    return a + b
+ }
+ 
+ console.log(calculateSum(5, 10));

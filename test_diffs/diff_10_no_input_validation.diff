@@ -1,0 +1,772 @@
+ERROR: Missing input validation
+SEVERITY: High
+EXPECTED ISSUES: Invalid data processing, security risks
+
+diff --git a/api.py b/api.py
+index 0123456..jklmnop 100644
+--- a/api.py
++++ b/api.py
+@@ -1,328 +1,328 @@
+-def create_user_1(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_1(data):
++    return save_user(data)
+
+-def create_user_2(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_2(data):
++    return save_user(data)
+
+-def create_user_3(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_3(data):
++    return save_user(data)
+
+-def create_user_4(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_4(data):
++    return save_user(data)
+
+-def create_user_5(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_5(data):
++    return save_user(data)
+
+-def create_user_6(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_6(data):
++    return save_user(data)
+
+-def create_user_7(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_7(data):
++    return save_user(data)
+
+-def create_user_8(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_8(data):
++    return save_user(data)
+
+-def create_user_9(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_9(data):
++    return save_user(data)
+
+-def create_user_10(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_10(data):
++    return save_user(data)
+
+-def create_user_11(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_11(data):
++    return save_user(data)
+
+-def create_user_12(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_12(data):
++    return save_user(data)
+
+-def create_user_13(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_13(data):
++    return save_user(data)
+
+-def create_user_14(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_14(data):
++    return save_user(data)
+
+-def create_user_15(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_15(data):
++    return save_user(data)
+
+-def create_user_16(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_16(data):
++    return save_user(data)
+
+-def create_user_17(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_17(data):
++    return save_user(data)
+
+-def create_user_18(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_18(data):
++    return save_user(data)
+
+-def create_user_19(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_19(data):
++    return save_user(data)
+
+-def create_user_20(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_20(data):
++    return save_user(data)
+
+-def create_user_21(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_21(data):
++    return save_user(data)
+
+-def create_user_22(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_22(data):
++    return save_user(data)
+
+-def create_user_23(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_23(data):
++    return save_user(data)
+
+-def create_user_24(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_24(data):
++    return save_user(data)
+
+-def create_user_25(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_25(data):
++    return save_user(data)
+
+-def create_user_26(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_26(data):
++    return save_user(data)
+
+-def create_user_27(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_27(data):
++    return save_user(data)
+
+-def create_user_28(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_28(data):
++    return save_user(data)
+
+-def create_user_29(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_29(data):
++    return save_user(data)
+
+-def create_user_30(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_30(data):
++    return save_user(data)
+
+-def create_user_31(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_31(data):
++    return save_user(data)
+
+-def create_user_32(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_32(data):
++    return save_user(data)
+
+-def create_user_33(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_33(data):
++    return save_user(data)
+
+-def create_user_34(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_34(data):
++    return save_user(data)
+
+-def create_user_35(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_35(data):
++    return save_user(data)
+
+-def create_user_36(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_36(data):
++    return save_user(data)
+
+-def create_user_37(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_37(data):
++    return save_user(data)
+
+-def create_user_38(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_38(data):
++    return save_user(data)
+
+-def create_user_39(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_39(data):
++    return save_user(data)
+
+-def create_user_40(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_40(data):
++    return save_user(data)
+
+-def create_user_41(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_41(data):
++    return save_user(data)
+
+-def create_user_42(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_42(data):
++    return save_user(data)
+
+-def create_user_43(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_43(data):
++    return save_user(data)
+
+-def create_user_44(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_44(data):
++    return save_user(data)
+
+-def create_user_45(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_45(data):
++    return save_user(data)
+
+-def create_user_46(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_46(data):
++    return save_user(data)
+
+-def create_user_47(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_47(data):
++    return save_user(data)
+
+-def create_user_48(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_48(data):
++    return save_user(data)
+
+-def create_user_49(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_49(data):
++    return save_user(data)
+
+-def create_user_50(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_50(data):
++    return save_user(data)
+
+-def create_user_51(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_51(data):
++    return save_user(data)
+
+-def create_user_52(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_52(data):
++    return save_user(data)
+
+-def create_user_53(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_53(data):
++    return save_user(data)
+
+-def create_user_54(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_54(data):
++    return save_user(data)
+
+-def create_user_55(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_55(data):
++    return save_user(data)
+
+-def create_user_56(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_56(data):
++    return save_user(data)
+
+-def create_user_57(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_57(data):
++    return save_user(data)
+
+-def create_user_58(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_58(data):
++    return save_user(data)
+
+-def create_user_59(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_59(data):
++    return save_user(data)
+
+-def create_user_60(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_60(data):
++    return save_user(data)
+
+-def create_user_61(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_61(data):
++    return save_user(data)
+
+-def create_user_62(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_62(data):
++    return save_user(data)
+
+-def create_user_63(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_63(data):
++    return save_user(data)
+
+-def create_user_64(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_64(data):
++    return save_user(data)
+
+-def create_user_65(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_65(data):
++    return save_user(data)
+
+-def create_user_66(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_66(data):
++    return save_user(data)
+
+-def create_user_67(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_67(data):
++    return save_user(data)
+
+-def create_user_68(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_68(data):
++    return save_user(data)
+
+-def create_user_69(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_69(data):
++    return save_user(data)
+
+-def create_user_70(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_70(data):
++    return save_user(data)
+
+-def create_user_71(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_71(data):
++    return save_user(data)
+
+-def create_user_72(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_72(data):
++    return save_user(data)
+
+-def create_user_73(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_73(data):
++    return save_user(data)
+
+-def create_user_74(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_74(data):
++    return save_user(data)
+
+-def create_user_75(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_75(data):
++    return save_user(data)
+
+-def create_user_76(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_76(data):
++    return save_user(data)
+
+-def create_user_77(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_77(data):
++    return save_user(data)
+
+-def create_user_78(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_78(data):
++    return save_user(data)
+
+-def create_user_79(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_79(data):
++    return save_user(data)
+
+-def create_user_80(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_80(data):
++    return save_user(data)
+
+-def create_user_81(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_81(data):
++    return save_user(data)
+
+-def create_user_82(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_82(data):
++    return save_user(data)
+
+-def create_user_83(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_83(data):
++    return save_user(data)
+
+-def create_user_84(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_84(data):
++    return save_user(data)
+
+-def create_user_85(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_85(data):
++    return save_user(data)
+
+-def create_user_86(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_86(data):
++    return save_user(data)
+
+-def create_user_87(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_87(data):
++    return save_user(data)
+
+-def create_user_88(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_88(data):
++    return save_user(data)
+
+-def create_user_89(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_89(data):
++    return save_user(data)
+
+-def create_user_90(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_90(data):
++    return save_user(data)
+
+-def create_user_91(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_91(data):
++    return save_user(data)
+
+-def create_user_92(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_92(data):
++    return save_user(data)
+
+-def create_user_93(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_93(data):
++    return save_user(data)
+
+-def create_user_94(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_94(data):
++    return save_user(data)
+
+-def create_user_95(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_95(data):
++    return save_user(data)
+
+-def create_user_96(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_96(data):
++    return save_user(data)
+
+-def create_user_97(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_97(data):
++    return save_user(data)
+
+-def create_user_98(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_98(data):
++    return save_user(data)
+
+-def create_user_99(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_99(data):
++    return save_user(data)
+
+-def create_user_100(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_100(data):
++    return save_user(data)
+
+-def create_user_101(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_101(data):
++    return save_user(data)
+
+-def create_user_102(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_102(data):
++    return save_user(data)
+
+-def create_user_103(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_103(data):
++    return save_user(data)
+
+-def create_user_104(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_104(data):
++    return save_user(data)
+
+-def create_user_105(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_105(data):
++    return save_user(data)
+
+-def create_user_106(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_106(data):
++    return save_user(data)
+
+-def create_user_107(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_107(data):
++    return save_user(data)
+
+-def create_user_108(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_108(data):
++    return save_user(data)
+
+-def create_user_109(data):
+-    if not data.get('email') or '@' not in data['email']:
+-        raise ValueError('Invalid email')
+-    return save_user(data)
++def create_user_109(data):
++    return save_user(data)
+

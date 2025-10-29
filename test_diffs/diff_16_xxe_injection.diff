@@ -1,0 +1,751 @@
+ERROR: XML External Entity (XXE) Injection
+SEVERITY: Critical
+EXPECTED ISSUES: File disclosure, SSRF, RCE
+
+diff --git a/xml_parser.py b/xml_parser.py
+index 6789012..pqrstuv 100644
+--- a/xml_parser.py
++++ b/xml_parser.py
+@@ -1,320 +1,320 @@
+-def parse_xml_1(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_1(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_2(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_2(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_3(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_3(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_4(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_4(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_5(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_5(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_6(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_6(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_7(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_7(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_8(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_8(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_9(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_9(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_10(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_10(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_11(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_11(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_12(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_12(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_13(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_13(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_14(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_14(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_15(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_15(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_16(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_16(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_17(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_17(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_18(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_18(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_19(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_19(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_20(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_20(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_21(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_21(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_22(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_22(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_23(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_23(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_24(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_24(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_25(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_25(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_26(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_26(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_27(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_27(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_28(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_28(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_29(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_29(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_30(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_30(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_31(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_31(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_32(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_32(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_33(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_33(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_34(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_34(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_35(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_35(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_36(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_36(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_37(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_37(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_38(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_38(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_39(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_39(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_40(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_40(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_41(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_41(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_42(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_42(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_43(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_43(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_44(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_44(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_45(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_45(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_46(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_46(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_47(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_47(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_48(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_48(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_49(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_49(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_50(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_50(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_51(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_51(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_52(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_52(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_53(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_53(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_54(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_54(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_55(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_55(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_56(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_56(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_57(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_57(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_58(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_58(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_59(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_59(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_60(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_60(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_61(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_61(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_62(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_62(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_63(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_63(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_64(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_64(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_65(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_65(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_66(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_66(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_67(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_67(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_68(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_68(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_69(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_69(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_70(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_70(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_71(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_71(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_72(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_72(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_73(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_73(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_74(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_74(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_75(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_75(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_76(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_76(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_77(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_77(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_78(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_78(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_79(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_79(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_80(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_80(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_81(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_81(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_82(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_82(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_83(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_83(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_84(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_84(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_85(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_85(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_86(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_86(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_87(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_87(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_88(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_88(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_89(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_89(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_90(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_90(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_91(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_91(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_92(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_92(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_93(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_93(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_94(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_94(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_95(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_95(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_96(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_96(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_97(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_97(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_98(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_98(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_99(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_99(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_100(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_100(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_101(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_101(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_102(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_102(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_103(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_103(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_104(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_104(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_105(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_105(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+
+-def parse_xml_106(content):
+-    from defusedxml import ElementTree
+-    return ElementTree.parse(content)
++def parse_xml_106(content):
++    import xml.etree.ElementTree as ET
++    return ET.parse(content)
+

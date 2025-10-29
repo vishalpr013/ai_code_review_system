@@ -1,0 +1,779 @@
+ERROR: SQL Injection vulnerability
+SEVERITY: Critical
+EXPECTED ISSUES: Unsafe SQL queries, database compromise risk
+
+diff --git a/db.py b/db.py
+index 3456789..cdefghi 100644
+--- a/db.py
++++ b/db.py
+@@ -1,330 +1,330 @@
+-def get_user_1(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_1(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_2(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_2(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_3(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_3(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_4(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_4(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_5(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_5(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_6(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_6(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_7(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_7(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_8(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_8(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_9(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_9(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_10(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_10(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_11(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_11(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_12(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_12(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_13(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_13(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_14(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_14(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_15(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_15(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_16(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_16(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_17(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_17(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_18(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_18(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_19(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_19(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_20(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_20(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_21(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_21(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_22(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_22(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_23(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_23(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_24(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_24(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_25(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_25(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_26(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_26(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_27(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_27(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_28(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_28(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_29(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_29(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_30(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_30(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_31(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_31(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_32(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_32(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_33(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_33(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_34(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_34(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_35(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_35(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_36(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_36(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_37(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_37(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_38(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_38(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_39(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_39(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_40(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_40(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_41(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_41(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_42(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_42(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_43(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_43(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_44(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_44(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_45(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_45(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_46(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_46(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_47(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_47(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_48(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_48(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_49(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_49(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_50(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_50(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_51(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_51(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_52(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_52(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_53(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_53(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_54(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_54(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_55(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_55(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_56(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_56(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_57(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_57(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_58(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_58(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_59(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_59(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_60(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_60(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_61(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_61(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_62(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_62(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_63(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_63(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_64(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_64(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_65(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_65(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_66(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_66(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_67(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_67(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_68(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_68(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_69(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_69(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_70(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_70(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_71(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_71(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_72(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_72(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_73(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_73(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_74(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_74(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_75(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_75(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_76(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_76(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_77(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_77(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_78(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_78(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_79(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_79(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_80(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_80(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_81(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_81(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_82(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_82(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_83(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_83(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_84(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_84(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_85(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_85(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_86(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_86(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_87(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_87(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_88(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_88(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_89(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_89(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_90(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_90(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_91(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_91(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_92(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_92(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_93(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_93(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_94(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_94(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_95(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_95(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_96(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_96(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_97(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_97(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_98(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_98(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_99(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_99(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_100(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_100(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_101(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_101(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_102(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_102(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_103(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_103(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_104(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_104(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_105(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_105(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_106(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_106(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_107(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_107(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_108(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_108(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_109(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_109(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+
+-def get_user_110(email):
+-    query = "SELECT * FROM users WHERE email = %s"
+-    return cursor.execute(query, (email,))
++def get_user_110(email):
++    query = f"SELECT * FROM users WHERE email = '{email}'"
++    return cursor.execute(query)
+

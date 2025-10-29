@@ -1,0 +1,645 @@
+ERROR: Race condition in concurrent code
+SEVERITY: High
+EXPECTED ISSUES: Data corruption, inconsistent state
+
+diff --git a/counter.py b/counter.py
+index 7890123..ghijklm 100644
+--- a/counter.py
++++ b/counter.py
+@@ -1,318 +1,318 @@
+-def increment_1(self):
+-    with self.lock:
+-        self.count_1 += 1
++def increment_1(self):
++    self.count_1 += 1
+
+-def increment_2(self):
+-    with self.lock:
+-        self.count_2 += 1
++def increment_2(self):
++    self.count_2 += 1
+
+-def increment_3(self):
+-    with self.lock:
+-        self.count_3 += 1
++def increment_3(self):
++    self.count_3 += 1
+
+-def increment_4(self):
+-    with self.lock:
+-        self.count_4 += 1
++def increment_4(self):
++    self.count_4 += 1
+
+-def increment_5(self):
+-    with self.lock:
+-        self.count_5 += 1
++def increment_5(self):
++    self.count_5 += 1
+
+-def increment_6(self):
+-    with self.lock:
+-        self.count_6 += 1
++def increment_6(self):
++    self.count_6 += 1
+
+-def increment_7(self):
+-    with self.lock:
+-        self.count_7 += 1
++def increment_7(self):
++    self.count_7 += 1
+
+-def increment_8(self):
+-    with self.lock:
+-        self.count_8 += 1
++def increment_8(self):
++    self.count_8 += 1
+
+-def increment_9(self):
+-    with self.lock:
+-        self.count_9 += 1
++def increment_9(self):
++    self.count_9 += 1
+
+-def increment_10(self):
+-    with self.lock:
+-        self.count_10 += 1
++def increment_10(self):
++    self.count_10 += 1
+
+-def increment_11(self):
+-    with self.lock:
+-        self.count_11 += 1
++def increment_11(self):
++    self.count_11 += 1
+
+-def increment_12(self):
+-    with self.lock:
+-        self.count_12 += 1
++def increment_12(self):
++    self.count_12 += 1
+
+-def increment_13(self):
+-    with self.lock:
+-        self.count_13 += 1
++def increment_13(self):
++    self.count_13 += 1
+
+-def increment_14(self):
+-    with self.lock:
+-        self.count_14 += 1
++def increment_14(self):
++    self.count_14 += 1
+
+-def increment_15(self):
+-    with self.lock:
+-        self.count_15 += 1
++def increment_15(self):
++    self.count_15 += 1
+
+-def increment_16(self):
+-    with self.lock:
+-        self.count_16 += 1
++def increment_16(self):
++    self.count_16 += 1
+
+-def increment_17(self):
+-    with self.lock:
+-        self.count_17 += 1
++def increment_17(self):
++    self.count_17 += 1
+
+-def increment_18(self):
+-    with self.lock:
+-        self.count_18 += 1
++def increment_18(self):
++    self.count_18 += 1
+
+-def increment_19(self):
+-    with self.lock:
+-        self.count_19 += 1
++def increment_19(self):
++    self.count_19 += 1
+
+-def increment_20(self):
+-    with self.lock:
+-        self.count_20 += 1
++def increment_20(self):
++    self.count_20 += 1
+
+-def increment_21(self):
+-    with self.lock:
+-        self.count_21 += 1
++def increment_21(self):
++    self.count_21 += 1
+
+-def increment_22(self):
+-    with self.lock:
+-        self.count_22 += 1
++def increment_22(self):
++    self.count_22 += 1
+
+-def increment_23(self):
+-    with self.lock:
+-        self.count_23 += 1
++def increment_23(self):
++    self.count_23 += 1
+
+-def increment_24(self):
+-    with self.lock:
+-        self.count_24 += 1
++def increment_24(self):
++    self.count_24 += 1
+
+-def increment_25(self):
+-    with self.lock:
+-        self.count_25 += 1
++def increment_25(self):
++    self.count_25 += 1
+
+-def increment_26(self):
+-    with self.lock:
+-        self.count_26 += 1
++def increment_26(self):
++    self.count_26 += 1
+
+-def increment_27(self):
+-    with self.lock:
+-        self.count_27 += 1
++def increment_27(self):
++    self.count_27 += 1
+
+-def increment_28(self):
+-    with self.lock:
+-        self.count_28 += 1
++def increment_28(self):
++    self.count_28 += 1
+
+-def increment_29(self):
+-    with self.lock:
+-        self.count_29 += 1
++def increment_29(self):
++    self.count_29 += 1
+
+-def increment_30(self):
+-    with self.lock:
+-        self.count_30 += 1
++def increment_30(self):
++    self.count_30 += 1
+
+-def increment_31(self):
+-    with self.lock:
+-        self.count_31 += 1
++def increment_31(self):
++    self.count_31 += 1
+
+-def increment_32(self):
+-    with self.lock:
+-        self.count_32 += 1
++def increment_32(self):
++    self.count_32 += 1
+
+-def increment_33(self):
+-    with self.lock:
+-        self.count_33 += 1
++def increment_33(self):
++    self.count_33 += 1
+
+-def increment_34(self):
+-    with self.lock:
+-        self.count_34 += 1
++def increment_34(self):
++    self.count_34 += 1
+
+-def increment_35(self):
+-    with self.lock:
+-        self.count_35 += 1
++def increment_35(self):
++    self.count_35 += 1
+
+-def increment_36(self):
+-    with self.lock:
+-        self.count_36 += 1
++def increment_36(self):
++    self.count_36 += 1
+
+-def increment_37(self):
+-    with self.lock:
+-        self.count_37 += 1
++def increment_37(self):
++    self.count_37 += 1
+
+-def increment_38(self):
+-    with self.lock:
+-        self.count_38 += 1
++def increment_38(self):
++    self.count_38 += 1
+
+-def increment_39(self):
+-    with self.lock:
+-        self.count_39 += 1
++def increment_39(self):
++    self.count_39 += 1
+
+-def increment_40(self):
+-    with self.lock:
+-        self.count_40 += 1
++def increment_40(self):
++    self.count_40 += 1
+
+-def increment_41(self):
+-    with self.lock:
+-        self.count_41 += 1
++def increment_41(self):
++    self.count_41 += 1
+
+-def increment_42(self):
+-    with self.lock:
+-        self.count_42 += 1
++def increment_42(self):
++    self.count_42 += 1
+
+-def increment_43(self):
+-    with self.lock:
+-        self.count_43 += 1
++def increment_43(self):
++    self.count_43 += 1
+
+-def increment_44(self):
+-    with self.lock:
+-        self.count_44 += 1
++def increment_44(self):
++    self.count_44 += 1
+
+-def increment_45(self):
+-    with self.lock:
+-        self.count_45 += 1
++def increment_45(self):
++    self.count_45 += 1
+
+-def increment_46(self):
+-    with self.lock:
+-        self.count_46 += 1
++def increment_46(self):
++    self.count_46 += 1
+
+-def increment_47(self):
+-    with self.lock:
+-        self.count_47 += 1
++def increment_47(self):
++    self.count_47 += 1
+
+-def increment_48(self):
+-    with self.lock:
+-        self.count_48 += 1
++def increment_48(self):
++    self.count_48 += 1
+
+-def increment_49(self):
+-    with self.lock:
+-        self.count_49 += 1
++def increment_49(self):
++    self.count_49 += 1
+
+-def increment_50(self):
+-    with self.lock:
+-        self.count_50 += 1
++def increment_50(self):
++    self.count_50 += 1
+
+-def increment_51(self):
+-    with self.lock:
+-        self.count_51 += 1
++def increment_51(self):
++    self.count_51 += 1
+
+-def increment_52(self):
+-    with self.lock:
+-        self.count_52 += 1
++def increment_52(self):
++    self.count_52 += 1
+
+-def increment_53(self):
+-    with self.lock:
+-        self.count_53 += 1
++def increment_53(self):
++    self.count_53 += 1
+
+-def increment_54(self):
+-    with self.lock:
+-        self.count_54 += 1
++def increment_54(self):
++    self.count_54 += 1
+
+-def increment_55(self):
+-    with self.lock:
+-        self.count_55 += 1
++def increment_55(self):
++    self.count_55 += 1
+
+-def increment_56(self):
+-    with self.lock:
+-        self.count_56 += 1
++def increment_56(self):
++    self.count_56 += 1
+
+-def increment_57(self):
+-    with self.lock:
+-        self.count_57 += 1
++def increment_57(self):
++    self.count_57 += 1
+
+-def increment_58(self):
+-    with self.lock:
+-        self.count_58 += 1
++def increment_58(self):
++    self.count_58 += 1
+
+-def increment_59(self):
+-    with self.lock:
+-        self.count_59 += 1
++def increment_59(self):
++    self.count_59 += 1
+
+-def increment_60(self):
+-    with self.lock:
+-        self.count_60 += 1
++def increment_60(self):
++    self.count_60 += 1
+
+-def increment_61(self):
+-    with self.lock:
+-        self.count_61 += 1
++def increment_61(self):
++    self.count_61 += 1
+
+-def increment_62(self):
+-    with self.lock:
+-        self.count_62 += 1
++def increment_62(self):
++    self.count_62 += 1
+
+-def increment_63(self):
+-    with self.lock:
+-        self.count_63 += 1
++def increment_63(self):
++    self.count_63 += 1
+
+-def increment_64(self):
+-    with self.lock:
+-        self.count_64 += 1
++def increment_64(self):
++    self.count_64 += 1
+
+-def increment_65(self):
+-    with self.lock:
+-        self.count_65 += 1
++def increment_65(self):
++    self.count_65 += 1
+
+-def increment_66(self):
+-    with self.lock:
+-        self.count_66 += 1
++def increment_66(self):
++    self.count_66 += 1
+
+-def increment_67(self):
+-    with self.lock:
+-        self.count_67 += 1
++def increment_67(self):
++    self.count_67 += 1
+
+-def increment_68(self):
+-    with self.lock:
+-        self.count_68 += 1
++def increment_68(self):
++    self.count_68 += 1
+
+-def increment_69(self):
+-    with self.lock:
+-        self.count_69 += 1
++def increment_69(self):
++    self.count_69 += 1
+
+-def increment_70(self):
+-    with self.lock:
+-        self.count_70 += 1
++def increment_70(self):
++    self.count_70 += 1
+
+-def increment_71(self):
+-    with self.lock:
+-        self.count_71 += 1
++def increment_71(self):
++    self.count_71 += 1
+
+-def increment_72(self):
+-    with self.lock:
+-        self.count_72 += 1
++def increment_72(self):
++    self.count_72 += 1
+
+-def increment_73(self):
+-    with self.lock:
+-        self.count_73 += 1
++def increment_73(self):
++    self.count_73 += 1
+
+-def increment_74(self):
+-    with self.lock:
+-        self.count_74 += 1
++def increment_74(self):
++    self.count_74 += 1
+
+-def increment_75(self):
+-    with self.lock:
+-        self.count_75 += 1
++def increment_75(self):
++    self.count_75 += 1
+
+-def increment_76(self):
+-    with self.lock:
+-        self.count_76 += 1
++def increment_76(self):
++    self.count_76 += 1
+
+-def increment_77(self):
+-    with self.lock:
+-        self.count_77 += 1
++def increment_77(self):
++    self.count_77 += 1
+
+-def increment_78(self):
+-    with self.lock:
+-        self.count_78 += 1
++def increment_78(self):
++    self.count_78 += 1
+
+-def increment_79(self):
+-    with self.lock:
+-        self.count_79 += 1
++def increment_79(self):
++    self.count_79 += 1
+
+-def increment_80(self):
+-    with self.lock:
+-        self.count_80 += 1
++def increment_80(self):
++    self.count_80 += 1
+
+-def increment_81(self):
+-    with self.lock:
+-        self.count_81 += 1
++def increment_81(self):
++    self.count_81 += 1
+
+-def increment_82(self):
+-    with self.lock:
+-        self.count_82 += 1
++def increment_82(self):
++    self.count_82 += 1
+
+-def increment_83(self):
+-    with self.lock:
+-        self.count_83 += 1
++def increment_83(self):
++    self.count_83 += 1
+
+-def increment_84(self):
+-    with self.lock:
+-        self.count_84 += 1
++def increment_84(self):
++    self.count_84 += 1
+
+-def increment_85(self):
+-    with self.lock:
+-        self.count_85 += 1
++def increment_85(self):
++    self.count_85 += 1
+
+-def increment_86(self):
+-    with self.lock:
+-        self.count_86 += 1
++def increment_86(self):
++    self.count_86 += 1
+
+-def increment_87(self):
+-    with self.lock:
+-        self.count_87 += 1
++def increment_87(self):
++    self.count_87 += 1
+
+-def increment_88(self):
+-    with self.lock:
+-        self.count_88 += 1
++def increment_88(self):
++    self.count_88 += 1
+
+-def increment_89(self):
+-    with self.lock:
+-        self.count_89 += 1
++def increment_89(self):
++    self.count_89 += 1
+
+-def increment_90(self):
+-    with self.lock:
+-        self.count_90 += 1
++def increment_90(self):
++    self.count_90 += 1
+
+-def increment_91(self):
+-    with self.lock:
+-        self.count_91 += 1
++def increment_91(self):
++    self.count_91 += 1
+
+-def increment_92(self):
+-    with self.lock:
+-        self.count_92 += 1
++def increment_92(self):
++    self.count_92 += 1
+
+-def increment_93(self):
+-    with self.lock:
+-        self.count_93 += 1
++def increment_93(self):
++    self.count_93 += 1
+
+-def increment_94(self):
+-    with self.lock:
+-        self.count_94 += 1
++def increment_94(self):
++    self.count_94 += 1
+
+-def increment_95(self):
+-    with self.lock:
+-        self.count_95 += 1
++def increment_95(self):
++    self.count_95 += 1
+
+-def increment_96(self):
+-    with self.lock:
+-        self.count_96 += 1
++def increment_96(self):
++    self.count_96 += 1
+
+-def increment_97(self):
+-    with self.lock:
+-        self.count_97 += 1
++def increment_97(self):
++    self.count_97 += 1
+
+-def increment_98(self):
+-    with self.lock:
+-        self.count_98 += 1
++def increment_98(self):
++    self.count_98 += 1
+
+-def increment_99(self):
+-    with self.lock:
+-        self.count_99 += 1
++def increment_99(self):
++    self.count_99 += 1
+
+-def increment_100(self):
+-    with self.lock:
+-        self.count_100 += 1
++def increment_100(self):
++    self.count_100 += 1
+
+-def increment_101(self):
+-    with self.lock:
+-        self.count_101 += 1
++def increment_101(self):
++    self.count_101 += 1
+
+-def increment_102(self):
+-    with self.lock:
+-        self.count_102 += 1
++def increment_102(self):
++    self.count_102 += 1
+
+-def increment_103(self):
+-    with self.lock:
+-        self.count_103 += 1
++def increment_103(self):
++    self.count_103 += 1
+
+-def increment_104(self):
+-    with self.lock:
+-        self.count_104 += 1
++def increment_104(self):
++    self.count_104 += 1
+
+-def increment_105(self):
+-    with self.lock:
+-        self.count_105 += 1
++def increment_105(self):
++    self.count_105 += 1
+
+-def increment_106(self):
+-    with self.lock:
+-        self.count_106 += 1
++def increment_106(self):
++    self.count_106 += 1
+

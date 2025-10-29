@@ -1,0 +1,786 @@
+ERROR: Sensitive data stored without encryption
+SEVERITY: Critical
+EXPECTED ISSUES: Data breach exposure, compliance violations
+
+diff --git a/models.py b/models.py
+index 3456789..mnopqrs 100644
+--- a/models.py
++++ b/models.py
+@@ -1,333 +1,333 @@
+-def save_user_1(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_1(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_2(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_2(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_3(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_3(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_4(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_4(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_5(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_5(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_6(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_6(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_7(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_7(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_8(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_8(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_9(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_9(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_10(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_10(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_11(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_11(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_12(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_12(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_13(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_13(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_14(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_14(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_15(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_15(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_16(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_16(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_17(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_17(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_18(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_18(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_19(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_19(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_20(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_20(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_21(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_21(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_22(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_22(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_23(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_23(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_24(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_24(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_25(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_25(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_26(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_26(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_27(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_27(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_28(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_28(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_29(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_29(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_30(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_30(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_31(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_31(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_32(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_32(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_33(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_33(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_34(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_34(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_35(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_35(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_36(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_36(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_37(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_37(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_38(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_38(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_39(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_39(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_40(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_40(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_41(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_41(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_42(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_42(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_43(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_43(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_44(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_44(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_45(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_45(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_46(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_46(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_47(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_47(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_48(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_48(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_49(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_49(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_50(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_50(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_51(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_51(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_52(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_52(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_53(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_53(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_54(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_54(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_55(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_55(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_56(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_56(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_57(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_57(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_58(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_58(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_59(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_59(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_60(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_60(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_61(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_61(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_62(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_62(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_63(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_63(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_64(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_64(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_65(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_65(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_66(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_66(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_67(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_67(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_68(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_68(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_69(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_69(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_70(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_70(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_71(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_71(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_72(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_72(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_73(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_73(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_74(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_74(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_75(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_75(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_76(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_76(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_77(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_77(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_78(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_78(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_79(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_79(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_80(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_80(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_81(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_81(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_82(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_82(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_83(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_83(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_84(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_84(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_85(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_85(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_86(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_86(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_87(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_87(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_88(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_88(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_89(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_89(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_90(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_90(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_91(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_91(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_92(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_92(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_93(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_93(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_94(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_94(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_95(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_95(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_96(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_96(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_97(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_97(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_98(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_98(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_99(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_99(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_100(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_100(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_101(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_101(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_102(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_102(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_103(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_103(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_104(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_104(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_105(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_105(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_106(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_106(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_107(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_107(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_108(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_108(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_109(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_109(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_110(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_110(ssn, card):
++    db.save(ssn, card)
+
+-def save_user_111(ssn, card):
+-    encrypted_ssn = encrypt(ssn)
+-    encrypted_card = encrypt(card)
+-    db.save(encrypted_ssn, encrypted_card)
++def save_user_111(ssn, card):
++    db.save(ssn, card)
+

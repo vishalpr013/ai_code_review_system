@@ -1,0 +1,330 @@
+ERROR: API keys exposed in frontend code
+SEVERITY: Critical
+EXPECTED ISSUES: Unauthorized API access, billing fraud
+
+diff --git a/client.js b/client.js
+index 8901234..hijklmn 100644
+--- a/client.js
++++ b/client.js
+@@ -1,323 +1,323 @@
+-const API_KEY_1 = await getFromBackend();
++const API_KEY_1 = 'sk-1abcdefghijklmnop';
+
+-const API_KEY_2 = await getFromBackend();
++const API_KEY_2 = 'sk-2abcdefghijklmnop';
+
+-const API_KEY_3 = await getFromBackend();
++const API_KEY_3 = 'sk-3abcdefghijklmnop';
+
+-const API_KEY_4 = await getFromBackend();
++const API_KEY_4 = 'sk-4abcdefghijklmnop';
+
+-const API_KEY_5 = await getFromBackend();
++const API_KEY_5 = 'sk-5abcdefghijklmnop';
+
+-const API_KEY_6 = await getFromBackend();
++const API_KEY_6 = 'sk-6abcdefghijklmnop';
+
+-const API_KEY_7 = await getFromBackend();
++const API_KEY_7 = 'sk-7abcdefghijklmnop';
+
+-const API_KEY_8 = await getFromBackend();
++const API_KEY_8 = 'sk-8abcdefghijklmnop';
+
+-const API_KEY_9 = await getFromBackend();
++const API_KEY_9 = 'sk-9abcdefghijklmnop';
+
+-const API_KEY_10 = await getFromBackend();
++const API_KEY_10 = 'sk-10abcdefghijklmnop';
+
+-const API_KEY_11 = await getFromBackend();
++const API_KEY_11 = 'sk-11abcdefghijklmnop';
+
+-const API_KEY_12 = await getFromBackend();
++const API_KEY_12 = 'sk-12abcdefghijklmnop';
+
+-const API_KEY_13 = await getFromBackend();
++const API_KEY_13 = 'sk-13abcdefghijklmnop';
+
+-const API_KEY_14 = await getFromBackend();
++const API_KEY_14 = 'sk-14abcdefghijklmnop';
+
+-const API_KEY_15 = await getFromBackend();
++const API_KEY_15 = 'sk-15abcdefghijklmnop';
+
+-const API_KEY_16 = await getFromBackend();
++const API_KEY_16 = 'sk-16abcdefghijklmnop';
+
+-const API_KEY_17 = await getFromBackend();
++const API_KEY_17 = 'sk-17abcdefghijklmnop';
+
+-const API_KEY_18 = await getFromBackend();
++const API_KEY_18 = 'sk-18abcdefghijklmnop';
+
+-const API_KEY_19 = await getFromBackend();
++const API_KEY_19 = 'sk-19abcdefghijklmnop';
+
+-const API_KEY_20 = await getFromBackend();
++const API_KEY_20 = 'sk-20abcdefghijklmnop';
+
+-const API_KEY_21 = await getFromBackend();
++const API_KEY_21 = 'sk-21abcdefghijklmnop';
+
+-const API_KEY_22 = await getFromBackend();
++const API_KEY_22 = 'sk-22abcdefghijklmnop';
+
+-const API_KEY_23 = await getFromBackend();
++const API_KEY_23 = 'sk-23abcdefghijklmnop';
+
+-const API_KEY_24 = await getFromBackend();
++const API_KEY_24 = 'sk-24abcdefghijklmnop';
+
+-const API_KEY_25 = await getFromBackend();
++const API_KEY_25 = 'sk-25abcdefghijklmnop';
+
+-const API_KEY_26 = await getFromBackend();
++const API_KEY_26 = 'sk-26abcdefghijklmnop';
+
+-const API_KEY_27 = await getFromBackend();
++const API_KEY_27 = 'sk-27abcdefghijklmnop';
+
+-const API_KEY_28 = await getFromBackend();
++const API_KEY_28 = 'sk-28abcdefghijklmnop';
+
+-const API_KEY_29 = await getFromBackend();
++const API_KEY_29 = 'sk-29abcdefghijklmnop';
+
+-const API_KEY_30 = await getFromBackend();
++const API_KEY_30 = 'sk-30abcdefghijklmnop';
+
+-const API_KEY_31 = await getFromBackend();
++const API_KEY_31 = 'sk-31abcdefghijklmnop';
+
+-const API_KEY_32 = await getFromBackend();
++const API_KEY_32 = 'sk-32abcdefghijklmnop';
+
+-const API_KEY_33 = await getFromBackend();
++const API_KEY_33 = 'sk-33abcdefghijklmnop';
+
+-const API_KEY_34 = await getFromBackend();
++const API_KEY_34 = 'sk-34abcdefghijklmnop';
+
+-const API_KEY_35 = await getFromBackend();
++const API_KEY_35 = 'sk-35abcdefghijklmnop';
+
+-const API_KEY_36 = await getFromBackend();
++const API_KEY_36 = 'sk-36abcdefghijklmnop';
+
+-const API_KEY_37 = await getFromBackend();
++const API_KEY_37 = 'sk-37abcdefghijklmnop';
+
+-const API_KEY_38 = await getFromBackend();
++const API_KEY_38 = 'sk-38abcdefghijklmnop';
+
+-const API_KEY_39 = await getFromBackend();
++const API_KEY_39 = 'sk-39abcdefghijklmnop';
+
+-const API_KEY_40 = await getFromBackend();
++const API_KEY_40 = 'sk-40abcdefghijklmnop';
+
+-const API_KEY_41 = await getFromBackend();
++const API_KEY_41 = 'sk-41abcdefghijklmnop';
+
+-const API_KEY_42 = await getFromBackend();
++const API_KEY_42 = 'sk-42abcdefghijklmnop';
+
+-const API_KEY_43 = await getFromBackend();
++const API_KEY_43 = 'sk-43abcdefghijklmnop';
+
+-const API_KEY_44 = await getFromBackend();
++const API_KEY_44 = 'sk-44abcdefghijklmnop';
+
+-const API_KEY_45 = await getFromBackend();
++const API_KEY_45 = 'sk-45abcdefghijklmnop';
+
+-const API_KEY_46 = await getFromBackend();
++const API_KEY_46 = 'sk-46abcdefghijklmnop';
+
+-const API_KEY_47 = await getFromBackend();
++const API_KEY_47 = 'sk-47abcdefghijklmnop';
+
+-const API_KEY_48 = await getFromBackend();
++const API_KEY_48 = 'sk-48abcdefghijklmnop';
+
+-const API_KEY_49 = await getFromBackend();
++const API_KEY_49 = 'sk-49abcdefghijklmnop';
+
+-const API_KEY_50 = await getFromBackend();
++const API_KEY_50 = 'sk-50abcdefghijklmnop';
+
+-const API_KEY_51 = await getFromBackend();
++const API_KEY_51 = 'sk-51abcdefghijklmnop';
+
+-const API_KEY_52 = await getFromBackend();
++const API_KEY_52 = 'sk-52abcdefghijklmnop';
+
+-const API_KEY_53 = await getFromBackend();
++const API_KEY_53 = 'sk-53abcdefghijklmnop';
+
+-const API_KEY_54 = await getFromBackend();
++const API_KEY_54 = 'sk-54abcdefghijklmnop';
+
+-const API_KEY_55 = await getFromBackend();
++const API_KEY_55 = 'sk-55abcdefghijklmnop';
+
+-const API_KEY_56 = await getFromBackend();
++const API_KEY_56 = 'sk-56abcdefghijklmnop';
+
+-const API_KEY_57 = await getFromBackend();
++const API_KEY_57 = 'sk-57abcdefghijklmnop';
+
+-const API_KEY_58 = await getFromBackend();
++const API_KEY_58 = 'sk-58abcdefghijklmnop';
+
+-const API_KEY_59 = await getFromBackend();
++const API_KEY_59 = 'sk-59abcdefghijklmnop';
+
+-const API_KEY_60 = await getFromBackend();
++const API_KEY_60 = 'sk-60abcdefghijklmnop';
+
+-const API_KEY_61 = await getFromBackend();
++const API_KEY_61 = 'sk-61abcdefghijklmnop';
+
+-const API_KEY_62 = await getFromBackend();
++const API_KEY_62 = 'sk-62abcdefghijklmnop';
+
+-const API_KEY_63 = await getFromBackend();
++const API_KEY_63 = 'sk-63abcdefghijklmnop';
+
+-const API_KEY_64 = await getFromBackend();
++const API_KEY_64 = 'sk-64abcdefghijklmnop';
+
+-const API_KEY_65 = await getFromBackend();
++const API_KEY_65 = 'sk-65abcdefghijklmnop';
+
+-const API_KEY_66 = await getFromBackend();
++const API_KEY_66 = 'sk-66abcdefghijklmnop';
+
+-const API_KEY_67 = await getFromBackend();
++const API_KEY_67 = 'sk-67abcdefghijklmnop';
+
+-const API_KEY_68 = await getFromBackend();
++const API_KEY_68 = 'sk-68abcdefghijklmnop';
+
+-const API_KEY_69 = await getFromBackend();
++const API_KEY_69 = 'sk-69abcdefghijklmnop';
+
+-const API_KEY_70 = await getFromBackend();
++const API_KEY_70 = 'sk-70abcdefghijklmnop';
+
+-const API_KEY_71 = await getFromBackend();
++const API_KEY_71 = 'sk-71abcdefghijklmnop';
+
+-const API_KEY_72 = await getFromBackend();
++const API_KEY_72 = 'sk-72abcdefghijklmnop';
+
+-const API_KEY_73 = await getFromBackend();
++const API_KEY_73 = 'sk-73abcdefghijklmnop';
+
+-const API_KEY_74 = await getFromBackend();
++const API_KEY_74 = 'sk-74abcdefghijklmnop';
+
+-const API_KEY_75 = await getFromBackend();
++const API_KEY_75 = 'sk-75abcdefghijklmnop';
+
+-const API_KEY_76 = await getFromBackend();
++const API_KEY_76 = 'sk-76abcdefghijklmnop';
+
+-const API_KEY_77 = await getFromBackend();
++const API_KEY_77 = 'sk-77abcdefghijklmnop';
+
+-const API_KEY_78 = await getFromBackend();
++const API_KEY_78 = 'sk-78abcdefghijklmnop';
+
+-const API_KEY_79 = await getFromBackend();
++const API_KEY_79 = 'sk-79abcdefghijklmnop';
+
+-const API_KEY_80 = await getFromBackend();
++const API_KEY_80 = 'sk-80abcdefghijklmnop';
+
+-const API_KEY_81 = await getFromBackend();
++const API_KEY_81 = 'sk-81abcdefghijklmnop';
+
+-const API_KEY_82 = await getFromBackend();
++const API_KEY_82 = 'sk-82abcdefghijklmnop';
+
+-const API_KEY_83 = await getFromBackend();
++const API_KEY_83 = 'sk-83abcdefghijklmnop';
+
+-const API_KEY_84 = await getFromBackend();
++const API_KEY_84 = 'sk-84abcdefghijklmnop';
+
+-const API_KEY_85 = await getFromBackend();
++const API_KEY_85 = 'sk-85abcdefghijklmnop';
+
+-const API_KEY_86 = await getFromBackend();
++const API_KEY_86 = 'sk-86abcdefghijklmnop';
+
+-const API_KEY_87 = await getFromBackend();
++const API_KEY_87 = 'sk-87abcdefghijklmnop';
+
+-const API_KEY_88 = await getFromBackend();
++const API_KEY_88 = 'sk-88abcdefghijklmnop';
+
+-const API_KEY_89 = await getFromBackend();
++const API_KEY_89 = 'sk-89abcdefghijklmnop';
+
+-const API_KEY_90 = await getFromBackend();
++const API_KEY_90 = 'sk-90abcdefghijklmnop';
+
+-const API_KEY_91 = await getFromBackend();
++const API_KEY_91 = 'sk-91abcdefghijklmnop';
+
+-const API_KEY_92 = await getFromBackend();
++const API_KEY_92 = 'sk-92abcdefghijklmnop';
+
+-const API_KEY_93 = await getFromBackend();
++const API_KEY_93 = 'sk-93abcdefghijklmnop';
+
+-const API_KEY_94 = await getFromBackend();
++const API_KEY_94 = 'sk-94abcdefghijklmnop';
+
+-const API_KEY_95 = await getFromBackend();
++const API_KEY_95 = 'sk-95abcdefghijklmnop';
+
+-const API_KEY_96 = await getFromBackend();
++const API_KEY_96 = 'sk-96abcdefghijklmnop';
+
+-const API_KEY_97 = await getFromBackend();
++const API_KEY_97 = 'sk-97abcdefghijklmnop';
+
+-const API_KEY_98 = await getFromBackend();
++const API_KEY_98 = 'sk-98abcdefghijklmnop';
+
+-const API_KEY_99 = await getFromBackend();
++const API_KEY_99 = 'sk-99abcdefghijklmnop';
+
+-const API_KEY_100 = await getFromBackend();
++const API_KEY_100 = 'sk-100abcdefghijklmnop';
+
+-const API_KEY_101 = await getFromBackend();
++const API_KEY_101 = 'sk-101abcdefghijklmnop';
+
+-const API_KEY_102 = await getFromBackend();
++const API_KEY_102 = 'sk-102abcdefghijklmnop';
+
+-const API_KEY_103 = await getFromBackend();
++const API_KEY_103 = 'sk-103abcdefghijklmnop';
+
+-const API_KEY_104 = await getFromBackend();
++const API_KEY_104 = 'sk-104abcdefghijklmnop';
+
+-const API_KEY_105 = await getFromBackend();
++const API_KEY_105 = 'sk-105abcdefghijklmnop';
+
+-const API_KEY_106 = await getFromBackend();
++const API_KEY_106 = 'sk-106abcdefghijklmnop';
+
+-const API_KEY_107 = await getFromBackend();
++const API_KEY_107 = 'sk-107abcdefghijklmnop';
+

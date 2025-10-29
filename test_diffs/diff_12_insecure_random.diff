@@ -1,0 +1,534 @@
+ERROR: Insecure random number generation for tokens
+SEVERITY: Critical
+EXPECTED ISSUES: Predictable tokens, security bypass
+
+diff --git a/auth.py b/auth.py
+index 2345678..lmnopqr 100644
+--- a/auth.py
++++ b/auth.py
+@@ -1,315 +1,315 @@
+-def generate_token_1():
+-    return secrets.token_hex(32)
++def generate_token_1():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_2():
+-    return secrets.token_hex(32)
++def generate_token_2():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_3():
+-    return secrets.token_hex(32)
++def generate_token_3():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_4():
+-    return secrets.token_hex(32)
++def generate_token_4():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_5():
+-    return secrets.token_hex(32)
++def generate_token_5():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_6():
+-    return secrets.token_hex(32)
++def generate_token_6():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_7():
+-    return secrets.token_hex(32)
++def generate_token_7():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_8():
+-    return secrets.token_hex(32)
++def generate_token_8():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_9():
+-    return secrets.token_hex(32)
++def generate_token_9():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_10():
+-    return secrets.token_hex(32)
++def generate_token_10():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_11():
+-    return secrets.token_hex(32)
++def generate_token_11():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_12():
+-    return secrets.token_hex(32)
++def generate_token_12():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_13():
+-    return secrets.token_hex(32)
++def generate_token_13():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_14():
+-    return secrets.token_hex(32)
++def generate_token_14():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_15():
+-    return secrets.token_hex(32)
++def generate_token_15():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_16():
+-    return secrets.token_hex(32)
++def generate_token_16():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_17():
+-    return secrets.token_hex(32)
++def generate_token_17():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_18():
+-    return secrets.token_hex(32)
++def generate_token_18():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_19():
+-    return secrets.token_hex(32)
++def generate_token_19():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_20():
+-    return secrets.token_hex(32)
++def generate_token_20():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_21():
+-    return secrets.token_hex(32)
++def generate_token_21():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_22():
+-    return secrets.token_hex(32)
++def generate_token_22():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_23():
+-    return secrets.token_hex(32)
++def generate_token_23():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_24():
+-    return secrets.token_hex(32)
++def generate_token_24():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_25():
+-    return secrets.token_hex(32)
++def generate_token_25():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_26():
+-    return secrets.token_hex(32)
++def generate_token_26():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_27():
+-    return secrets.token_hex(32)
++def generate_token_27():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_28():
+-    return secrets.token_hex(32)
++def generate_token_28():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_29():
+-    return secrets.token_hex(32)
++def generate_token_29():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_30():
+-    return secrets.token_hex(32)
++def generate_token_30():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_31():
+-    return secrets.token_hex(32)
++def generate_token_31():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_32():
+-    return secrets.token_hex(32)
++def generate_token_32():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_33():
+-    return secrets.token_hex(32)
++def generate_token_33():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_34():
+-    return secrets.token_hex(32)
++def generate_token_34():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_35():
+-    return secrets.token_hex(32)
++def generate_token_35():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_36():
+-    return secrets.token_hex(32)
++def generate_token_36():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_37():
+-    return secrets.token_hex(32)
++def generate_token_37():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_38():
+-    return secrets.token_hex(32)
++def generate_token_38():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_39():
+-    return secrets.token_hex(32)
++def generate_token_39():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_40():
+-    return secrets.token_hex(32)
++def generate_token_40():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_41():
+-    return secrets.token_hex(32)
++def generate_token_41():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_42():
+-    return secrets.token_hex(32)
++def generate_token_42():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_43():
+-    return secrets.token_hex(32)
++def generate_token_43():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_44():
+-    return secrets.token_hex(32)
++def generate_token_44():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_45():
+-    return secrets.token_hex(32)
++def generate_token_45():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_46():
+-    return secrets.token_hex(32)
++def generate_token_46():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_47():
+-    return secrets.token_hex(32)
++def generate_token_47():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_48():
+-    return secrets.token_hex(32)
++def generate_token_48():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_49():
+-    return secrets.token_hex(32)
++def generate_token_49():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_50():
+-    return secrets.token_hex(32)
++def generate_token_50():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_51():
+-    return secrets.token_hex(32)
++def generate_token_51():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_52():
+-    return secrets.token_hex(32)
++def generate_token_52():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_53():
+-    return secrets.token_hex(32)
++def generate_token_53():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_54():
+-    return secrets.token_hex(32)
++def generate_token_54():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_55():
+-    return secrets.token_hex(32)
++def generate_token_55():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_56():
+-    return secrets.token_hex(32)
++def generate_token_56():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_57():
+-    return secrets.token_hex(32)
++def generate_token_57():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_58():
+-    return secrets.token_hex(32)
++def generate_token_58():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_59():
+-    return secrets.token_hex(32)
++def generate_token_59():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_60():
+-    return secrets.token_hex(32)
++def generate_token_60():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_61():
+-    return secrets.token_hex(32)
++def generate_token_61():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_62():
+-    return secrets.token_hex(32)
++def generate_token_62():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_63():
+-    return secrets.token_hex(32)
++def generate_token_63():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_64():
+-    return secrets.token_hex(32)
++def generate_token_64():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_65():
+-    return secrets.token_hex(32)
++def generate_token_65():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_66():
+-    return secrets.token_hex(32)
++def generate_token_66():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_67():
+-    return secrets.token_hex(32)
++def generate_token_67():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_68():
+-    return secrets.token_hex(32)
++def generate_token_68():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_69():
+-    return secrets.token_hex(32)
++def generate_token_69():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_70():
+-    return secrets.token_hex(32)
++def generate_token_70():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_71():
+-    return secrets.token_hex(32)
++def generate_token_71():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_72():
+-    return secrets.token_hex(32)
++def generate_token_72():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_73():
+-    return secrets.token_hex(32)
++def generate_token_73():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_74():
+-    return secrets.token_hex(32)
++def generate_token_74():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_75():
+-    return secrets.token_hex(32)
++def generate_token_75():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_76():
+-    return secrets.token_hex(32)
++def generate_token_76():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_77():
+-    return secrets.token_hex(32)
++def generate_token_77():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_78():
+-    return secrets.token_hex(32)
++def generate_token_78():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_79():
+-    return secrets.token_hex(32)
++def generate_token_79():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_80():
+-    return secrets.token_hex(32)
++def generate_token_80():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_81():
+-    return secrets.token_hex(32)
++def generate_token_81():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_82():
+-    return secrets.token_hex(32)
++def generate_token_82():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_83():
+-    return secrets.token_hex(32)
++def generate_token_83():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_84():
+-    return secrets.token_hex(32)
++def generate_token_84():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_85():
+-    return secrets.token_hex(32)
++def generate_token_85():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_86():
+-    return secrets.token_hex(32)
++def generate_token_86():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_87():
+-    return secrets.token_hex(32)
++def generate_token_87():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_88():
+-    return secrets.token_hex(32)
++def generate_token_88():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_89():
+-    return secrets.token_hex(32)
++def generate_token_89():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_90():
+-    return secrets.token_hex(32)
++def generate_token_90():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_91():
+-    return secrets.token_hex(32)
++def generate_token_91():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_92():
+-    return secrets.token_hex(32)
++def generate_token_92():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_93():
+-    return secrets.token_hex(32)
++def generate_token_93():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_94():
+-    return secrets.token_hex(32)
++def generate_token_94():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_95():
+-    return secrets.token_hex(32)
++def generate_token_95():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_96():
+-    return secrets.token_hex(32)
++def generate_token_96():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_97():
+-    return secrets.token_hex(32)
++def generate_token_97():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_98():
+-    return secrets.token_hex(32)
++def generate_token_98():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_99():
+-    return secrets.token_hex(32)
++def generate_token_99():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_100():
+-    return secrets.token_hex(32)
++def generate_token_100():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_101():
+-    return secrets.token_hex(32)
++def generate_token_101():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_102():
+-    return secrets.token_hex(32)
++def generate_token_102():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_103():
+-    return secrets.token_hex(32)
++def generate_token_103():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_104():
+-    return secrets.token_hex(32)
++def generate_token_104():
++    return str(random.randint(100000, 999999))
+
+-def generate_token_105():
+-    return secrets.token_hex(32)
++def generate_token_105():
++    return str(random.randint(100000, 999999))
+

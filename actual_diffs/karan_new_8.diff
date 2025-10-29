@@ -1,0 +1,912 @@
+From a1c03146d9462fdfe65f05657afe55f6f56c1b0b Mon Sep 17 00:00:00 2001
+From: Karan <karan.v@york.ie>
+Date: Wed, 15 Oct 2025 16:53:57 +0530
+Subject: [PATCH] YH-702 : As Employee able to apply Leave and WFH for same day and also as Approver able to approve both
+
+Change-Id: I6d757f89217f7c3b67aac7d5e464e4fbe8d47e1e
+---
+
+diff --git a/src/Pages/Leave/Actions/LeaveAction.js b/src/Pages/Leave/Actions/LeaveAction.js
+index a0a9b14..cc5598d 100644
+--- a/src/Pages/Leave/Actions/LeaveAction.js
++++ b/src/Pages/Leave/Actions/LeaveAction.js
+@@ -17,7 +17,7 @@
+   LeaveByEmployeeCustom,
+   listLeavesCustom,
+ } from "graphql/customQueries";
+-import { listWorkFromHomeRequests } from "graphql/queries";
++import { listWorkFromHomeRequests, getWFHByEmployee } from "graphql/queries";
+ 
+ export const createLeaveCustomAction = async (inputData) => {
+   return ExecuteMutation("createLeaveCustom", inputData);
+@@ -124,3 +124,17 @@
+     throw error;
+   }
+ };
++
++//function to fetch WFH data for calendar
++export const getAllWFHForEmployee = async (employeeId, filter = {}) => {
++  try {
++    const result = await ExecuteQueryCustomV2(getWFHByEmployee, {
++      employeeId,
++      filter,
++    });
++    return result || [];
++  } catch (error) {
++    console.error("Error fetching WFH data:", error);
++    throw error;
++  }
++};
+diff --git a/src/Pages/Leave/Leave.js b/src/Pages/Leave/Leave.js
+index 79b27d0..f2dcb8a 100644
+--- a/src/Pages/Leave/Leave.js
++++ b/src/Pages/Leave/Leave.js
+@@ -18,6 +18,7 @@
+   listLeavesByEmployeeID,
+   listOwnLeaveRequests,
+   listAllLeaves,
++  getAllWFHForEmployee,
+ } from "./Actions/LeaveAction";
+ import { EmployeeLeaveRequestDashBoard } from "./V2/EmployeeLeaveRequestDashboard";
+ import AddUpdateLeaveRequest from "./V2/AddUpdateLeaveRequest";
+@@ -34,6 +35,23 @@
+ import { permissionFlags } from "store/slices/loginSlice";
+ 
+ dayjs.extend(customParseFormat);
++
++// Utility function to check if two date ranges overlap
++const hasDateRangeOverlap = (
++  range1Start,
++  range1End,
++  range2Start,
++  range2End
++) => {
++  const start1 = moment(range1Start).startOf("day");
++  const end1 = moment(range1End).endOf("day");
++  const start2 = moment(range2Start).startOf("day");
++  const end2 = moment(range2End).endOf("day");
++
++  // Ranges overlap if: start1 <= end2 AND end1 >= start2
++  return start1.isSameOrBefore(end2) && end1.isSameOrAfter(start2);
++};
++
+ export default function Leave({ ...props }) {
+   const currentEmployee = useSelector(getEmployeeDetails);
+   const isSelfProfile = props.isSelfProfile ?? true;
+@@ -41,6 +59,7 @@
+   const [leaveRequests, setLeaveRequests] = useState([]);
+   const [festivalLeave, setFestivalLeave] = useState([]);
+   const [leaves, setLeaves] = useState([]);
++  const [wfh, setWfh] = useState([]);
+   const [allLeaves, setAllLeaves] = useState([]);
+   const [leaveRequestLoader, setLeaveRequestLoader] = useState(false);
+   const [leaveLoader, setLeaveLoader] = useState(false);
+@@ -67,6 +86,7 @@
+     fetchAllLeavesForCalendar();
+     fetchEmployeeLeaveCount();
+     fetchFestivalLeaves();
++    fetchAllWFH();
+ 
+     if (hasOwnSquad) {
+       //check for sl reportees
+@@ -154,6 +174,32 @@
+     // console.log(currentEmployeeData)
+   };
+ 
++  const fetchAllWFH = async () => {
++    setLeaveLoader(true);
++    // Fetch all leaves for the current year
++    const currentYear = moment().format("YYYY");
++    const filter = {
++      or: [{ status: { eq: "SUBMITTED" } }, { status: { eq: "APPROVED" } }],
++      startDate: { ge: currentYear },
++      adjustment_type: { eq: "DEBIT" },
++    };
++    const EmployeeWFH = await getAllWFHForEmployee(email, filter);
++
++    const data = EmployeeWFH?.map((item) => {
++      return {
++        ...item,
++        date: [moment(item?.startDate), moment(item?.endDate)],
++      };
++    });
++
++    setWfh(data);
++
++    setLeaveLoader(false);
++
++    // fetch Current Leave Balance Count from employee table
++    // console.log(currentEmployeeData)
++  };
++
+   const fetchAllLeavesForCalendar = async () => {
+     setAllLeavesLoader(true);
+     try {
+@@ -195,6 +241,11 @@
+ 
+   // Add Leave
+   const [isAddLeaveModalOpen, setIsAddLeaveModalOpen] = useState(false);
++  useEffect(() => {
++    if (isAddLeaveModalOpen) {
++      fetchAllWFH();
++    }
++  }, [isAddLeaveModalOpen]);
+ 
+   const createLeaveReqNotification = (toAccount, message) => {
+     let noticeData = {
+@@ -400,10 +451,11 @@
+         <AddUpdateLeaveRequest
+           existingLeaves={leaves}
+           existingLeaveRequests={leaveRequests}
++          existingWFH={wfh}
+           leaveToEdit={leaveToEdit}
+           onCancel={onCancelLeaveAddEdit}
+-          email={email}
+           existingfestivalLeave={festivalLeave}
++          email={email}
+           onSuccess={() => {
+             onCancelLeaveAddEdit();
+             fetchAllLeaveRequests();
+diff --git a/src/Pages/Leave/V2/AddUpdateLeaveRequest.js b/src/Pages/Leave/V2/AddUpdateLeaveRequest.js
+index d769d1c..b7502de 100644
+--- a/src/Pages/Leave/V2/AddUpdateLeaveRequest.js
++++ b/src/Pages/Leave/V2/AddUpdateLeaveRequest.js
+@@ -45,8 +45,8 @@
+     email,
+     reportingToEmail,
+     employeeLeaveCount,
++    existingWFH,
+   } = props;
+-
+   const [form] = Form.useForm();
+   const [isLoading, setisLoading] = useState(false);
+ 
+@@ -302,6 +302,15 @@
+     });
+   };
+ 
++  // Helper function to get WFH for a specific date
++  const getWFHForDate = (date, allWFH) => {
++    return allWFH.filter((wfh) => {
++      const wfhStart = moment(wfh.startDate).startOf("day");
++      const wfhEnd = moment(wfh.endDate).endOf("day");
++      return moment(date).isBetween(wfhStart, wfhEnd, "day", "[]");
++    });
++  };
++
+   function hasFullDayLeave(existingLeavesOnDay) {
+     if (
+       existingLeavesOnDay.some((leave) => leave.leave_length === "FULL_DAY")
+@@ -323,6 +332,26 @@
+     return false;
+   }
+ 
++  // Helper function to check if WFH has full day coverage
++  function hasFullDayWFH(existingWFHOnDay) {
++    if (existingWFHOnDay.some((wfh) => wfh.wfhLength === "FULL_DAY")) {
++      return true;
++    }
++    const map = new Map();
++    for (const wfh of existingWFHOnDay) {
++      const key = `${wfh.startDate}-${wfh.endDate}`;
++      if (!map.has(key)) {
++        map.set(key, new Set());
++      }
++      const halfSet = map.get(key);
++      halfSet.add(wfh.wfhLength);
++      if (halfSet.has("FIRST_HALF") && halfSet.has("SECOND_HALF")) {
++        return true;
++      }
++    }
++    return false;
++  }
++
+   // Helper function to check if a date has a festival leave
+   const hasFestivalLeaveOnDate = (date, festivalLeaves) => {
+     return festivalLeaves.some((festival) =>
+@@ -330,6 +359,69 @@
+     );
+   };
+ 
++  // Helper function to check WFH overlap with leave
++  const checkWFHLeaveConflict = (date, existingWFH, leaveLength) => {
++    const wfhOnDate = getWFHForDate(date, existingWFH);
++    if (wfhOnDate.length === 0) return null;
++
++    const formattedDate = moment(date).format(DateFormat);
++
++    // Check for full day WFH
++    const fullDayWFH = wfhOnDate.find((wfh) => wfh.wfhLength === "FULL_DAY");
++    if (fullDayWFH) {
++      const statusMsg =
++        fullDayWFH.status === "APPROVED"
++          ? "already approved"
++          : "already submitted for approval";
++      return `You have a full day WFH (${statusMsg}) on ${formattedDate}. Cannot apply leave.`;
++    }
++
++    // Check if both halves are taken (equivalent to full day)
++    const hasFirstHalf = wfhOnDate.some(
++      (wfh) => wfh.wfhLength === "FIRST_HALF"
++    );
++    const hasSecondHalf = wfhOnDate.some(
++      (wfh) => wfh.wfhLength === "SECOND_HALF"
++    );
++
++    if (hasFirstHalf && hasSecondHalf) {
++      return `You have both halves of WFH on ${formattedDate} (full day covered). Cannot apply leave.`;
++    }
++
++    // If applying full day leave, check for any half day WFH
++    if (leaveLength === "FULL_DAY") {
++      const halfWFH = wfhOnDate.find(
++        (wfh) =>
++          wfh.wfhLength === "FIRST_HALF" || wfh.wfhLength === "SECOND_HALF"
++      );
++
++      if (halfWFH) {
++        const half = halfWFH.wfhLength === "FIRST_HALF" ? "first" : "second";
++        const statusMsg =
++          halfWFH.status === "APPROVED"
++            ? "already approved"
++            : "already submitted for approval";
++        return `You have a ${half} half WFH (${statusMsg}) on ${formattedDate}. Cannot apply full day leave.`;
++      }
++    } else if (leaveLength === "FIRST_HALF" || leaveLength === "SECOND_HALF") {
++      // Check if same half is taken as WFH
++      const sameHalfWFH = wfhOnDate.find(
++        (wfh) => wfh.wfhLength === leaveLength
++      );
++
++      if (sameHalfWFH) {
++        const half = leaveLength === "FIRST_HALF" ? "first" : "second";
++        const statusMsg =
++          sameHalfWFH.status === "APPROVED"
++            ? "already approved"
++            : "already submitted for approval";
++        return `You have a ${half} half WFH (${statusMsg}) on ${formattedDate}. Cannot apply ${half} half leave.`;
++      }
++    }
++
++    return null;
++  };
++
+   // Helper function to validate leave overlap for a specific date
+   const validateLeaveOverlap = (date, existingLeaves, leaveLength) => {
+     const existingLeavesOnDay = getLeavesForDate(date, existingLeaves);
+@@ -428,6 +520,17 @@
+         );
+       }
+ 
++      // Check for WFH conflict
++      const wfhConflictError = checkWFHLeaveConflict(
++        currentDate,
++        approvedWFH,
++        leaveLength
++      );
++
++      if (wfhConflictError) {
++        return Promise.reject(new Error(wfhConflictError));
++      }
++
+       // Check for leave overlaps
+       const overlapError = validateLeaveOverlap(
+         currentDate,
+@@ -676,7 +779,7 @@
+           </Tag>
+         ) : (
+           Object.keys(employeeLeaveCount)?.map((item) => (
+-            <Tag>
++            <Tag key={item}>
+               {item}: &nbsp;<b>{employeeLeaveCount[item]}</b>
+             </Tag>
+           ))
+@@ -856,8 +959,8 @@
+               <div>
+                 <b>Existing Leaves:</b>
+                 <ul>
+-                  {overviewContent.festivalLeaves.map((fl) => (
+-                    <li key={fl}>
++                  {overviewContent.festivalLeaves?.map((fl) => (
++                    <li key={fl.date}>
+                       Festival Leave ({fl.festivalLeave}) taken on {fl.date}
+                     </li>
+                   ))}
+diff --git a/src/Pages/Leave/WFH/Components/AddUpdateWFHRequest.js b/src/Pages/Leave/WFH/Components/AddUpdateWFHRequest.js
+index d47a1d2..baa6c7c 100644
+--- a/src/Pages/Leave/WFH/Components/AddUpdateWFHRequest.js
++++ b/src/Pages/Leave/WFH/Components/AddUpdateWFHRequest.js
+@@ -23,7 +23,8 @@
+ // Centralized constants
+ const REQUEST_TYPES = {
+   WFH: "WFH",
+-  LEAVE: "LEAVE",
++  APPROVED_LEAVE: "APPROVED_LEAVE", // Approved leaves (from existingLeaves)
++  PENDING_LEAVE: "PENDING_LEAVE", // Pending leave requests (from existingLeaveRequests)
+   FESTIVAL: "FESTIVAL",
+ };
+ const LENGTHS = {
+@@ -33,9 +34,17 @@
+ };
+ 
+ /** Normalizers – convert API responses to a unified structure */
+-const normalizeLeaves = (leaves) =>
++const normalizeApprovedLeaves = (leaves) =>
+   (leaves || []).map((l) => ({
+-    type: REQUEST_TYPES.LEAVE,
++    type: REQUEST_TYPES.APPROVED_LEAVE, // Set type for approved leaves
++    start: moment(l.startDate || l.start_time).startOf("day"),
++    end: moment(l.endDate || l.end_time || l.startDate).endOf("day"),
++    length: l.leave_length,
++  }));
++
++const normalizePendingLeaves = (leaves) =>
++  (leaves || []).map((l) => ({
++    type: REQUEST_TYPES.PENDING_LEAVE, // Set type for pending leave requests
+     start: moment(l.startDate || l.start_time).startOf("day"),
+     end: moment(l.endDate || l.end_time || l.startDate).endOf("day"),
+     length: l.leave_length,
+@@ -57,36 +66,92 @@
+     name: f.name,
+   }));
+ 
++/** Helper to convert internal type constant to a readable string for messages */
++const getEntryTypeName = (type) => {
++  if (type === REQUEST_TYPES.APPROVED_LEAVE) return "approved leave";
++  if (type === REQUEST_TYPES.PENDING_LEAVE) return "pending leave request";
++  if (type === REQUEST_TYPES.WFH) return "WFH";
++  // Fallback for FESTIVAL
++  return type.toLowerCase();
++};
++
+ /** Unified conflict validator */
+ const validateEntryConflict = (date, entries, applyingLength) => {
++  const formattedDate = moment(date).format(DateFormat);
++  const existingEntriesByLength = entries.reduce((acc, e) => {
++    if (!acc[e.length]) acc[e.length] = [];
++    acc[e.length].push(e);
++    return acc;
++  }, {});
++
+   for (const e of entries) {
++    // FESTIVAL CHECK
+     if (e.type === REQUEST_TYPES.FESTIVAL) {
+-      return `Cannot apply WFH on ${moment(date).format(
+-        DateFormat
+-      )} (Festival: ${e.name}).`;
++      return `Cannot apply WFH on ${formattedDate}. It is a festival holiday (${e.name}).`;
+     }
+ 
++    // FULL DAY CONFLICT CHECK (Existing full day blocks all)
+     if (e.length === LENGTHS.FULL_DAY) {
+-      return `Already applied a full day ${e.type} on ${moment(date).format(
+-        DateFormat
+-      )}.`;
+-    }
+-
+-    if (applyingLength === e.length) {
+-      return `Already applied ${e.length.replace("_", " ").toLowerCase()} ${
++      // Use helper for specific message
++      return `A full day ${getEntryTypeName(
+         e.type
+-      } on ${moment(date).format(DateFormat)}.`;
+-    }
+-
+-    if (
+-      applyingLength === LENGTHS.FULL_DAY &&
+-      (e.length === LENGTHS.FIRST_HALF || e.length === LENGTHS.SECOND_HALF)
+-    ) {
+-      return `Half-day ${e.type} exists on ${moment(date).format(
+-        DateFormat
+-      )}. Cannot apply full day WFH.`;
++      )} already exists on ${formattedDate}.`;
+     }
+   }
++
++  // HALF DAY COMBINATION CHECK (If both halves are taken, it acts as full day)
++  const hasFirstHalf = existingEntriesByLength[LENGTHS.FIRST_HALF]?.length > 0;
++  const hasSecondHalf =
++    existingEntriesByLength[LENGTHS.SECOND_HALF]?.length > 0;
++
++  if (hasFirstHalf && hasSecondHalf) {
++    // Determine the type of the conflicting requests for a clearer message
++    const type1 = existingEntriesByLength[LENGTHS.FIRST_HALF][0].type;
++    const type2 = existingEntriesByLength[LENGTHS.SECOND_HALF][0].type;
++
++    const type1Name = getEntryTypeName(type1);
++    const type2Name = getEntryTypeName(type2);
++    const typeMsg =
++      type1Name === type2Name ? type1Name : `${type1Name} / ${type2Name}`;
++
++    return `The full day is already covered by ${typeMsg} requests on ${formattedDate}.`;
++  }
++
++  // Helper for half day names
++  const getHalfName = (length) => length.replace("_", " ").toLowerCase();
++
++  // APPLYING FULL DAY WFH
++  if (applyingLength === LENGTHS.FULL_DAY) {
++    if (hasFirstHalf || hasSecondHalf) {
++      const halfLength = hasFirstHalf
++        ? LENGTHS.FIRST_HALF
++        : LENGTHS.SECOND_HALF;
++      const halfName = getHalfName(halfLength);
++      const type = existingEntriesByLength[halfLength][0].type;
++      const typeName = getEntryTypeName(type);
++
++      // Use specific type name
++      return `A ${typeName} exists for the ${halfName} on ${formattedDate}. Cannot apply full day WFH.`;
++    }
++  }
++
++  // APPLYING HALF DAY WFH
++  else if (
++    applyingLength === LENGTHS.FIRST_HALF ||
++    applyingLength === LENGTHS.SECOND_HALF
++  ) {
++    const isConflict = existingEntriesByLength[applyingLength]?.length > 0;
++
++    if (isConflict) {
++      const halfName = getHalfName(applyingLength);
++      const type = existingEntriesByLength[applyingLength][0].type;
++      const typeName = getEntryTypeName(type);
++
++      // Use specific type name
++      return `A ${typeName} already exists for the ${halfName} on ${formattedDate}.`;
++    }
++  }
++
+   return null;
+ };
+ 
+@@ -113,6 +178,9 @@
+   selectedRequest,
+   updatedWFHRequest,
+   setSelectedRequest,
++  existingLeaves,
++  existingLeaveRequests,
++  existingfestivalLeave,
+ }) {
+   const [form] = Form.useForm();
+   const [loading, setLoading] = useState(false);
+@@ -135,7 +203,7 @@
+     if (!value || value.length !== 2) return Promise.resolve();
+ 
+     const [startDate, endDate] = value.map((d) => moment(d).startOf("day"));
+-    const wfhLength = form.getFieldValue("wfhLength");
++    const wfhLength = form.getFieldValue("wfhLength") || LENGTHS.FULL_DAY; // Default to FULL_DAY if not explicitly set for multiple days
+ 
+     // Build a unique key for current validation request
+     const currentKey = `${startDate.format("YYYY-MM-DD")}_${endDate.format(
+@@ -149,46 +217,29 @@
+     ) {
+       return Promise.resolve();
+     }
+-    const filter = {
+-      and: [
+-        {
+-          start_time: { ge: startDate.startOf("day").unix() },
+-        },
+-        {
+-          end_time: { le: endDate.startOf("day").unix() },
+-        },
+-      ],
+-    };
+ 
+-    const festivalFilter = {
+-      employeeFestivalLeavesId: { eq: employeeDetails?.email },
+-      and: [
+-        {
+-          date: { ge: startDate.format(AWSDateFormat) },
+-        },
+-        {
+-          date: { le: endDate.format(AWSDateFormat) },
+-        },
+-      ],
+-    };
+     try {
+-      const [festivalLeavesRaw, employeeLeaves, leaveRequests, existingWFH] =
+-        await Promise.all([
+-          getFestivalLeaves(festivalFilter),
+-          listLeavesByEmployeeID(employeeDetails?.email, filter),
+-          listOwnLeaveRequests(employeeDetails?.email, filter),
+-          getWFHByEmployeeForWFHDataAction(
+-            employeeDetails?.email,
+-            buildWFHFilter(startDate, endDate, selectedRequest)
+-          ),
+-        ]);
++      // API call to fetch existing WFH requests for conflict check
++      const existingWFH = await getWFHByEmployeeForWFHDataAction(
++        employeeDetails?.email,
++        buildWFHFilter(startDate, endDate, selectedRequest)
++      );
+ 
+       const allEntries = [
+-        ...normalizeLeaves(removeDuplicateObjects(employeeLeaves, "date")),
+-        ...normalizeLeaves(removeDuplicateObjects(leaveRequests, "date")),
+-        ...normalizeWFH(removeDuplicateObjects(existingWFH, "date")),
++        // Use separate normalizers to differentiate approved vs pending leaves
++        ...normalizeApprovedLeaves(
++          removeDuplicateObjects(existingLeaves, "date")
++        ),
++        ...normalizePendingLeaves(
++          removeDuplicateObjects(existingLeaveRequests, "date")
++        ),
++
++        // Filter out the WFH request being edited from its own list
++        ...normalizeWFH(
++          (existingWFH || []).filter((wfh) => wfh.id !== selectedRequest?.id)
++        ),
+         ...normalizeFestivals(
+-          removeDuplicateObjects(festivalLeavesRaw, "date")
++          removeDuplicateObjects(existingfestivalLeave, "date")
+         ),
+       ];
+ 
+@@ -198,6 +249,12 @@
+           current.isBetween(e.start, e.end, "day", "[]")
+         );
+ 
++        // Skip validation for weekends and future holidays that are not festivals
++        if (current.day() === 0 || current.day() === 6) {
++          current.add(1, "day");
++          continue;
++        }
++
+         const error = validateEntryConflict(current, entriesForDay, wfhLength);
+         if (error) {
+           // ❌ Do NOT cache failed validations
+@@ -212,9 +269,12 @@
+       return Promise.resolve();
+     } catch (err) {
+       console.error("WFH validation failed:", err);
+-      return Promise.reject(
+-        err?.message || "Unable to validate WFH request. Please try again."
+-      );
++      // Ensure we reject with the specific string error from validateEntryConflict or a general message
++      const rejectionError =
++        typeof err === "string"
++          ? err
++          : err?.message || "Unable to validate WFH request. Please try again.";
++      return Promise.reject(rejectionError);
+     }
+   };
+ 
+@@ -237,7 +297,9 @@
+   const handleSubmitForm = async (values) => {
+     setLoading(true);
+     try {
++      // Re-validate just before submission to catch any race conditions
+       await validateWFHRequest(null, values.selectedDate);
++
+       const [start, end] = values.selectedDate;
+       const wfhLength = isApplyingSameDate
+         ? values?.wfhLength
+@@ -294,7 +356,11 @@
+             errors: [err],
+           },
+         ]);
++      } else if (err?.errorFields) {
++        // Validation failed, which should be handled by form.validateFields() but catch it here just in case.
++        console.error("Form field validation failed:", err);
+       } else {
++        // Assume this is an API or uncaught error
+         console.error("Submit failed:", err);
+         message.error("Unable to apply WFH at this moment.");
+       }
+@@ -329,7 +395,10 @@
+         <Form.Item
+           name="selectedDate"
+           label="Select Date"
+-          rules={[{ required: true, message: "Please select date" }]}
++          rules={[
++            { required: true, message: "Please select date" },
++            { validator: validateWFHRequest }, // Attach validator here
++          ]}
+         >
+           <RangePicker
+             className="w-full"
+diff --git a/src/Pages/Leave/WFH/WorkFromHome.js b/src/Pages/Leave/WFH/WorkFromHome.js
+index 6b662bf..579f952 100644
+--- a/src/Pages/Leave/WFH/WorkFromHome.js
++++ b/src/Pages/Leave/WFH/WorkFromHome.js
+@@ -1,4 +1,5 @@
+ /* eslint-disable react-hooks/exhaustive-deps */
++import { message } from "antd";
+ import Loader from "Commons/Loader";
+ import {
+   deleteWorkFromHomeRequestForWFHDataAction,
+@@ -13,6 +14,137 @@
+ import { useSelector } from "react-redux";
+ import { getEmployeeDetails, permissionFlags } from "store/slices/loginSlice";
+ import AnalyticsCard from "Pages/Analytics/Components/AnalyticsCard";
++import { removeDuplicateObjects } from "utils/commonMethods";
++import {
++  listOwnLeaveRequests,
++  listLeavesByEmployeeID,
++} from "../Actions/LeaveAction";
++import { getFestivalLeaves } from "utils/Actions";
++import moment from "moment";
++
++// Utility function to check if two date ranges overlap
++const hasDateRangeOverlap = (
++  range1Start,
++  range1End,
++  range2Start,
++  range2End
++) => {
++  const start1 = moment(range1Start).startOf("day");
++  const end1 = moment(range1End).endOf("day");
++  const start2 = moment(range2Start).startOf("day");
++  const end2 = moment(range2End).endOf("day");
++
++  // Ranges overlap if: start1 <= end2 AND end1 >= start2
++  return start1.isSameOrBefore(end2) && end1.isSameOrAfter(start2);
++};
++
++// Utility function to check Leave conflicts with WFH
++const checkLeaveConflictForWFH = (
++  wfhStartDate,
++  wfhEndDate,
++  existingLeaves,
++  existingLeaveRequests,
++  existingFestivalLeaves,
++  currentWFHId = null
++) => {
++  if (!wfhStartDate || !wfhEndDate) {
++    return { hasConflict: false, conflictingItems: [] };
++  }
++
++  const conflictingItems = [];
++
++  // Check approved/submitted leaves
++  if (existingLeaves && existingLeaves.length > 0) {
++    const conflictingLeaves = existingLeaves.filter((leave) => {
++      if (currentWFHId && leave.id === currentWFHId) {
++        return false;
++      }
++
++      // Only check approved leaves
++      if (leave.status === "APPROVED") {
++        return hasDateRangeOverlap(
++          wfhStartDate,
++          wfhEndDate,
++          leave.start_time,
++          leave.end_time
++        );
++      }
++      return false;
++    });
++
++    conflictingLeaves.forEach((leave) => {
++      conflictingItems.push({
++        type: "Leave",
++        startDate: leave.start_time,
++        endDate: leave.end_time,
++        leaveType: leave.leave_type,
++        status: leave.status,
++      });
++    });
++  }
++
++  // Check pending leave requests
++  if (existingLeaveRequests && existingLeaveRequests.length > 0) {
++    const conflictingRequests = existingLeaveRequests.filter((request) => {
++      if (currentWFHId && request.id === currentWFHId) {
++        return false;
++      }
++
++      // Check submitted/approved leave requests
++      if (request.status === "SUBMITTED" || request.status === "APPROVED") {
++        return hasDateRangeOverlap(
++          wfhStartDate,
++          wfhEndDate,
++          request.start_time,
++          request.end_time
++        );
++      }
++      return false;
++    });
++
++    conflictingRequests.forEach((request) => {
++      conflictingItems.push({
++        type: "Leave Request",
++        startDate: request.start_time,
++        endDate: request.end_time,
++        leaveType: request.leave_type,
++        status: request.status,
++      });
++    });
++  }
++
++  // Check festival leaves
++  if (existingFestivalLeaves && existingFestivalLeaves.length > 0) {
++    const conflictingFestivalLeaves = existingFestivalLeaves.filter(
++      (festivalLeave) => {
++        const festivalDate = moment(festivalLeave.date);
++        const wfhStart = moment(wfhStartDate).startOf("day");
++        const wfhEnd = moment(wfhEndDate).endOf("day");
++
++        // Check if festival date falls within WFH range
++        return (
++          festivalDate.isSameOrAfter(wfhStart) &&
++          festivalDate.isSameOrBefore(wfhEnd)
++        );
++      }
++    );
++
++    conflictingFestivalLeaves.forEach((festivalLeave) => {
++      conflictingItems.push({
++        type: "Festival Leave",
++        startDate: festivalLeave.date,
++        endDate: festivalLeave.date,
++        name: festivalLeave.name,
++        status: "APPROVED",
++      });
++    });
++  }
++
++  return {
++    hasConflict: conflictingItems.length > 0,
++    conflictingItems: conflictingItems,
++  };
++};
+ 
+ export default function WorkFromHome({ isSelfProfile }) {
+   const employeeDetails = useSelector(getEmployeeDetails);
+@@ -22,14 +154,25 @@
+ 
+   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+ 
++  const [leaveRequests, setLeaveRequests] = useState([]);
++  const [festivalLeave, setFestivalLeave] = useState([]);
++  const [leaves, setLeaves] = useState([]);
++  const [leaveRequestLoader, setLeaveRequestLoader] = useState(false);
++  const [leaveLoader, setLeaveLoader] = useState(false);
++  const [festivalLeaveLoader, setfestivalLeaveLoader] = useState(false);
+   const [myWfhRequestsList, setMyWfhRequestsList] = useState([]);
+   const [selectedRequest, setSelectedRequest] = useState(null);
+   const [squadReportees, setSquadReportees] = useState([]);
+   const [isLoading, setIsLoading] = useState(true);
++
+   useEffect(() => {
+     const initializeData = async () => {
+       setIsLoading(true);
+       await fetchWFHData();
++      await fetchAllLeaveRequests();
++      await fetchAllLeaves();
++      await fetchFestivalLeaves();
++
+       setIsLoading(false);
+     };
+ 
+@@ -86,9 +229,93 @@
+       console.error("Error fetching pending WFH requests:", error);
+     }
+   };
++
++  const fetchAllLeaveRequests = async () => {
++    setLeaveRequestLoader(true);
++
++    try {
++      const leaveRequestsResponse = await listOwnLeaveRequests(
++        employeeDetails.email
++      );
++      let temp = [];
++      leaveRequestsResponse?.forEach((item) => {
++        temp.push({
++          ...item,
++          date: [moment(item?.start_time), moment(item?.end_time)],
++          compoffLeave:
++            item.comp_off !== null && item.comp_off !== undefined
++              ? [
++                  moment(item.comp_off?.start_time),
++                  moment(item.comp_off?.end_time),
++                ]
++              : null,
++        });
++      });
++
++      setLeaveRequests(temp);
++    } catch (error) {
++      console.log(error);
++      message.error("Unable to fetch Leave Requests");
++    } finally {
++      setLeaveRequestLoader(false);
++    }
++  };
++
++  const fetchAllLeaves = async () => {
++    setLeaveLoader(true);
++    try {
++      const EmployeeLeaves = await listLeavesByEmployeeID(
++        employeeDetails.email
++      );
++
++      const data = EmployeeLeaves?.map((item) => {
++        return {
++          ...item,
++          date: [moment(item?.start_time), moment(item?.end_time)],
++          compoffLeave:
++            item.comp_off !== null && item.comp_off !== undefined
++              ? [
++                  moment(item.comp_off?.start_time),
++                  moment(item.comp_off?.end_time),
++                ]
++              : null,
++        };
++      });
++
++      setLeaves(data);
++    } catch (error) {
++      console.log(error);
++      message.error("Unable to fetch Leaves");
++    } finally {
++      setLeaveLoader(false);
++    }
++  };
++
++  const fetchFestivalLeaves = async () => {
++    setfestivalLeaveLoader(true);
++
++    try {
++      let festivalLeaves = await getFestivalLeaves({
++        employeeFestivalLeavesId: { eq: employeeDetails?.email },
++      });
++      festivalLeaves = removeDuplicateObjects(festivalLeaves, "date");
++      setFestivalLeave(
++        festivalLeaves?.filter(
++          (item) => item.year === parseInt(moment().format("YYYY"))
++        )
++      );
++    } catch (error) {
++      console.log(error);
++      message.error("Unable to fetch Festival Leaves");
++    } finally {
++      setfestivalLeaveLoader(false);
++    }
++  };
++
+   const handleDrawerOpen = () => {
+     setIsDrawerOpen(true);
+   };
++
+   const addNewWFHRequest = (newRequest) => {
+     setMyWfhRequestsList([newRequest, ...myWfhRequestsList]);
+   };
+@@ -104,6 +331,7 @@
+     );
+     setMyWfhRequestsList(updatedWFHRequestList);
+   };
++
+   const handleDeleteWFHRequest = async (request) => {
+     try {
+       const inputData = {
+@@ -118,6 +346,7 @@
+       console.error("Error deleting WFH request:", error);
+     }
+   };
++
+   return (
+     <>
+       {isLoading ? (
+@@ -129,12 +358,18 @@
+         <div>
+           {isDrawerOpen && (
+             <AddUpdateWFHRequest
+-              onClose={() => setIsDrawerOpen(false)}
++              onClose={() => {
++                setIsDrawerOpen(false);
++                setSelectedRequest(null);
++              }}
+               employeeDetails={employeeDetails}
+               addNewWFHRequest={addNewWFHRequest}
+               updatedWFHRequest={updateWFHRequest}
+               selectedRequest={selectedRequest}
+               setSelectedRequest={setSelectedRequest}
++              existingLeaves={leaves}
++              existingLeaveRequests={leaveRequests}
++              existingfestivalLeave={festivalLeave}
+             />
+           )}
+ 

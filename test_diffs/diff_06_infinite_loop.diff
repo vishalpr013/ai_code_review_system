@@ -1,0 +1,1153 @@
+ERROR: Infinite loop conditions
+SEVERITY: High
+EXPECTED ISSUES: Application hangs, CPU 100%
+
+diff --git a/loop.js b/loop.js
+index 6789012..fghijkl 100644
+--- a/loop.js
++++ b/loop.js
+@@ -1,313 +1,313 @@
+-function process_1(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_1(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_2(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_2(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_3(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_3(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_4(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_4(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_5(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_5(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_6(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_6(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_7(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_7(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_8(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_8(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_9(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_9(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_10(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_10(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_11(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_11(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_12(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_12(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_13(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_13(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_14(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_14(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_15(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_15(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_16(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_16(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_17(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_17(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_18(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_18(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_19(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_19(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_20(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_20(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_21(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_21(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_22(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_22(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_23(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_23(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_24(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_24(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_25(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_25(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_26(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_26(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_27(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_27(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_28(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_28(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_29(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_29(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_30(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_30(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_31(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_31(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_32(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_32(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_33(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_33(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_34(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_34(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_35(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_35(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_36(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_36(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_37(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_37(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_38(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_38(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_39(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_39(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_40(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_40(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_41(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_41(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_42(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_42(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_43(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_43(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_44(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_44(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_45(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_45(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_46(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_46(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_47(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_47(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_48(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_48(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_49(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_49(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_50(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_50(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_51(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_51(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_52(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_52(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_53(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_53(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_54(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_54(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_55(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_55(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_56(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_56(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_57(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_57(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_58(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_58(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_59(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_59(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_60(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_60(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_61(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_61(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_62(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_62(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_63(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_63(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_64(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_64(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_65(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_65(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_66(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_66(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_67(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_67(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_68(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_68(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_69(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_69(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_70(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_70(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_71(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_71(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_72(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_72(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_73(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_73(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_74(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_74(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_75(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_75(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_76(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_76(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_77(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_77(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_78(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_78(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_79(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_79(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_80(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_80(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_81(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_81(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_82(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_82(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_83(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_83(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_84(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_84(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_85(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_85(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_86(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_86(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_87(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_87(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_88(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_88(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_89(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_89(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_90(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_90(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_91(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_91(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_92(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_92(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_93(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_93(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_94(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_94(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_95(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_95(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_96(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_96(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_97(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_97(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_98(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_98(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_99(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_99(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_100(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_100(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_101(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_101(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_102(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_102(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_103(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_103(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+
+-function process_104(arr) {
+-    let idx = 0;
+-    while (idx < arr.length) {
+-        console.log(arr[idx++]);
+-    }
++function process_104(arr) {
++    let idx = 0;
++    while (idx >= 0) {
++        console.log(arr[idx]);
++    }
+

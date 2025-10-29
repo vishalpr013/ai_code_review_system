@@ -1,0 +1,458 @@
+From 767b2b0533fe2a875814338bb87d9d08380a9a8b Mon Sep 17 00:00:00 2001
+From: Jaydip Makwana <jaydip@york.ie>
+Date: Wed, 15 Oct 2025 18:47:40 +0530
+Subject: [PATCH] RBAC Experiment completed
+
+Change-Id: I45f2a2fbfa15086876cc00d8fdeb565b63c08a72
+---
+
+diff --git a/amplify/backend/function/API/API-cloudformation-template.json b/amplify/backend/function/API/API-cloudformation-template.json
+index a2bb824..3613879 100644
+--- a/amplify/backend/function/API/API-cloudformation-template.json
++++ b/amplify/backend/function/API/API-cloudformation-template.json
+@@ -1 +1 @@
+-{"AWSTemplateFormatVersion":"2010-09-09","Description":"{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.13.1\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"\"}}","Parameters":{"CloudWatchRule":{"Type":"String","Default":"NONE","Description":" Schedule Expression"},"deploymentBucketName":{"Type":"String"},"env":{"Type":"String"},"s3Key":{"Type":"String"},"apiyorkhrmsGraphQLGraphQLAPIIdOutput":{"Type":"String","Default":"apiyorkhrmsGraphQLGraphQLAPIIdOutput"},"apiyorkhrmsGraphQLGraphQLAPIEndpointOutput":{"Type":"String","Default":"apiyorkhrmsGraphQLGraphQLAPIEndpointOutput"},"storagedataBucketName":{"Type":"String","Default":"storagedataBucketName"},"secretsPathAmplifyAppId":{"Type":"String"},"authyorkhrmsfa131fa1UserPoolId":{"Type":"String","Default":"authyorkhrmsfa131fa1UserPoolId"},"functionyorkhrmsSentryLayerNodeArn":{"Type":"String","Default":"functionyorkhrmsSentryLayerNodeArn"},"functionyorkhrmsYorkHrmsCommonCodeArn":{"Type":"String","Default":"functionyorkhrmsYorkHrmsCommonCodeArn"},"sentryDsn":{"Type":"String"}},"Conditions":{"ShouldNotCreateEnvResources":{"Fn::Equals":[{"Ref":"env"},"NONE"]}},"Resources":{"LambdaFunction":{"Type":"AWS::Lambda::Function","Metadata":{"aws:asset:path":"./src","aws:asset:property":"Code"},"Properties":{"Code":{"S3Bucket":{"Ref":"deploymentBucketName"},"S3Key":{"Ref":"s3Key"}},"Handler":"index.handler","FunctionName":{"Fn::If":["ShouldNotCreateEnvResources","API",{"Fn::Join":["",["API","-",{"Ref":"env"}]]}]},"Environment":{"Variables":{"ENV":{"Ref":"env"},"REGION":{"Ref":"AWS::Region"},"API_YORKHRMSGRAPHQL_GRAPHQLAPIIDOUTPUT":{"Ref":"apiyorkhrmsGraphQLGraphQLAPIIdOutput"},"API_YORKHRMSGRAPHQL_GRAPHQLAPIENDPOINTOUTPUT":{"Ref":"apiyorkhrmsGraphQLGraphQLAPIEndpointOutput"},"STORAGE_DATA_BUCKETNAME":{"Ref":"storagedataBucketName"},"OPEN_AI_KEY":{"Fn::Join":["",[{"Fn::Sub":["/amplify/${appId}/${env}/AMPLIFY_${functionName}_",{"appId":{"Ref":"secretsPathAmplifyAppId"},"env":{"Ref":"env"},"functionName":"API"}]},"OPEN_AI_KEY"]]},"AUTH_YORKHRMSFA131FA1_USERPOOLID":{"Ref":"authyorkhrmsfa131fa1UserPoolId"},"JIRA_API_TOKEN":{"Fn::Join":["",[{"Fn::Sub":["/amplify/${appId}/${env}/AMPLIFY_${functionName}_",{"appId":{"Ref":"secretsPathAmplifyAppId"},"env":{"Ref":"env"},"functionName":"API"}]},"JIRA_API_TOKEN"]]},"SENTRY_DSN":{"Ref":"sentryDsn"}}},"Role":{"Fn::GetAtt":["LambdaExecutionRole","Arn"]},"Runtime":"nodejs18.x","Layers":[{"Ref":"functionyorkhrmsSentryLayerNodeArn"}],"MemorySize":4096,"Timeout":29}},"LambdaExecutionRole":{"Type":"AWS::IAM::Role","Properties":{"RoleName":{"Fn::If":["ShouldNotCreateEnvResources","yorkhrmsLambdaRole3776f02c",{"Fn::Join":["",["yorkhrmsLambdaRole3776f02c","-",{"Ref":"env"}]]}]},"AssumeRolePolicyDocument":{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":["lambda.amazonaws.com"]},"Action":["sts:AssumeRole"]}]}}},"lambdaexecutionpolicy":{"DependsOn":["LambdaExecutionRole"],"Type":"AWS::IAM::Policy","Properties":{"PolicyName":"lambda-execution-policy","Roles":[{"Ref":"LambdaExecutionRole"}],"PolicyDocument":{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["logs:CreateLogGroup","logs:CreateLogStream","logs:PutLogEvents"],"Resource":{"Fn::Sub":["arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",{"region":{"Ref":"AWS::Region"},"account":{"Ref":"AWS::AccountId"},"lambda":{"Ref":"LambdaFunction"}}]}}]}}},"AmplifyResourcesPolicy":{"DependsOn":["LambdaExecutionRole"],"Type":"AWS::IAM::Policy","Properties":{"PolicyName":"amplify-lambda-execution-policy","Roles":[{"Ref":"LambdaExecutionRole"}],"PolicyDocument":{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["appsync:GraphQL"],"Resource":[{"Fn::Join":["",["arn:aws:appsync:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":apis/",{"Ref":"apiyorkhrmsGraphQLGraphQLAPIIdOutput"},"/types/Query/*"]]},{"Fn::Join":["",["arn:aws:appsync:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":apis/",{"Ref":"apiyorkhrmsGraphQLGraphQLAPIIdOutput"},"/types/Mutation/*"]]}]},{"Effect":"Allow","Action":["cognito-idp:ConfirmSignUp","cognito-idp:AdminCreateUser","cognito-idp:CreateUserImportJob","cognito-idp:AdminSetUserSettings","cognito-idp:AdminLinkProviderForUser","cognito-idp:CreateIdentityProvider","cognito-idp:AdminConfirmSignUp","cognito-idp:AdminDisableUser","cognito-idp:AdminRemoveUserFromGroup","cognito-idp:SetUserMFAPreference","cognito-idp:SetUICustomization","cognito-idp:SignUp","cognito-idp:VerifyUserAttribute","cognito-idp:SetRiskConfiguration","cognito-idp:StartUserImportJob","cognito-idp:AdminSetUserPassword","cognito-idp:AssociateSoftwareToken","cognito-idp:CreateResourceServer","cognito-idp:RespondToAuthChallenge","cognito-idp:CreateUserPoolClient","cognito-idp:AdminUserGlobalSignOut","cognito-idp:GlobalSignOut","cognito-idp:AddCustomAttributes","cognito-idp:CreateGroup","cognito-idp:CreateUserPool","cognito-idp:AdminForgetDevice","cognito-idp:AdminAddUserToGroup","cognito-idp:AdminRespondToAuthChallenge","cognito-idp:ForgetDevice","cognito-idp:CreateUserPoolDomain","cognito-idp:AdminEnableUser","cognito-idp:AdminUpdateDeviceStatus","cognito-idp:StopUserImportJob","cognito-idp:InitiateAuth","cognito-idp:AdminInitiateAuth","cognito-idp:AdminSetUserMFAPreference","cognito-idp:ConfirmForgotPassword","cognito-idp:SetUserSettings","cognito-idp:VerifySoftwareToken","cognito-idp:AdminDisableProviderForUser","cognito-idp:SetUserPoolMfaConfig","cognito-idp:ChangePassword","cognito-idp:ConfirmDevice","cognito-idp:AdminResetUserPassword","cognito-idp:ResendConfirmationCode","cognito-identity:Describe*","cognito-identity:Get*","cognito-identity:List*","cognito-idp:Describe*","cognito-idp:AdminGetDevice","cognito-idp:AdminGetUser","cognito-idp:AdminList*","cognito-idp:List*","cognito-sync:Describe*","cognito-sync:Get*","cognito-sync:List*","iam:ListOpenIdConnectProviders","iam:ListRoles","sns:ListPlatformApplications","cognito-idp:ForgotPassword","cognito-idp:UpdateAuthEventFeedback","cognito-idp:UpdateResourceServer","cognito-idp:UpdateUserPoolClient","cognito-idp:AdminUpdateUserAttributes","cognito-idp:UpdateUserAttributes","cognito-idp:UpdateUserPoolDomain","cognito-idp:UpdateIdentityProvider","cognito-idp:UpdateGroup","cognito-idp:AdminUpdateAuthEventFeedback","cognito-idp:UpdateDeviceStatus","cognito-idp:UpdateUserPool","cognito-idp:DeleteUserPoolDomain","cognito-idp:DeleteResourceServer","cognito-idp:DeleteGroup","cognito-idp:AdminDeleteUserAttributes","cognito-idp:DeleteUserPoolClient","cognito-idp:DeleteUserAttributes","cognito-idp:DeleteUserPool","cognito-idp:AdminDeleteUser","cognito-idp:DeleteIdentityProvider","cognito-idp:DeleteUser"],"Resource":[{"Fn::Join":["",["arn:aws:cognito-idp:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":userpool/",{"Ref":"authyorkhrmsfa131fa1UserPoolId"}]]}]},{"Effect":"Allow","Action":"s3:ListBucket","Resource":[{"Fn::Join":["",["arn:aws:s3:::",{"Ref":"storagedataBucketName"}]]}]},{"Effect":"Allow","Action":["s3:PutObject","s3:GetObject","s3:DeleteObject"],"Resource":[{"Fn::Join":["",["arn:aws:s3:::",{"Ref":"storagedataBucketName"},"/*"]]}]}]}}},"AmplifyFunctionSecretsPolicy":{"Type":"AWS::IAM::Policy","Properties":{"PolicyName":"amplify-function-secrets-policy","Roles":[{"Ref":"LambdaExecutionRole"}],"PolicyDocument":{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["ssm:GetParameter","ssm:GetParameters"],"Resource":{"Fn::Join":["",["arn:aws:ssm:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":parameter",{"Fn::Sub":["/amplify/${appId}/${env}/AMPLIFY_${functionName}_",{"appId":{"Ref":"secretsPathAmplifyAppId"},"env":{"Ref":"env"},"functionName":"API"}]},"*"]]}}]}},"DependsOn":["LambdaExecutionRole"]},"CustomLambdaExecutionPolicy":{"Type":"AWS::IAM::Policy","Properties":{"PolicyName":"custom-lambda-execution-policy","PolicyDocument":{"Version":"2012-10-17","Statement":[{"Action":["ses:*"],"Resource":["*"],"Effect":"Allow"}]},"Roles":[{"Ref":"LambdaExecutionRole"}]},"DependsOn":"LambdaExecutionRole"}},"Outputs":{"Name":{"Value":{"Ref":"LambdaFunction"}},"Arn":{"Value":{"Fn::GetAtt":["LambdaFunction","Arn"]}},"Region":{"Value":{"Ref":"AWS::Region"}},"LambdaExecutionRole":{"Value":{"Ref":"LambdaExecutionRole"}},"LambdaExecutionRoleArn":{"Value":{"Fn::GetAtt":["LambdaExecutionRole","Arn"]}}}}
+\ No newline at end of file
++{"AWSTemplateFormatVersion":"2010-09-09","Description":"{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.13.1\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"\"}}","Parameters":{"CloudWatchRule":{"Type":"String","Default":"NONE","Description":" Schedule Expression"},"deploymentBucketName":{"Type":"String"},"env":{"Type":"String"},"s3Key":{"Type":"String"},"apiyorkhrmsGraphQLGraphQLAPIIdOutput":{"Type":"String","Default":"apiyorkhrmsGraphQLGraphQLAPIIdOutput"},"apiyorkhrmsGraphQLGraphQLAPIEndpointOutput":{"Type":"String","Default":"apiyorkhrmsGraphQLGraphQLAPIEndpointOutput"},"storagedataBucketName":{"Type":"String","Default":"storagedataBucketName"},"secretsPathAmplifyAppId":{"Type":"String"},"authyorkhrmsfa131fa1UserPoolId":{"Type":"String","Default":"authyorkhrmsfa131fa1UserPoolId"},"functionyorkhrmsSentryLayerNodeArn":{"Type":"String","Default":"functionyorkhrmsSentryLayerNodeArn"},"functionyorkhrmsYorkHrmsCommonCodeArn":{"Type":"String","Default":"functionyorkhrmsYorkHrmsCommonCodeArn"},"sentryDsn":{"Type":"String"}},"Conditions":{"ShouldNotCreateEnvResources":{"Fn::Equals":[{"Ref":"env"},"NONE"]}},"Resources":{"LambdaFunction":{"Type":"AWS::Lambda::Function","Metadata":{"aws:asset:path":"./src","aws:asset:property":"Code"},"Properties":{"Code":{"S3Bucket":{"Ref":"deploymentBucketName"},"S3Key":{"Ref":"s3Key"}},"Handler":"index.handler","FunctionName":{"Fn::If":["ShouldNotCreateEnvResources","API",{"Fn::Join":["",["API","-",{"Ref":"env"}]]}]},"Environment":{"Variables":{"ENV":{"Ref":"env"},"REGION":{"Ref":"AWS::Region"},"API_YORKHRMSGRAPHQL_GRAPHQLAPIIDOUTPUT":{"Ref":"apiyorkhrmsGraphQLGraphQLAPIIdOutput"},"API_YORKHRMSGRAPHQL_GRAPHQLAPIENDPOINTOUTPUT":{"Ref":"apiyorkhrmsGraphQLGraphQLAPIEndpointOutput"},"STORAGE_DATA_BUCKETNAME":{"Ref":"storagedataBucketName"},"OPEN_AI_KEY":{"Fn::Join":["",[{"Fn::Sub":["/amplify/${appId}/${env}/AMPLIFY_${functionName}_",{"appId":{"Ref":"secretsPathAmplifyAppId"},"env":{"Ref":"env"},"functionName":"API"}]},"OPEN_AI_KEY"]]},"AUTH_YORKHRMSFA131FA1_USERPOOLID":{"Ref":"authyorkhrmsfa131fa1UserPoolId"},"JIRA_API_TOKEN":{"Fn::Join":["",[{"Fn::Sub":["/amplify/${appId}/${env}/AMPLIFY_${functionName}_",{"appId":{"Ref":"secretsPathAmplifyAppId"},"env":{"Ref":"env"},"functionName":"API"}]},"JIRA_API_TOKEN"]]},"SENTRY_DSN":{"Ref":"sentryDsn"}}},"Role":{"Fn::GetAtt":["LambdaExecutionRole","Arn"]},"Runtime":"nodejs18.x","Layers":[{"Ref":"functionyorkhrmsSentryLayerNodeArn"}],"MemorySize":4096,"Timeout":29}},"LambdaExecutionRole":{"Type":"AWS::IAM::Role","Properties":{"RoleName":{"Fn::If":["ShouldNotCreateEnvResources","yorkhrmsLambdaRole3776f02c",{"Fn::Join":["",["yorkhrmsLambdaRole3776f02c","-",{"Ref":"env"}]]}]},"AssumeRolePolicyDocument":{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":["lambda.amazonaws.com"]},"Action":["sts:AssumeRole"]}]}}},"lambdaexecutionpolicy":{"DependsOn":["LambdaExecutionRole"],"Type":"AWS::IAM::Policy","Properties":{"PolicyName":"lambda-execution-policy","Roles":[{"Ref":"LambdaExecutionRole"}],"PolicyDocument":{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["logs:CreateLogGroup","logs:CreateLogStream","logs:PutLogEvents"],"Resource":{"Fn::Sub":["arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",{"region":{"Ref":"AWS::Region"},"account":{"Ref":"AWS::AccountId"},"lambda":{"Ref":"LambdaFunction"}}]}}]}}},"AmplifyResourcesPolicy":{"DependsOn":["LambdaExecutionRole"],"Type":"AWS::IAM::Policy","Properties":{"PolicyName":"amplify-lambda-execution-policy","Roles":[{"Ref":"LambdaExecutionRole"}],"PolicyDocument":{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["appsync:GraphQL"],"Resource":[{"Fn::Join":["",["arn:aws:appsync:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":apis/",{"Ref":"apiyorkhrmsGraphQLGraphQLAPIIdOutput"},"/types/Query/*"]]},{"Fn::Join":["",["arn:aws:appsync:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":apis/",{"Ref":"apiyorkhrmsGraphQLGraphQLAPIIdOutput"},"/types/Mutation/*"]]}]},{"Effect":"Allow","Action":["cognito-idp:ConfirmSignUp","cognito-idp:AdminCreateUser","cognito-idp:CreateUserImportJob","cognito-idp:AdminSetUserSettings","cognito-idp:AdminLinkProviderForUser","cognito-idp:CreateIdentityProvider","cognito-idp:AdminConfirmSignUp","cognito-idp:AdminDisableUser","cognito-idp:AdminRemoveUserFromGroup","cognito-idp:SetUserMFAPreference","cognito-idp:SetUICustomization","cognito-idp:SignUp","cognito-idp:VerifyUserAttribute","cognito-idp:SetRiskConfiguration","cognito-idp:StartUserImportJob","cognito-idp:AdminSetUserPassword","cognito-idp:AssociateSoftwareToken","cognito-idp:CreateResourceServer","cognito-idp:RespondToAuthChallenge","cognito-idp:CreateUserPoolClient","cognito-idp:AdminUserGlobalSignOut","cognito-idp:GlobalSignOut","cognito-idp:AddCustomAttributes","cognito-idp:CreateGroup","cognito-idp:CreateUserPool","cognito-idp:AdminForgetDevice","cognito-idp:AdminAddUserToGroup","cognito-idp:AdminRespondToAuthChallenge","cognito-idp:ForgetDevice","cognito-idp:CreateUserPoolDomain","cognito-idp:AdminEnableUser","cognito-idp:AdminUpdateDeviceStatus","cognito-idp:StopUserImportJob","cognito-idp:InitiateAuth","cognito-idp:AdminInitiateAuth","cognito-idp:AdminSetUserMFAPreference","cognito-idp:ConfirmForgotPassword","cognito-idp:SetUserSettings","cognito-idp:VerifySoftwareToken","cognito-idp:AdminDisableProviderForUser","cognito-idp:SetUserPoolMfaConfig","cognito-idp:ChangePassword","cognito-idp:ConfirmDevice","cognito-idp:AdminResetUserPassword","cognito-idp:ResendConfirmationCode","cognito-identity:Describe*","cognito-identity:Get*","cognito-identity:List*","cognito-idp:Describe*","cognito-idp:AdminGetDevice","cognito-idp:AdminGetUser","cognito-idp:AdminList*","cognito-idp:List*","cognito-sync:Describe*","cognito-sync:Get*","cognito-sync:List*","iam:ListOpenIdConnectProviders","iam:ListRoles","sns:ListPlatformApplications","cognito-idp:ForgotPassword","cognito-idp:UpdateAuthEventFeedback","cognito-idp:UpdateResourceServer","cognito-idp:UpdateUserPoolClient","cognito-idp:AdminUpdateUserAttributes","cognito-idp:UpdateUserAttributes","cognito-idp:UpdateUserPoolDomain","cognito-idp:UpdateIdentityProvider","cognito-idp:UpdateGroup","cognito-idp:AdminUpdateAuthEventFeedback","cognito-idp:UpdateDeviceStatus","cognito-idp:UpdateUserPool","cognito-idp:DeleteUserPoolDomain","cognito-idp:DeleteResourceServer","cognito-idp:DeleteGroup","cognito-idp:AdminDeleteUserAttributes","cognito-idp:DeleteUserPoolClient","cognito-idp:DeleteUserAttributes","cognito-idp:DeleteUserPool","cognito-idp:AdminDeleteUser","cognito-idp:DeleteIdentityProvider","cognito-idp:DeleteUser"],"Resource":[{"Fn::Join":["",["arn:aws:cognito-idp:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":userpool/",{"Ref":"authyorkhrmsfa131fa1UserPoolId"}]]}]},{"Effect":"Allow","Action":"s3:ListBucket","Resource":[{"Fn::Join":["",["arn:aws:s3:::",{"Ref":"storagedataBucketName"}]]}]},{"Effect":"Allow","Action":["s3:PutObject","s3:GetObject","s3:DeleteObject"],"Resource":[{"Fn::Join":["",["arn:aws:s3:::",{"Ref":"storagedataBucketName"},"/*"]]}]}]}}},"AmplifyFunctionSecretsPolicy":{"Type":"AWS::IAM::Policy","Properties":{"PolicyName":"amplify-function-secrets-policy","Roles":[{"Ref":"LambdaExecutionRole"}],"PolicyDocument":{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["ssm:GetParameter","ssm:GetParameters"],"Resource":{"Fn::Join":["",["arn:aws:ssm:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":parameter",{"Fn::Sub":["/amplify/${appId}/${env}/AMPLIFY_${functionName}_",{"appId":{"Ref":"secretsPathAmplifyAppId"},"env":{"Ref":"env"},"functionName":"API"}]},"*"]]}}]}},"DependsOn":["LambdaExecutionRole"]},"CustomLambdaExecutionPolicy":{"Type":"AWS::IAM::Policy","Properties":{"PolicyName":"custom-lambda-execution-policy","PolicyDocument":{"Version":"2012-10-17","Statement":[{"Action":["ses:*"],"Resource":["*"],"Effect":"Allow"},{"Effect":"Allow","Action":["ssm:GetParameter","ssm:GetParameters"],"Resource":["arn:aws:ssm:ap-south-1:323526869397:parameter/amplify/d17xpo871nmjdw/staging/*"]}]},"Roles":[{"Ref":"LambdaExecutionRole"}]},"DependsOn":"LambdaExecutionRole"}},"Outputs":{"Name":{"Value":{"Ref":"LambdaFunction"}},"Arn":{"Value":{"Fn::GetAtt":["LambdaFunction","Arn"]}},"Region":{"Value":{"Ref":"AWS::Region"}},"LambdaExecutionRole":{"Value":{"Ref":"LambdaExecutionRole"}},"LambdaExecutionRoleArn":{"Value":{"Fn::GetAtt":["LambdaExecutionRole","Arn"]}}}}
+\ No newline at end of file
+diff --git a/amplify/backend/function/API/custom-policies.json b/amplify/backend/function/API/custom-policies.json
+index 54d584a..282638f 100644
+--- a/amplify/backend/function/API/custom-policies.json
++++ b/amplify/backend/function/API/custom-policies.json
+@@ -2,5 +2,12 @@
+   {
+     "Action": ["ses:*"],
+     "Resource": ["*"]
++  },
++  {
++    "Effect": "Allow",
++    "Action": ["ssm:GetParameter", "ssm:GetParameters"],
++    "Resource": [
++      "arn:aws:ssm:ap-south-1:323526869397:parameter/amplify/d17xpo871nmjdw/staging/*"
++    ]
+   }
+ ]
+diff --git a/amplify/backend/function/API/src/package-lock.json b/amplify/backend/function/API/src/package-lock.json
+index 3a317c0..76490d4 100644
+--- a/amplify/backend/function/API/src/package-lock.json
++++ b/amplify/backend/function/API/src/package-lock.json
+@@ -4771,7 +4771,7 @@
+     "node_modules/york-client": {
+       "name": "@your-org/shared-lib",
+       "version": "1.0.0",
+-      "resolved": "git+ssh://git@github.com/Jaydip-M/york-client.git#d165c5b22121670145515173d8a9e754515c5749"
++      "resolved": "git+ssh://git@github.com/Jaydip-M/york-client.git#247dce2e68d21166571b7de57b0e9223606b5e1b"
+     },
+     "node_modules/zen-observable": {
+       "version": "0.8.15",
+diff --git a/amplify/backend/function/LambdaAuthorizer/src/package-lock.json b/amplify/backend/function/LambdaAuthorizer/src/package-lock.json
+index 6bd0a0c..ca92c5d 100644
+--- a/amplify/backend/function/LambdaAuthorizer/src/package-lock.json
++++ b/amplify/backend/function/LambdaAuthorizer/src/package-lock.json
+@@ -4913,7 +4913,7 @@
+     "node_modules/york-client": {
+       "name": "@your-org/shared-lib",
+       "version": "1.0.0",
+-      "resolved": "git+ssh://git@github.com/Jaydip-M/york-client.git#885bc2ec5353fb85f456574b28d107c53804fa07"
++      "resolved": "git+ssh://git@github.com/Jaydip-M/york-client.git#247dce2e68d21166571b7de57b0e9223606b5e1b"
+     },
+     "node_modules/zen-observable": {
+       "version": "0.8.15",
+diff --git a/amplify/backend/function/LambdaAuthorizer/src/permissionMapping.js b/amplify/backend/function/LambdaAuthorizer/src/permissionMapping.js
+index 9456cd6..d750d5a 100644
+--- a/amplify/backend/function/LambdaAuthorizer/src/permissionMapping.js
++++ b/amplify/backend/function/LambdaAuthorizer/src/permissionMapping.js
+@@ -137,6 +137,9 @@
+         "account_status",
+         "pan_card",
+         "aadhar_card",
++        "employee_id",
++        "reporting_to",
++        "employeeReporting_toId",
+       ], // Info: User can not update the primary key email
+     },
+     {
+@@ -811,10 +814,8 @@
+         "requestor",
+         "expectedStartDate",
+         "expectedEndDate",
+-        "createdAt",
+-        "updatedAt",
+       ],
+-      actions: ["create", "list", "get", "update"],
++      actions: ["create", "list", "get"],
+     },
+     {
+       module: "EmployeeExperimentAllocation",
+@@ -825,7 +826,36 @@
+         "id",
+         "employee",
+       ],
+-      actions: ["list", "create", "update", "delete"],
++      actions: ["list"],
++    },
++    {
++      // Experiment creator (Employee) will have access to crud the document master
++      module: "DocumentMaster",
++      fields: [
++        "id",
++        "Type",
++        "Relation_ID",
++        "S3_Key",
++        "owner",
++        "ownerDetails",
++        "metaData",
++      ],
++      actions: ["create", "list", "get", "delete"],
++    },
++    {
++      module: "NotesMaster",
++      fields: [
++        "id",
++        "Type",
++        "Relation_ID",
++        "title",
++        "content",
++        "owner",
++        "ownerDetails",
++        "metaData",
++        "isPrivate",
++      ],
++      actions: ["list", "get"],
+     },
+   ],
+ 
+@@ -1973,7 +2003,7 @@
+       actions: ["list", "create", "update", "delete"],
+     },
+   ],
+-  canViewExperiments: [
++  canViewExperimentDashboard: [
+     {
+       module: "Experiment",
+       fields: [
+@@ -2010,6 +2040,34 @@
+       ],
+       actions: ["list", "create", "update", "delete"],
+     },
++    {
++      module: "DocumentMaster",
++      fields: [
++        "id",
++        "Type",
++        "Relation_ID",
++        "S3_Key",
++        "owner",
++        "ownerDetails",
++        "metaData",
++      ],
++      actions: ["create", "delete"],
++    },
++    {
++      module: "NotesMaster",
++      fields: [
++        "id",
++        "Type",
++        "Relation_ID",
++        "title",
++        "content",
++        "owner",
++        "ownerDetails",
++        "metaData",
++        "isPrivate",
++      ],
++      actions: ["create"],
++    },
+   ],
+   canEditExperiments: [
+     {
+@@ -2035,7 +2093,7 @@
+         "createdAt",
+         "updatedAt",
+       ],
+-      actions: ["create", "list", "get", "update", "delete"],
++      actions: ["create", "list", "get", "update"],
+     },
+     {
+       module: "EmployeeExperimentAllocation",
+@@ -2946,4 +3004,4 @@
+       actions: ["list"],
+     },
+   ],
+-};
+\ No newline at end of file
++};
+diff --git a/amplify/team-provider-info.json b/amplify/team-provider-info.json
+index b735cdb..6eb9590 100644
+--- a/amplify/team-provider-info.json
++++ b/amplify/team-provider-info.json
+@@ -688,7 +688,7 @@
+         "API": {
+           "secretsPathAmplifyAppId": "dvbqqiojy2vd1",
+           "deploymentBucketName": "amplify-yorkhrms-rbac-0ad7c-deployment",
+-          "s3Key": "amplify-builds/API-633541677748524c6435-build.zip",
++          "s3Key": "amplify-builds/API-79776c3243504b424557-build.zip",
+           "sentryDsn": "https://3b3f69c351b47ffa43b602b817fc32e6@sentry.yorkdevs.link/8"
+         },
+         "AnalyticsGenerator": {
+@@ -962,7 +962,7 @@
+         },
+         "LambdaAuthorizer": {
+           "deploymentBucketName": "amplify-yorkhrms-rbac-0ad7c-deployment",
+-          "s3Key": "amplify-builds/LambdaAuthorizer-352f484b376268427032-build.zip"
++          "s3Key": "amplify-builds/LambdaAuthorizer-6c70707a463733585546-build.zip"
+         },
+         "graphQlLambdaAuthorizer8660d133": {
+           "deploymentBucketName": "amplify-yorkhrms-rbac-0ad7c-deployment",
+diff --git a/src/MainLayout/Sider/MenuList.js b/src/MainLayout/Sider/MenuList.js
+index bebb67a..c140005 100644
+--- a/src/MainLayout/Sider/MenuList.js
++++ b/src/MainLayout/Sider/MenuList.js
+@@ -62,7 +62,6 @@
+     canViewRedflags,
+     canViewAnalytics,
+     canViewProject,
+-    canViewExperiments,
+     hasBetaAccess,
+   } = useSelector(permissionFlags);
+ 
+@@ -305,7 +304,7 @@
+       shouldShowFeature({
+         hasBetaAccess,
+         featureKey: "experiments",
+-        hasFeaturePermission: canViewExperiments,
++        hasFeaturePermission: false, // TODO: Make true for all employees i.e pass hasFeaturePermission to true
+       })
+     ) {
+       baseMenu.push({
+@@ -379,7 +378,6 @@
+     canViewAnalytics,
+     canViewProject,
+     hasBetaAccess,
+-    canViewExperiments,
+   ]);
+ 
+   return (
+diff --git a/src/Pages/Experiments/Actions/experimentAction.js b/src/Pages/Experiments/Actions/experimentAction.js
+index 05a114e..1ffe615 100644
+--- a/src/Pages/Experiments/Actions/experimentAction.js
++++ b/src/Pages/Experiments/Actions/experimentAction.js
+@@ -46,5 +46,5 @@
+   });
+   if (!result) return;
+   const { mutation, variables } = result;
+-  return ExecuteDynamicMutation(mutation, variables);
++  return await ExecuteMutationV2(mutation, variables);
+ }
+diff --git a/src/Pages/Experiments/Actions/queries.js b/src/Pages/Experiments/Actions/queries.js
+index 5fa1b9a..d382a26 100644
+--- a/src/Pages/Experiments/Actions/queries.js
++++ b/src/Pages/Experiments/Actions/queries.js
+@@ -5,15 +5,6 @@
+   ) {
+     createExperiment(input: $input, condition: $condition) {
+       id
+-      requestor {
+-        email
+-        employee_id
+-        account_status
+-        first_name
+-        last_name
+-        profile_pic
+-        __typename
+-      }
+       __typename
+     }
+   }
+diff --git a/src/Pages/Experiments/ExperimentLayout.js b/src/Pages/Experiments/ExperimentLayout.js
+index 4ef5c6e..d845a61 100644
+--- a/src/Pages/Experiments/ExperimentLayout.js
++++ b/src/Pages/Experiments/ExperimentLayout.js
+@@ -8,10 +8,12 @@
+  * Decides where to send the user when they hit the experiments menu route.
+  */
+ const ExperimentLayout = () => {
+-  const { canViewExperiments } = useSelector(permissionFlags);
++  const { canViewExperimentDashboard } = useSelector(permissionFlags);
+   const location = useLocation();
+ 
+-  const target = canViewExperiments ? "/experiments/dashboard" : "/experiments";
++  const target = canViewExperimentDashboard
++    ? "/experiments/dashboard"
++    : "/experiments";
+ 
+   // If already at the intended target, render null to avoid unnecessary redirect loop
+   if (location.pathname === target) return null;
+diff --git a/src/Pages/Experiments/Pages/ExperimentDashboard.js b/src/Pages/Experiments/Pages/ExperimentDashboard.js
+index 7d178f3..4bd8d3c 100644
+--- a/src/Pages/Experiments/Pages/ExperimentDashboard.js
++++ b/src/Pages/Experiments/Pages/ExperimentDashboard.js
+@@ -102,8 +102,8 @@
+ 
+   const { Text } = Typography;
+ 
+-  const { canViewExperiments } = useSelector(permissionFlags);
+-  const isPowerUser = canViewExperiments;
++  const { canViewExperimentDashboard } = useSelector(permissionFlags);
++  const isPowerUser = canViewExperimentDashboard;
+ 
+   useEffect(() => {
+     // Fetch experiment data
+diff --git a/src/Pages/Experiments/Pages/ExperimentDetails.js b/src/Pages/Experiments/Pages/ExperimentDetails.js
+index 59d16dc..dfc1d40 100644
+--- a/src/Pages/Experiments/Pages/ExperimentDetails.js
++++ b/src/Pages/Experiments/Pages/ExperimentDetails.js
+@@ -55,7 +55,7 @@
+   // Hooks
+   const { ExperimentId } = useParams();
+   const navigate = useNavigate();
+-  const { canViewExperiments, canEditExperiments } =
++  const { canViewExperimentDashboard, canEditExperiments } =
+     useSelector(permissionFlags);
+   //state
+   const [experimentDetails, setExperimentDetails] = useState(null);
+@@ -83,7 +83,7 @@
+   } = useDocumentsUpload(ExperimentId);
+ 
+   //const
+-  const isPowerUser = canViewExperiments;
++  const isPowerUser = canViewExperimentDashboard;
+ 
+   useEffect(() => {
+     // Fetch experiment details using ExperimentId
+diff --git a/src/Pages/Experiments/Pages/ExperimentEditDashboard.js b/src/Pages/Experiments/Pages/ExperimentEditDashboard.js
+index 5ca135c..5e86203 100644
+--- a/src/Pages/Experiments/Pages/ExperimentEditDashboard.js
++++ b/src/Pages/Experiments/Pages/ExperimentEditDashboard.js
+@@ -41,7 +41,7 @@
+   const navigate = useNavigate();
+   const [form] = Form.useForm();
+   const userData = useSelector(getCurrentUserData);
+-  const { canEditExperiments, canViewExperiments } =
++  const { canEditExperiments, canViewExperimentDashboard } =
+     useSelector(permissionFlags);
+ 
+   // States
+@@ -54,7 +54,7 @@
+   const [showAssigneeModal, setShowAssigneeModal] = useState(false);
+ 
+   // Check permissions
+-  const canEdit = canEditExperiments || canViewExperiments;
++  const canEdit = canEditExperiments || canViewExperimentDashboard;
+ 
+   useEffect(() => {
+     if (!canEdit) {
+diff --git a/src/Pages/GroupManagement/GroupManagementPermissions.json b/src/Pages/GroupManagement/GroupManagementPermissions.json
+index 5f245db..278830a 100644
+--- a/src/Pages/GroupManagement/GroupManagementPermissions.json
++++ b/src/Pages/GroupManagement/GroupManagementPermissions.json
+@@ -62,10 +62,6 @@
+       {
+         "key": "canViewExecutiveItems",
+         "name": "Executive Items"
+-      },
+-      {
+-        "key": "canViewExperiments",
+-        "name": "Experiments Menu"
+       }
+     ]
+   },
+@@ -356,6 +352,10 @@
+       {
+         "key": "canEditExperiments",
+         "name": "Edit Experiments "
++      },
++      {
++        "key": "canViewExperimentDashboard",
++        "name": "Experiments Dashboard"
+       }
+     ]
+   }
+diff --git a/src/Routes/Routes.js b/src/Routes/Routes.js
+index 5206aeb..f551a4a 100644
+--- a/src/Routes/Routes.js
++++ b/src/Routes/Routes.js
+@@ -180,7 +180,7 @@
+     canViewAnalytics,
+     canViewHiring,
+     canViewRulesManagement,
+-    canViewExperiments,
++    canViewExperimentDashboard,
+     canViewEmployeeOnboarding,
+     hasBetaAccess,
+     isPowerUserForMeeting,
+@@ -510,7 +510,7 @@
+     },
+ 
+     //Experiment
+-    canViewExperiments && {
++    canViewExperimentDashboard && {
+       path: "/experiments/dashboard",
+       element: <ExperimentDashboard />,
+     },
+diff --git a/src/graphql/customMutation.js b/src/graphql/customMutation.js
+index e6d5876..d471814 100644
+--- a/src/graphql/customMutation.js
++++ b/src/graphql/customMutation.js
+@@ -1652,28 +1652,28 @@
+   ) {
+     createNotification(input: $input, condition: $condition) {
+       id
+-      ToAccount
+-      To {
+-        email
+-        employee_id
+-        first_name
+-        last_name
+-        reporting_to {
+-          email
+-          employee_id
+-          first_name
+-          last_name
+-          employeeReporting_toId
+-        }
+-        employeeReporting_toId
+-      }
+-      AdminNotification
+-      Type
+-      Message
+-      Metadata
++      # ToAccount
++      # To {
++      #   email
++      #   employee_id
++      #   first_name
++      #   last_name
++      #   reporting_to {
++      #     email
++      #     employee_id
++      #     first_name
++      #     last_name
++      #     employeeReporting_toId
++      #   }
++      #   employeeReporting_toId
++      # }
++      # AdminNotification
++      # Type
++      # Message
++      # Metadata
+       isRead
+       createdAt
+-      timeSensitive
++      # timeSensitive
+       updatedAt
+     }
+   }
+diff --git a/src/utils/Actions.js b/src/utils/Actions.js
+index 987f75f..e2d9783 100644
+--- a/src/utils/Actions.js
++++ b/src/utils/Actions.js
+@@ -339,8 +339,6 @@
+ };
+ 
+ export const CreateEmployeeNotificationToken = (inputData) => {
+-  alert("Creating");
+-
+   return ExecuteMutation("createNotificationTokensCustom", inputData);
+ };
+ 

@@ -33,6 +33,7 @@ interface CriterionScore {
 
 interface SimpleAnalysisResult {
   overall_score?: number;
+  weighted_overall_score?: number;
   summary?: string;
   detailed_feedback?: string;
   processing_time_ms?: number;
@@ -291,15 +292,33 @@ const SimpleAnalysisOutputPanel: React.FC<SimpleAnalysisOutputPanelProps> = ({
             {structuredResult && structuredResult.overall_score !== undefined && (
               <Card sx={{ mb: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
                 <CardContent sx={{ color: 'white' }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
                     <Box>
                       <Typography variant="h4">
                         {structuredResult.overall_score.toFixed(1)}/10
                       </Typography>
                       <Typography variant="h6">
-                        Overall Code Quality
+                        AI Overall Score
+                      </Typography>
+                      <Typography variant="caption" sx={{ opacity: 0.9, display: 'block', mt: 0.5 }}>
+                        AI's holistic code quality judgment
                       </Typography>
                     </Box>
+                    
+                    {structuredResult.weighted_overall_score !== undefined && (
+                      <Box sx={{ textAlign: 'center' }}>
+                        <Typography variant="h4">
+                          {structuredResult.weighted_overall_score.toFixed(1)}/10
+                        </Typography>
+                        <Typography variant="h6">
+                          Weighted Average
+                        </Typography>
+                        <Typography variant="caption" sx={{ opacity: 0.9, display: 'block', mt: 0.5 }}>
+                          Calculated from criteria weights
+                        </Typography>
+                      </Box>
+                    )}
+                    
                     <Box sx={{ textAlign: 'right' }}>
                       <Rating
                         value={structuredResult.overall_score / 2}
@@ -315,6 +334,197 @@ const SimpleAnalysisOutputPanel: React.FC<SimpleAnalysisOutputPanelProps> = ({
                       )}
                     </Box>
                   </Box>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Scoring Summary - Gerrit-style */}
+            {structuredResult && (
+              <Card sx={{ mb: 3 }}>
+                <CardContent>
+                  <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <CheckIcon color="primary" />
+                    AI Code Quality Assessment
+                  </Typography>
+                  
+                  <List dense sx={{ mt: 1 }}>
+                    {structuredResult.areCodeChangesOptimized && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color="success" fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Are Code Changes Optimized" 
+                          secondary={`Score: ${structuredResult.areCodeChangesOptimized.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.areCodeChangesRelative && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color="success" fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Are Code Changes Relative" 
+                          secondary={`Score: ${structuredResult.areCodeChangesRelative.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.isCodeFormatted && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color="success" fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Is Code Formatted" 
+                          secondary={`Score: ${structuredResult.isCodeFormatted.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.isCodeWellWritten && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color="success" fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Is Code Well Written" 
+                          secondary={`Score: ${structuredResult.isCodeWellWritten.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.areCommentsWritten && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color="success" fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Are Comments Written" 
+                          secondary={`Score: ${structuredResult.areCommentsWritten.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.cyclomaticComplexityScore && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color={structuredResult.cyclomaticComplexityScore.score >= 6 ? "success" : "warning"} fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Cyclomatic Complexity Score" 
+                          secondary={`Score: ${structuredResult.cyclomaticComplexityScore.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.missingElements && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color={structuredResult.missingElements.score >= 6 ? "success" : "warning"} fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Missing Elements" 
+                          secondary={`Score: ${structuredResult.missingElements.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.loopholes && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color={structuredResult.loopholes.score >= 6 ? "success" : "warning"} fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Loopholes" 
+                          secondary={`Score: ${structuredResult.loopholes.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.isCommitMessageWellWritten && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color={structuredResult.isCommitMessageWellWritten.score >= 6 ? "success" : "warning"} fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Is Commit Message Well Written" 
+                          secondary={`Score: ${structuredResult.isCommitMessageWellWritten.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.isNamingConventionFollowed && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color="success" fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Is Naming Convention Followed" 
+                          secondary={`Score: ${structuredResult.isNamingConventionFollowed.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.areThereAnySpellingMistakes && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color="success" fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Are There Any Spelling Mistakes" 
+                          secondary={`Score: ${structuredResult.areThereAnySpellingMistakes.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.securityConcernsAny && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color={structuredResult.securityConcernsAny.score >= 6 ? "success" : "error"} fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Security Concerns Any" 
+                          secondary={`Score: ${structuredResult.securityConcernsAny.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.isCodeDuplicated && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color="success" fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Is Code Duplicated" 
+                          secondary={`Score: ${structuredResult.isCodeDuplicated.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.areConstantsDefinedCentrally && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color={structuredResult.areConstantsDefinedCentrally.score >= 6 ? "success" : "warning"} fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Are Constants Defined Centrally" 
+                          secondary={`Score: ${structuredResult.areConstantsDefinedCentrally.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.isCodeModular && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color="success" fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Is Code Modular" 
+                          secondary={`Score: ${structuredResult.isCodeModular.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                    {structuredResult.isLoggingDoneProperly && (
+                      <ListItem>
+                        <ListItemIcon>
+                          <CheckIcon color={structuredResult.isLoggingDoneProperly.score >= 6 ? "success" : "warning"} fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary="Is Logging Done Properly" 
+                          secondary={`Score: ${structuredResult.isLoggingDoneProperly.score}/10`}
+                        />
+                      </ListItem>
+                    )}
+                  </List>
                 </CardContent>
               </Card>
             )}
